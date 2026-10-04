@@ -48,6 +48,19 @@
   .result .big { font-size:1.2rem; font-weight:700; color:var(--violet); }
   .small { color:var(--muted); font-size:.88rem; margin-top:10px; }
   footer { margin-top:40px; padding:24px 0; text-align:center; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); }
+
+  /* AI Assistant Floating Widget */
+  #ai-bubble { position: fixed; bottom: 20px; right: 20px; width: 52px; height: 52px; border-radius: 50%; background: var(--violet); color: #fff; border: none; font-size: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; }
+  #ai-window { position: fixed; bottom: 80px; right: 20px; width: 320px; height: 420px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: flex; flex-direction: column; z-index: 1000; overflow: hidden; }
+  #ai-header { background: var(--violet); color: #fff; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+  #ai-header button { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+  #ai-messages { flex: 1; padding: 12px; overflow-y: auto; font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px; }
+  .ai-msg { padding: 8px 12px; border-radius: 10px; max-width: 85%; word-wrap: break-word; }
+  .ai-msg.user { background: var(--pool); color: #fff; align-self: flex-end; }
+  .ai-msg.bot { background: var(--bg); color: var(--ink); border: 1px solid var(--line); align-self: flex-start; }
+  #ai-input-form { display: flex; border-top: 1px solid var(--line); }
+  #ai-input-form input { flex: 1; border: none; padding: 10px; font: inherit; outline: none; }
+  #ai-input-form button { background: var(--violet); color: #fff; border: none; padding: 0 14px; font-weight: 600; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -121,6 +134,23 @@
 
 <footer><div class="wrap">Simsbury Hub is a community project and is not run by the Town of Simsbury.<br>Last updated: <span id="updated"></span></div></footer>
 
+<!-- AI Assistant Floating Widget -->
+<button id="ai-bubble" title="Ask Simsbury AI">💬</button>
+
+<div id="ai-window" hidden>
+  <div id="ai-header">
+    <span>Simsbury AI Assistant</span>
+    <button id="ai-close">&times;</button>
+  </div>
+  <div id="ai-messages">
+    <div class="ai-msg bot">Hi! Ask me anything about events, businesses, or town info in Simsbury.</div>
+  </div>
+  <form id="ai-input-form">
+    <input type="text" id="ai-input" placeholder="Type a message..." required autocomplete="off">
+    <button type="submit">Send</button>
+  </form>
+</div>
+
 <script src="data.js"></script>
 <script>
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
@@ -152,7 +182,7 @@
   const today = new Date().toISOString().slice(0, 10);
   const upcoming = EVENTS.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
 
-  const featured = upcoming.filter((e) => e.category !== "meetings"); // town meetings do not take the "Next up" spot
+  const featured = upcoming.filter((e) => e.category !== "meetings");
   if (featured[0]) {
     const n = featured[0];
     $("next").hidden = false;
@@ -192,6 +222,51 @@
     const subject = encodeURIComponent(`[Simsbury Hub Tip] ${type}`);
     const body = encodeURIComponent(`Tip Type: ${type}\n\nDetails:\n${details}`);
     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  });
+
+  // Cloudflare AI Assistant
+  const WORKER_URL = "https://simsbury-ai.cadoffryan.workers.dev";
+
+  const bubble = document.getElementById("ai-bubble");
+  const win = document.getElementById("ai-window");
+  const closeBtn = document.getElementById("ai-close");
+  const form = document.getElementById("ai-input-form");
+  const input = document.getElementById("ai-input");
+  const messages = document.getElementById("ai-messages");
+
+  bubble.addEventListener("click", () => win.hidden = !win.hidden);
+  closeBtn.addEventListener("click", () => win.hidden = true);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+
+    const userDiv = document.createElement("div");
+    userDiv.className = "ai-msg user";
+    userDiv.textContent = text;
+    messages.appendChild(userDiv);
+    input.value = "";
+    messages.scrollTop = messages.scrollHeight;
+
+    const botDiv = document.createElement("div");
+    botDiv.className = "ai-msg bot";
+    botDiv.textContent = "Thinking...";
+    messages.appendChild(botDiv);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application.json" },
+        body: JSON.stringify({ message: text })
+      });
+      const data = await res.json();
+      botDiv.textContent = data.response || "Sorry, I couldn't get an answer right now.";
+    } catch (err) {
+      botDiv.textContent = "Error connecting to AI server.";
+    }
+    messages.scrollTop = messages.scrollHeight;
   });
 </script>
 </body>
