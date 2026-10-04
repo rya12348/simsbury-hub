@@ -22,7 +22,7 @@
   h2 { margin:0 0 14px; font-size:1.6rem; }
   .tools { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; align-items:center; }
   input[type=search], input[type=number] { font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); }
-  input:focus-visible, button:focus-visible { outline:2px solid var(--pool); outline-offset:2px; }
+  input:focus-visible, button:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid var(--pool); outline-offset:2px; }
   .chips { display:flex; flex-wrap:wrap; gap:8px; }
   .chips button { border:1px solid var(--line); background:#fff; color:var(--ink); padding:7px 14px; border-radius:999px; font:inherit; cursor:pointer; }
   .chips button[aria-pressed="true"] { background:var(--violet); border-color:var(--violet); color:#fff; }
@@ -37,9 +37,12 @@
   .tag.new { background:var(--violet); color:#fff; margin-left:6px; }
   .when { font-weight:700; color:var(--pool); font-size:.92rem; }
   .empty { color:var(--muted); padding:12px 0; }
-  .calc { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px; max-width:520px; }
-  .calc label { display:block; font-weight:600; margin:10px 0 4px; }
-  .calc input { width:100%; }
+  .calc, .tip-card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px; max-width:520px; }
+  .calc label, .tip-card label { display:block; font-weight:600; margin:10px 0 4px; }
+  .calc input, .tip-card input, .tip-card select, .tip-card textarea { width:100%; font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); }
+  .tip-card textarea { resize:vertical; }
+  .submit-btn { margin-top:14px; width:100%; background:var(--violet); color:#fff; border:none; padding:11px 16px; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; }
+  .submit-btn:hover { background:#583cb8; }
   .result { margin-top:16px; padding-top:12px; border-top:1px solid var(--line); }
   .result div { display:flex; justify-content:space-between; padding:3px 0; }
   .result .big { font-size:1.2rem; font-weight:700; color:var(--violet); }
@@ -57,7 +60,7 @@
 </header>
 
 <nav aria-label="Sections"><div class="wrap">
-  <a href="#events">Events</a><a href="#places">Restaurants and Stores</a><a href="#town">Town Info</a><a href="#taxes">Tax Estimator</a>
+  <a href="#events">Events</a><a href="#places">Restaurants and Stores</a><a href="#town">Town Info</a><a href="#taxes">Tax Estimator</a><a href="#tip">Submit a Tip</a>
 </div></nav>
 
 <main class="wrap">
@@ -91,6 +94,27 @@
         <div><span>Each of two installments</span><span id="half"></span></div>
       </div>
       <p class="small">An estimate only. Connecticut assesses property at 70% of market value, and your real bill depends on the town's current mill rate and any exemptions. Get the mill rate from the town's website.</p>
+    </div>
+  </section>
+
+  <section id="tip">
+    <h2>Submit a Tip</h2>
+    <div class="tip-card">
+      <form id="tip-form">
+        <label for="tip-type">Tip Type</label>
+        <select id="tip-type">
+          <option value="Upcoming Event">Upcoming Event</option>
+          <option value="New Store or Restaurant">New Store or Restaurant</option>
+          <option value="Correction">Correction or Update</option>
+          <option value="General Tip">General Tip</option>
+        </select>
+
+        <label for="tip-details">Details</label>
+        <textarea id="tip-details" rows="4" placeholder="Tell us the venue, date, address, or details..." required></textarea>
+
+        <button type="submit" class="submit-btn">Send Tip via Email</button>
+      </form>
+      <p class="small">Clicking send opens your default email program with your tip pre-formatted.</p>
     </div>
   </section>
 </main>
@@ -158,6 +182,17 @@
     $("av").textContent = money(av); $("tax").textContent = money(tax); $("half").textContent = money(tax / 2);
   }
   $("mv").addEventListener("input", calc); $("mill").addEventListener("input", calc);
+
+  // Tip form mailto handler
+  $("tip-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const type = $("tip-type").value;
+    const details = $("tip-details").value;
+    const email = "cadoffryan@gmail.com";
+    const subject = encodeURIComponent(`[Simsbury Hub Tip] ${type}`);
+    const body = encodeURIComponent(`Tip Type: ${type}\n\nDetails:\n${details}`);
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  });
 </script>
 </body>
 </html>
