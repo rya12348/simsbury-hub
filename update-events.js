@@ -31,6 +31,16 @@ const addDays = (iso, n) => { const d = new Date(iso + "T12:00:00Z"); d.setUTCDa
 const clean = (s, max) => String(s || "").replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
 const norm = (s) => String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
 const unescapeIcs = (s) => s.replace(/\\n/gi, " ").replace(/\\([,;\\])/g, "$1");
+// Some feeds put HTML in the text (<p>Town Hall</p>). Turn it into plain text.
+const decode = (s) => s.replace(/&nbsp;/gi, " ").replace(/&amp;/gi, "&").replace(/&lt;/gi, "<").replace(/&gt;/gi, ">").replace(/&quot;/gi, '"').replace(/&#0*39;|&apos;/gi, "'");
+const stripHtml = (s) => decode(String(s).replace(/<\/p>\s*<p[^>]*>/gi, ", ").replace(/<br\s*\/?>/gi, ", ").replace(/<[^>]*>/g, " "));
+const cleanPlace = (s) => stripHtml(s).replace(/\s+/g, " ").replace(/^[\s,-]+/, "").replace(/\s*-?\s*Simsbury,?\s*CT\s*\d{5}\s*$/i, "").replace(/[,\s-]+$/, "").trim();
+// sources.json can say: "categoryRules": [{ "words": ["commission", "board"], "category": "meetings" }]
+const pickCategory = (title, s) => {
+  const t = title.toLowerCase();
+  for (const r of s.categoryRules || []) if (r.words.some((w) => t.includes(w.toLowerCase()))) return r.category;
+  return s.category || "community";
+};
 const isHttps = (s) => { try { return new URL(s).protocol === "https:"; } catch { return false; } };
 
 // ---------- robots.txt ----------
@@ -135,12 +145,12 @@ const fmtTime = (h, mi) => `${h % 12 || 12}:${mi} ${h < 12 ? "AM" : "PM"}`;
       for (const e of raw) {
         if (e.RRULE) { recurring++; continue; } // repeating events are skipped: their dates are not expanded here
         const when = toLocal(e.DTSTART);
-        const title = clean(unescapeIcs(e.SUMMARY || ""), 120);
+        const title = clean(stripHtml(unescapeIcs(e.SUMMARY || "")), 120);
         if (!when || !title || isNaN(new Date(when.date)) || when.date < today || when.date > last) continue;
         mine.push({
           title, date: when.date, time: when.time,
-          place: clean(unescapeIcs(e.LOCATION || ""), 80) || s.name,
-          category: s.category || "community",
+          place: clean(cleanPlace(unescapeIcs(e.LOCATION || "")), 80) || s.name,
+          category: pickCategory(title, s),
           link: isHttps(e.URL) ? e.URL : s.pageUrl,
           src: s.id
         });

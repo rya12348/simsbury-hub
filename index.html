@@ -119,7 +119,7 @@
     });
     $(cfg.search).addEventListener("input", (e) => { q = e.target.value.trim().toLowerCase(); draw(); });
     function draw() {
-      const list = cfg.items.filter((it) => (pick === "all" || it[cfg.key] === pick) && (!q || cfg.text(it).toLowerCase().includes(q)));
+      const list = cfg.items.filter((it) => (pick === "all" ? it[cfg.key] !== cfg.hideInAll : it[cfg.key] === pick) && (!q || cfg.text(it).toLowerCase().includes(q)));
       $(cfg.list).innerHTML = list.length ? list.map(cfg.card).join("") : `<p class="empty">Nothing found. Try a different search or filter.</p>`;
     }
     draw();
@@ -128,13 +128,14 @@
   const today = new Date().toISOString().slice(0, 10);
   const upcoming = EVENTS.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
 
-  if (upcoming[0]) {
-    const n = upcoming[0];
+  const featured = upcoming.filter((e) => e.category !== "meetings"); // town meetings do not take the "Next up" spot
+  if (featured[0]) {
+    const n = featured[0];
     $("next").hidden = false;
     $("next").innerHTML = `<b>Next up</b>${esc(n.title)}<br>${esc(fmtDay(n.date))} at ${esc(n.time)}, ${esc(n.place)}`;
   }
 
-  setup({ items: upcoming, key: "category", values: [...new Set(upcoming.map((e) => e.category))],
+  setup({ items: upcoming, key: "category", values: [...new Set(upcoming.map((e) => e.category))], hideInAll: "meetings",
     chips: "event-chips", search: "event-q", list: "event-list",
     text: (e) => e.title + " " + e.place,
     card: (e) => `<a class="card" href="${esc(e.link)}"><span class="tag ${esc(e.category)}">${esc(cap(e.category))}</span><h3>${esc(e.title)}</h3><div class="when">${esc(fmtDay(e.date))} at ${esc(e.time)}</div><p>${esc(e.place)}</p></a>` });
