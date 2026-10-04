@@ -6,8 +6,8 @@
     "url": "https://www.simsbury-ct.gov/common/modules/iCalendar/iCalendar.aspx?catID=14&feed=calendar",
     "pageUrl": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "category": "community",
-    "enabled": false,
-    "note": "UNVERIFIED GUESS at the town's iCal address. Open the town calendar page, find the 'Subscribe' or 'iCalendar' link, and paste the real address here. Then set enabled to true."
+    "enabled": true,
+    "note": "Address copied from the town's own calendar subscribe link. If the Actions log says robots.txt does not allow it, set enabled back to false."
   },
   {
     "id": "chamber",
