@@ -5,7 +5,8 @@
 
 const LAST_UPDATED = "2026-10-04";
 
-const EVENTS = [
+// Events you type by hand. The daily update never touches these.
+const MANUAL_EVENTS = [
   { title: "Second Friday Networking and Ribbon Cutting (Lucky Gut + Farmington Valley Lifestyle Magazine)", date: "2026-10-09", time: "7:30 AM", place: "The Lucky Gut Collective, 10 Wilcox St", category: "community",
     link: "https://www.simsburycoc.com/events/details/second-friday-morning-networking-event-ribbon-cutting-the-lucky-gut-farmington-valley-lifestyle-magazine-4078" },
   { title: "Walk & Talk for Hope: Community Festival for Mental Health", date: "2026-10-10", time: "10:00 AM", place: "Simsbury Meadows Performing Arts Center", category: "family",
@@ -29,6 +30,14 @@ const EVENTS = [
   { title: "Children's Holiday Tea Party (Historical Society)", date: "2026-12-05", time: "2:00 PM", place: "Phelps Tavern", category: "family",
     link: "https://simsburyhistory.org/events-programs/" }
 ];
+
+// Events filled in by update-events.js every morning. Do not edit between the two marker lines.
+// AUTO-EVENTS-START
+const AUTO_EVENTS = [];
+// AUTO-EVENTS-END
+
+// The page reads this one: your hand-written events plus the automatic ones.
+const EVENTS = [...MANUAL_EVENTS, ...AUTO_EVENTS];
 
 const PLACES = [
   // New in 2026
