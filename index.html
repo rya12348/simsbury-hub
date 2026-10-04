@@ -262,7 +262,7 @@
         body: JSON.stringify({ message: text })
       });
       const data = await res.json();
-      botDiv.textContent = data.response || "Sorry, I couldn't get an answer right now.";
+      botDiv.textContent = data.response || (data.error ? "AI Error: " + data.error : "Sorry, I couldn't get an answer right now.");
     } catch (err) {
       botDiv.textContent = "Error connecting to AI server.";
     }
