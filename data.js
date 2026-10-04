@@ -1,6 +1,5 @@
 // ALL SITE CONTENT LIVES IN THIS FILE.
-// Real Simsbury info, updated 2026-10-04 from local directory resources.
-// Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
+// Comprehensive Simsbury Directory, gathered October 2026.
 
 const LAST_UPDATED = "2026-10-04";
 
@@ -142,105 +141,6 @@ const AUTO_EVENTS = [
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "src": "town"
-  },
-  {
-    "title": "Zoning Commission Special Meeting",
-    "date": "2026-10-05",
-    "time": "6:00 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Age-Friendly Community Subcommittee Meeting",
-    "date": "2026-10-06",
-    "time": "2:30 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Conservation Commission/Inland Wetlands Agency",
-    "date": "2026-10-06",
-    "time": "7:00 PM",
-    "place": "Main Meeting Room, Simsbury Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Open Space Committee",
-    "date": "2026-10-07",
-    "time": "5:00 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Personnel Subcommittee",
-    "date": "2026-10-08",
-    "time": "9:00 AM",
-    "place": "Simsbury Town Hall, Main Meeting Room, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Water Pollution Control Authority",
-    "date": "2026-10-08",
-    "time": "7:00 PM",
-    "place": "Water Pollution Control Facility, 36 Drake Hill Road",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Simsbury Housing Authority",
-    "date": "2026-10-09",
-    "time": "8:00 AM",
-    "place": "Virginia Connolly Residence, 1600 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Board of Education",
-    "date": "2026-10-13",
-    "time": "6:30 PM",
-    "place": "Board of Education Conference Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Planning Commission",
-    "date": "2026-10-13",
-    "time": "7:00 PM",
-    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Board of Selectmen",
-    "date": "2026-10-14",
-    "time": "5:00 PM",
-    "place": "Simsbury Town Hall, Main Meeting Room, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Police Commission",
-    "date": "2026-10-14",
-    "time": "5:00 PM",
-    "place": "Board of Education Conference Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
   }
 ];
 // AUTO-EVENTS-END
@@ -249,8 +149,28 @@ const EVENTS = [...MANUAL_EVENTS, ...AUTO_EVENTS];
 
 const PLACES = [
   // ==========================================
-  // --- RESTAURANTS, CAFES, PUBS & SWEETS ---
+  // --- RESTAURANTS, CAFES, TEA & SWEETS ---
   // ==========================================
+  {
+    name: "Tea Method",
+    type: "restaurant",
+    address: "920 Hopmeadow St",
+    description: "Specialty loose-leaf tea lounge, boba tea bar, and peaceful downtown gathering space.",
+    hours: "Tue-Sat: 10:00 AM - 6:00 PM, Sun: 11:00 AM - 5:00 PM, Mon: Closed",
+    liveMusic: "None",
+    isNew: false,
+    link: "https://www.teamethod.com/"
+  },
+  {
+    name: "Spoonful of Britain",
+    type: "store",
+    address: "124 Hopmeadow St (Riverdale Farms, Bldg 1)",
+    description: "Authentic British shop offering imported teas, English sweets, scones, pottery, and traditional pantry imports.",
+    hours: "Tue-Sat: 10:00 AM - 5:00 PM, Sun: 12:00 PM - 4:00 PM, Mon: Closed",
+    liveMusic: "None",
+    isNew: false,
+    link: "https://www.spoonfulofbritain.com/"
+  },
   {
     name: "Millwright's Restaurant",
     type: "restaurant",
@@ -510,16 +430,6 @@ const PLACES = [
     liveMusic: "Acoustic sets on select Thursday & Saturday nights.",
     isNew: false,
     link: "https://www.crownandhammer.com/"
-  },
-  {
-    name: "Metro Prime Meats & Gourmet Foods",
-    type: "restaurant",
-    address: "140 Albany Tpke",
-    description: "Gourmet meat market, seafood counter, chef-prepared entrees, and deli sandwiches.",
-    hours: "Mon-Sat: 10:00 AM - 6:30 PM, Sun: 10:00 AM - 5:00 PM",
-    liveMusic: "None",
-    isNew: false,
-    link: "https://metroprime.com/"
   },
   {
     name: "Lucky Gut Collective",
