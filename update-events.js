@@ -130,22 +130,26 @@ const fmtTime = (h, mi) => `${h % 12 || 12}:${mi} ${h < 12 ? "AM" : "PM"}`;
       if (!res.ok) throw new Error("HTTP " + res.status);
       const raw = parseIcs(await res.text());
       if (!raw.length) throw new Error("feed had no events (is this really an iCal feed?)");
-      let kept = 0, recurring = 0;
+      const mine = [];
+      let recurring = 0;
       for (const e of raw) {
         if (e.RRULE) { recurring++; continue; } // repeating events are skipped: their dates are not expanded here
         const when = toLocal(e.DTSTART);
         const title = clean(unescapeIcs(e.SUMMARY || ""), 120);
-        if (!when || !title || when.date < today || when.date > last) continue;
-        fresh.push({
+        if (!when || !title || isNaN(new Date(when.date)) || when.date < today || when.date > last) continue;
+        mine.push({
           title, date: when.date, time: when.time,
           place: clean(unescapeIcs(e.LOCATION || ""), 80) || s.name,
           category: s.category || "community",
           link: isHttps(e.URL) ? e.URL : s.pageUrl,
           src: s.id
         });
-        if (++kept >= MAX_PER_SOURCE) break;
       }
-      console.log(`OK   ${s.id}: ${kept} events kept, ${recurring} repeating events skipped`);
+      // keep the SOONEST events, not just the first ones the feed happens to list
+      mine.sort((x, y) => x.date.localeCompare(y.date));
+      const kept = Math.min(mine.length, MAX_PER_SOURCE);
+      fresh.push(...mine.slice(0, kept));
+      console.log(`OK   ${s.id}: ${kept} events kept (of ${mine.length} found), ${recurring} repeating events skipped`);
     } catch (err) {
       failed.push(s.id);
       console.log(`FAIL ${s.id}: ${err.message}`);
