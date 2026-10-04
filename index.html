@@ -1,274 +1,982 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Simsbury Hub</title>
-<style>
-  :root { --bg:#f5faff; --card:#fff; --ink:#12304a; --muted:#55708a; --pool:#1e88e5; --teal:#0f9d9a; --violet:#6d4fd6; --line:#d5e6f5; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family:"Segoe UI",system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.5; }
-  .wrap { max-width:1000px; margin:0 auto; padding:0 20px; }
-  header { background:linear-gradient(120deg,var(--pool),var(--teal)); color:#fff; padding:40px 0 26px; }
-  header h1 { margin:0 0 6px; font-size:clamp(2rem,6vw,3.2rem); letter-spacing:-.02em; }
-  header p { margin:0; font-size:1.05rem; opacity:.92; }
-  #next { margin-top:18px; background:rgba(255,255,255,.18); border-radius:10px; padding:12px 16px; max-width:520px; }
-  #next b { display:block; font-size:.85rem; opacity:.9; }
-  nav { position:sticky; top:0; z-index:5; background:#fff; border-bottom:1px solid var(--line); }
-  nav .wrap { display:flex; gap:6px; overflow-x:auto; padding-top:8px; padding-bottom:8px; }
-  nav a { white-space:nowrap; text-decoration:none; color:var(--ink); padding:8px 14px; border-radius:999px; font-weight:600; font-size:.95rem; }
-  nav a:hover, nav a:focus-visible { background:var(--bg); color:var(--violet); outline:2px solid var(--violet); }
-  section { padding:36px 0 8px; scroll-margin-top:56px; }
-  h2 { margin:0 0 14px; font-size:1.6rem; }
-  .tools { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; align-items:center; }
-  input[type=search], input[type=number] { font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); }
-  input:focus-visible, button:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid var(--pool); outline-offset:2px; }
-  .chips { display:flex; flex-wrap:wrap; gap:8px; }
-  .chips button { border:1px solid var(--line); background:#fff; color:var(--ink); padding:7px 14px; border-radius:999px; font:inherit; cursor:pointer; }
-  .chips button[aria-pressed="true"] { background:var(--violet); border-color:var(--violet); color:#fff; }
-  .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); }
-  .card { display:block; text-decoration:none; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; }
-  a.card:hover, a.card:focus-visible { border-color:var(--teal); outline:none; box-shadow:0 0 0 2px var(--teal); }
-  .card h3 { margin:6px 0 4px; font-size:1.05rem; }
-  .card p { margin:0; color:var(--muted); font-size:.93rem; }
-  .tag { display:inline-block; font-size:.8rem; font-weight:600; padding:2px 9px; border-radius:999px; background:#e6f6f5; color:#0b7a78; }
-  .tag.music { background:#efeafc; color:var(--violet); }
-  .tag.family { background:#e4f1fd; color:#1769b3; }
-  .tag.new { background:var(--violet); color:#fff; margin-left:6px; }
-  .when { font-weight:700; color:var(--pool); font-size:.92rem; }
-  .empty { color:var(--muted); padding:12px 0; }
-  .calc, .tip-card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px; max-width:520px; }
-  .calc label, .tip-card label { display:block; font-weight:600; margin:10px 0 4px; }
-  .calc input, .tip-card input, .tip-card select, .tip-card textarea { width:100%; font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); }
-  .tip-card textarea { resize:vertical; }
-  .submit-btn { margin-top:14px; width:100%; background:var(--violet); color:#fff; border:none; padding:11px 16px; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; }
-  .submit-btn:hover { background:#583cb8; }
-  .result { margin-top:16px; padding-top:12px; border-top:1px solid var(--line); }
-  .result div { display:flex; justify-content:space-between; padding:3px 0; }
-  .result .big { font-size:1.2rem; font-weight:700; color:var(--violet); }
-  .small { color:var(--muted); font-size:.88rem; margin-top:10px; }
-  footer { margin-top:40px; padding:24px 0; text-align:center; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simsbury Hub | Local Community Directory & Guide</title>
+  
+  <!-- Editorial Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  /* AI Assistant Floating Widget */
-  #ai-bubble { position: fixed; bottom: 20px; right: 20px; width: 52px; height: 52px; border-radius: 50%; background: var(--violet); color: #fff; border: none; font-size: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; }
-  #ai-window[hidden] { display: none !important; }
-  #ai-window { position: fixed; bottom: 80px; right: 20px; width: 320px; height: 420px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: flex; flex-direction: column; z-index: 1000; overflow: hidden; }
-  #ai-header { background: var(--violet); color: #fff; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
-  #ai-header button { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; padding: 2px 6px; line-height: 1; }
-  #ai-messages { flex: 1; padding: 12px; overflow-y: auto; font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px; }
-  .ai-msg { padding: 8px 12px; border-radius: 10px; max-width: 85%; word-wrap: break-word; }
-  .ai-msg.user { background: var(--pool); color: #fff; align-self: flex-end; }
-  .ai-msg.bot { background: var(--bg); color: var(--ink); border: 1px solid var(--line); align-self: flex-start; }
-  #ai-input-form { display: flex; border-top: 1px solid var(--line); }
-  #ai-input-form input { flex: 1; border: none; padding: 10px; font: inherit; outline: none; }
-  #ai-input-form button { background: var(--violet); color: #fff; border: none; padding: 0 14px; font-weight: 600; cursor: pointer; }
-</style>
+  <style>
+    /* ==========================================================================
+       NEW ENGLAND CLASSIC PALETTE & RESET (NO AI GRADIENT SLOP)
+       ========================================================================== */
+    :root {
+      --bg-main: #FAF8F5;          /* Warm parchment background */
+      --bg-card: #FFFFFF;
+      --text-main: #1C2621;        /* Deep forestry charcoal */
+      --text-muted: #53645B;
+      --brand-primary: #234E39;     /* Deep Simsbury Green */
+      --brand-accent: #C4822A;      /* Autumn Amber */
+      --brand-light: #EEF4F0;
+      --border-subtle: #E3DDD4;
+      --border-strong: #C8BFB0;
+      --radius: 6px;                /* Crisp, subtle corners */
+      --shadow: 0 2px 4px rgba(28, 38, 33, 0.04), 0 1px 2px rgba(28, 38, 33, 0.08);
+      --font-heading: 'Merriweather', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION (TAB-BASED PAGE SWITCHING)
+       ========================================================================== */
+    header {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border-bottom: 3px solid var(--brand-accent);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #FFFFFF;
+    }
+
+    .logo-area h1 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-tag {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: #D2E2D8;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-btn.active {
+      color: var(--brand-primary);
+      background: var(--bg-main);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       MAIN CONTAINER & DYNAMIC VIEW SWITCHING
+       ========================================================================== */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      min-height: 70vh;
+    }
+
+    /* Hides non-active sections completely so it feels like changing pages */
+    .view-section {
+      display: none;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-header {
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+
+    .page-header h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      color: var(--brand-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .page-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================================================
+       GRID LAYOUTS & CARDS
+       ========================================================================== */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 1.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+
+    @media (max-width: 600px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--brand-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-meta {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--brand-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-body {
+      color: var(--text-main);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-link {
+      display: inline-block;
+      color: var(--brand-primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-bottom: 1px solid var(--brand-primary);
+      width: fit-content;
+    }
+
+    .card-link:hover {
+      color: var(--brand-accent);
+      border-color: var(--brand-accent);
+    }
+
+    /* Trail Spec Badges */
+    .trail-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0;
+    }
+
+    .badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: var(--brand-light);
+      color: var(--brand-primary);
+      border: 1px solid #D1E2D7;
+    }
+
+    .badge.no-dogs {
+      background: #FDF2F2;
+      color: #9B1C1C;
+      border-color: #F8B4B4;
+    }
+
+    /* Filter Sub-Bar */
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .filter-btn.active {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border-color: var(--brand-primary);
+    }
+
+    /* ==========================================================================
+       TAX CALCULATOR TOOL
+       ========================================================================== */
+    .tax-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-family: var(--font-body);
+    }
+
+    .calc-btn {
+      width: 100%;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 0.85rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+
+    .tax-result {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: var(--brand-light);
+      border-left: 4px solid var(--brand-primary);
+      border-radius: var(--radius);
+      display: none;
+    }
+
+    /* ==========================================================================
+       AI ASSISTANT CHAT WIDGET
+       ========================================================================== */
+    .chat-widget-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border: 2px solid var(--brand-accent);
+      padding: 0.85rem 1.4rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .chat-modal {
+      position: fixed;
+      bottom: 5rem;
+      right: 1.5rem;
+      width: 380px;
+      max-width: calc(100vw - 3rem);
+      height: 520px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      display: none;
+      flex-direction: column;
+      z-index: 1001;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+    }
+
+    .chat-close {
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .msg {
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      max-width: 85%;
+      line-height: 1.4;
+    }
+
+    .msg.bot {
+      background: var(--bg-main);
+      border: 1px solid var(--border-subtle);
+      align-self: flex-start;
+    }
+
+    .msg.user {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      align-self: flex-end;
+    }
+
+    .chat-input-area {
+      padding: 0.75rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      padding: 0.6rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .chat-input-area button {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 0.6rem 1rem;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #121A16;
+      color: #92A398;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 4rem;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <h1>Simsbury Hub</h1>
-    <p id="today">Events, new places, and town info for Simsbury, CT.</p>
-    <div id="next" hidden></div>
-  </div>
-</header>
 
-<nav aria-label="Sections"><div class="wrap">
-  <a href="#events">Events</a><a href="#places">Restaurants and Stores</a><a href="#town">Town Info</a><a href="#taxes">Tax Estimator</a><a href="#tip">Submit a Tip</a>
-</div></nav>
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo-area" onclick="switchTab('home')">
+        <h1>Simsbury Hub</h1>
+        <span class="logo-tag">Connecticut</span>
+      </a>
+      <nav>
+        <button class="nav-btn active" id="btn-home" onclick="switchTab('home')">Overview</button>
+        <button class="nav-btn" id="btn-events" onclick="switchTab('events')">Events</button>
+        <button class="nav-btn" id="btn-places" onclick="switchTab('places')">Directory</button>
+        <button class="nav-btn" id="btn-trails" onclick="switchTab('trails')">Trails & Hiking</button>
+        <button class="nav-btn" id="btn-town" onclick="switchTab('town')">Town Services</button>
+        <button class="nav-btn" id="btn-tax" onclick="switchTab('tax')">Tax Calculator</button>
+      </nav>
+    </div>
+  </header>
 
-<main class="wrap">
-  <section id="events">
-    <h2>Events</h2>
-    <div class="tools"><input type="search" id="event-q" placeholder="Search events" aria-label="Search events"><div class="chips" id="event-chips"></div></div>
-    <div class="grid" id="event-list"></div>
-  </section>
-
-  <section id="places">
-    <h2>Restaurants and Stores</h2>
-    <div class="tools"><input type="search" id="place-q" placeholder="Search places" aria-label="Search places"><div class="chips" id="place-chips"></div></div>
-    <div class="grid" id="place-list"></div>
-  </section>
-
-  <section id="town">
-    <h2>Town Info</h2>
-    <div class="grid" id="town-list"></div>
-  </section>
-
-  <section id="taxes">
-    <h2>Tax Estimator</h2>
-    <div class="calc">
-      <label for="mv">Home market value ($)</label>
-      <input type="number" id="mv" min="0" inputmode="decimal" placeholder="Enter market value">
-      <label for="mill">Mill rate</label>
-      <input type="number" id="mill" min="0" step="0.01" inputmode="decimal" placeholder="Enter mill rate">
-      <div class="result" id="result" hidden>
-        <div><span>Assessed value (70%)</span><span id="av"></span></div>
-        <div class="big"><span>Estimated yearly tax</span><span id="tax"></span></div>
-        <div><span>Each of two installments</span><span id="half"></span></div>
+  <main>
+    <!-- VIEW: HOME / OVERVIEW -->
+    <section id="view-home" class="view-section active">
+      <div class="page-header">
+        <h2>Welcome to Simsbury, Connecticut</h2>
+        <p>Your curated local index for community events, local dining, shops, municipal services, and outdoor trails.</p>
       </div>
-      <p class="small">An estimate only. Connecticut assesses property at 70% of market value, and your real bill depends on the town's current mill rate and any exemptions. Get the mill rate from the town's website.</p>
+
+      <div class="grid-3" style="margin-bottom: 2.5rem;">
+        <div class="card">
+          <div>
+            <div class="card-meta">Community Events</div>
+            <div class="card-title">What's Happening</div>
+            <div class="card-body">Browse upcoming town meetings, library talks, seasonal festivals, and live music.</div>
+          </div>
+          <a href="#" class="card-link" onclick="switchTab('events')">View Event Calendar &rarr;</a>
+        </div>
+
+        <div class="card">
+          <div>
+            <div class="card-meta">Outdoors & Nature</div>
+            <div class="card-title">Complete Trails Guide</div>
+            <div class="card-body">Explore all 15 local trail systems, from Talcott Mountain to quiet state forest kettle ponds.</div>
+          </div>
+          <a href="#" class="card-link" onclick="switchTab('trails')">Explore Trail Network &rarr;</a>
+        </div>
+
+        <div class="card">
+          <div>
+            <div class="card-meta">Local Directory</div>
+            <div class="card-title">Shops & Dining</div>
+            <div class="card-body">Find business hours, addresses, and details for every restaurant, bakery, and retail shop in town.</div>
+          </div>
+          <a href="#" class="card-link" onclick="switchTab('places')">Browse Directory &rarr;</a>
+        </div>
+      </div>
+
+      <div class="page-header">
+        <h2>Featured Local Highlights</h2>
+      </div>
+      <div class="grid-2" id="home-featured-grid">
+        <!-- Dynamically populated from data.js -->
+      </div>
+    </section>
+
+    <!-- VIEW: EVENTS -->
+    <section id="view-events" class="view-section">
+      <div class="page-header">
+        <h2>Community Calendar</h2>
+        <p>Upcoming town meetings, historical society talks, library programs, and music festivals.</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterEvents('all', this)">All Events</button>
+        <button class="filter-btn" onclick="filterEvents('community', this)">Community</button>
+        <button class="filter-btn" onclick="filterEvents('family', this)">Family</button>
+        <button class="filter-btn" onclick="filterEvents('music', this)">Music</button>
+        <button class="filter-btn" onclick="filterEvents('meetings', this)">Town Meetings</button>
+      </div>
+      <div class="grid-2" id="events-grid"></div>
+    </section>
+
+    <!-- VIEW: PLACES & DIRECTORY -->
+    <section id="view-places" class="view-section">
+      <div class="page-header">
+        <h2>Simsbury Directory</h2>
+        <p>Complete guide to local dining, specialty coffee, retail boutiques, and services.</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterPlaces('all', this)">Show All</button>
+        <button class="filter-btn" onclick="filterPlaces('restaurant', this)">Restaurants & Cafes</button>
+        <button class="filter-btn" onclick="filterPlaces('store', this)">Shops & Boutiques</button>
+        <button class="filter-btn" onclick="filterPlaces('attraction', this)">Attractions</button>
+      </div>
+      <div class="grid-3" id="places-grid"></div>
+    </section>
+
+    <!-- VIEW: TRAILS & HIKING (COMPLETE DIRECTORY) -->
+    <section id="view-trails" class="view-section">
+      <div class="page-header">
+        <h2>Simsbury Hiking & Trails Guide</h2>
+        <p>Comprehensive directory of all state parks, nature preserves, town forests, and riverwalks in Simsbury, CT.</p>
+      </div>
+      <div class="grid-2" id="trails-grid"></div>
+    </section>
+
+    <!-- VIEW: TOWN SERVICES -->
+    <section id="view-town" class="view-section">
+      <div class="page-header">
+        <h2>Municipal & Public Resources</h2>
+        <p>Direct links to official town departments, school calendars, library catalogs, and public works.</p>
+      </div>
+      <div class="grid-3" id="town-grid"></div>
+    </section>
+
+    <!-- VIEW: TAX CALCULATOR -->
+    <section id="view-tax" class="view-section">
+      <div class="page-header">
+        <h2>Simsbury Property Tax Estimator</h2>
+        <p>Calculate estimated local real estate taxes based on Connecticut's 70% assessed value formula.</p>
+      </div>
+      <div class="tax-box">
+        <div class="form-group">
+          <label for="market-value">Fair Market Value of Property ($):</label>
+          <input type="number" id="market-value" placeholder="e.g. 450000" step="5000">
+        </div>
+        <div class="form-group">
+          <label for="mill-rate">Town Mill Rate (2026/2027):</label>
+          <input type="number" id="mill-rate" value="38.64" step="0.01">
+        </div>
+        <button class="calc-btn" onclick="calculateTax()">Calculate Estimate</button>
+
+        <div class="tax-result" id="tax-result">
+          <div style="font-size: 0.9rem; color: var(--text-muted);">Estimated Assessed Value (70%): <strong id="assessed-val">$0</strong></div>
+          <div style="font-size: 1.4rem; font-family: var(--font-heading); color: var(--brand-primary); margin-top: 0.5rem;">
+            Estimated Annual Tax: <span id="annual-tax">$0</span>
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">*Excludes fire district taxes where applicable.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CHATBOT WIDGET -->
+  <button class="chat-widget-btn" onclick="toggleChat()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    Simsbury AI Concierge
+  </button>
+
+  <div class="chat-modal" id="chat-modal">
+    <div class="chat-header">
+      <h3>Simsbury AI Assistant</h3>
+      <button class="chat-close" onclick="toggleChat()">&times;</button>
     </div>
-  </section>
-
-  <section id="tip">
-    <h2>Submit a Tip</h2>
-    <div class="tip-card">
-      <form id="tip-form">
-        <label for="tip-type">Tip Type</label>
-        <select id="tip-type">
-          <option value="Upcoming Event">Upcoming Event</option>
-          <option value="New Store or Restaurant">New Store or Restaurant</option>
-          <option value="Correction">Correction or Update</option>
-          <option value="General Tip">General Tip</option>
-        </select>
-
-        <label for="tip-details">Details</label>
-        <textarea id="tip-details" rows="4" placeholder="Tell us the venue, date, address, or details..." required></textarea>
-
-        <button type="submit" class="submit-btn">Send Tip via Email</button>
-      </form>
-      <p class="small">Clicking send opens your default email program with your tip pre-formatted.</p>
+    <div class="chat-messages" id="chat-messages">
+      <div class="msg bot">Hello! Ask me anything about Simsbury business hours, upcoming events, or trail difficulty ratings.</div>
     </div>
-  </section>
-</main>
-
-<footer><div class="wrap">Simsbury Hub is a community project and is not run by the Town of Simsbury.<br>Last updated: <span id="updated"></span></div></footer>
-
-<!-- AI Assistant Floating Widget -->
-<button id="ai-bubble" title="Ask Simsbury AI">💬</button>
-
-<div id="ai-window" hidden>
-  <div id="ai-header">
-    <span>Simsbury AI Assistant</span>
-    <button id="ai-close">&times;</button>
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="e.g. Where is pizza open late?" onkeypress="handleKey(event)">
+      <button onclick="sendMsg()">Send</button>
+    </div>
   </div>
-  <div id="ai-messages">
-    <div class="ai-msg bot">Hi! Ask me anything about events, businesses, or town info in Simsbury.</div>
-  </div>
-  <form id="ai-input-form">
-    <input type="text" id="ai-input" placeholder="Type a message..." required autocomplete="off">
-    <button type="submit">Send</button>
-  </form>
-</div>
 
-<script src="data.js"></script>
-<script>
-  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
-  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
-  const $ = (id) => document.getElementById(id);
-  const fmtDay = (d) => new Date(d + "T00:00:00").toLocaleDateString(undefined, { weekday:"short", month:"short", day:"numeric" });
+  <footer>
+    <p>&copy; 2026 Simsbury Hub. Independent community directory for Simsbury, CT.</p>
+  </footer>
 
-  $("today").textContent = new Date().toLocaleDateString(undefined, { weekday:"long", month:"long", day:"numeric", year:"numeric" }) + " | Events, new places, and town info for Simsbury, CT.";
-  $("updated").textContent = fmtDay(LAST_UPDATED);
+  <!-- SCRIPT: DATA LOADING & VIEW SWITCHING LOGIC -->
+  <script src="data.js"></script>
+  <script>
+    // --- 1. ALL TRAILS DATASET (COMPLETE DIRECTORY) ---
+    const COMPLETE_TRAILS = [
+      {
+        name: "Talcott Mountain State Park (Heublein Tower Trail)",
+        length: "2.5 miles round-trip",
+        difficulty: "Moderate - Strenuous",
+        elevation: "450 ft gain",
+        parking: "Route 185, Simsbury, CT",
+        dogs: "Allowed (On leash)",
+        highlights: "165-ft historic tower, 360-degree foliage views, rocky ridge walk.",
+        link: "https://www.heubleintower.org/"
+      },
+      {
+        name: "Stratton Brook State Park Loop",
+        length: "1.8 miles loop",
+        difficulty: "Easy (Accessible)",
+        elevation: "50 ft gain",
+        parking: "149 Farms Village Rd",
+        dogs: "Allowed (On leash)",
+        highlights: "Covered wooden bridge, fishing pond, crushed stone wheelchair-accessible trail.",
+        link: "https://www.ct.gov/deep"
+      },
+      {
+        name: "Farmington Canal Heritage Trail (Simsbury Section)",
+        length: "8.4 miles in Simsbury",
+        difficulty: "Easy",
+        elevation: "Flat paved trail",
+        parking: "Iron Horse Blvd / Drake Hill Rd / Tariffville Rd",
+        dogs: "Allowed (On leash)",
+        highlights: "Paved rail trail connecting directly to downtown shops, ice cream parlors, and parks.",
+        link: "https://fcht.org/"
+      },
+      {
+        name: "McLean Game Refuge (Firetown & Barndoor Hills)",
+        length: "20+ miles total network",
+        difficulty: "Easy to Moderate",
+        elevation: "100 - 400 ft gain",
+        parking: "Barnndoor Hills Rd / Salmon Brook St",
+        dogs: "STRICTLY NO DOGS ALLOWED",
+        highlights: "4,400-acre wilderness preserve, quiet forest groves, glacial kettle ponds, trout streams.",
+        link: "https://mcleangamerefuge.org/"
+      },
+      {
+        name: "Tariffville Gorge & Cowles Park",
+        length: "2.2 miles loop",
+        difficulty: "Moderate",
+        elevation: "210 ft gain",
+        parking: "Main St Park Lot, Tariffville",
+        dogs: "Allowed (On leash)",
+        highlights: "Overlooks Whitewater Rapids on Farmington River; premier mountain bike singletrack.",
+        link: "https://www.simsburyrec.com/"
+      },
+      {
+        name: "Great Pond State Forest",
+        length: "1.2 miles loop",
+        difficulty: "Easy",
+        elevation: "Flat",
+        parking: "Great Pond Rd gravel lot",
+        dogs: "Allowed (On leash)",
+        highlights: "Connecticut's smallest state forest surrounding a pristine glacial kettle pond.",
+        link: "https://www.ct.gov/deep"
+      },
+      {
+        name: "Onion Mountain Park Trails",
+        length: "1.5 miles",
+        difficulty: "Moderate - Steep",
+        elevation: "320 ft gain",
+        parking: "West Mountain Rd pull-off",
+        dogs: "Allowed (On leash)",
+        highlights: "Quiet, wooded climb to a high rocky ledge overlooking West Simsbury farmland.",
+        link: "https://www.simsbury-ct.gov/"
+      },
+      {
+        name: "Penwood State Park (Simsbury Ridge Section)",
+        length: "3.5 miles main ridge trail",
+        difficulty: "Moderate",
+        elevation: "300 ft gain",
+        parking: "Route 185 (Penwood Lot)",
+        dogs: "Allowed (On leash)",
+        highlights: "Paved access roads, Lake Louise overlook, dense canopy trail running.",
+        link: "https://www.ct.gov/deep"
+      },
+      {
+        name: "Belden Forest Old-Growth Trail",
+        length: "0.8 miles loop",
+        difficulty: "Easy",
+        elevation: "80 ft gain",
+        parking: "Simsbury Public Library lower lot",
+        dogs: "Allowed (On leash)",
+        highlights: "Historic 40-acre old-growth forest right in downtown Simsbury; giant white pines.",
+        link: "https://www.simsbury-ct.gov/"
+      },
+      {
+        name: "Cathles Conservation Area Trails",
+        length: "2.8 miles network",
+        difficulty: "Moderate",
+        elevation: "180 ft gain",
+        parking: "Boswell Rd turnout",
+        dogs: "Allowed (On leash)",
+        highlights: "Rock outcrops, vernal pools, historic stone walls, quiet hemlock ravines.",
+        link: "https://www.simsburylandtrust.org/"
+      },
+      {
+        name: "Ethel Walker School Woods / Town Forest",
+        length: "4.1 miles network",
+        difficulty: "Easy - Moderate",
+        elevation: "120 ft gain",
+        parking: "Town Forest Rd trailhead",
+        dogs: "Allowed (On leash)",
+        highlights: "Extensive trail network through town pine plantation and equestrian woods.",
+        link: "https://www.simsburylandtrust.org/"
+      },
+      {
+        name: "Pinchot Sycamore & River Walk",
+        length: "0.5 miles path",
+        difficulty: "Easy",
+        elevation: "Flat",
+        parking: "Route 185 bridge park lot",
+        dogs: "Allowed (On leash)",
+        highlights: "CT's largest tree (Pinchot Sycamore), launching point for kayaks on the Farmington River.",
+        link: "https://www.simsbury-ct.gov/"
+      },
+      {
+        name: "Tulmeadow Farm Woods Trails",
+        length: "1.9 miles",
+        difficulty: "Easy",
+        elevation: "90 ft gain",
+        parking: "Farms Village Rd (Tulmeadow Lot)",
+        dogs: "Allowed (On leash)",
+        highlights: "Woodland trails bordering active farm fields; ends near the farm ice cream shop.",
+        link: "https://www.simsburylandtrust.org/"
+      },
+      {
+        name: "Old Drake Hill Flower Bridge & River Walk",
+        length: "0.6 miles",
+        difficulty: "Easy",
+        elevation: "Flat",
+        parking: "1 Drake Hill Rd lot",
+        dogs: "Allowed (On leash)",
+        highlights: "Historic 1892 iron bridge lined with flower boxes crossing the Farmington River.",
+        link: "https://www.flowerbridge.org/"
+      },
+      {
+        name: "Simsbury Farms Rec Complex Loop",
+        length: "2.0 miles loop",
+        difficulty: "Easy",
+        elevation: "110 ft gain",
+        parking: "100 Old Farms Rd main lot",
+        dogs: "Allowed (On leash)",
+        highlights: "Paved and gravel path encircling the town golf course, apple orchards, and pools.",
+        link: "https://www.simsburyrec.com/"
+      }
+    ];
 
-  // Reusable section: search box + filter chips + list
-  function setup(cfg) {
-    let pick = "all", q = "";
-    const chips = $(cfg.chips);
-    chips.innerHTML = ["all", ...cfg.values].map((v, i) => `<button type="button" data-v="${esc(v)}" aria-pressed="${i === 0}">${esc(cap(v))}</button>`).join("");
-    chips.addEventListener("click", (e) => {
-      const b = e.target.closest("button"); if (!b) return;
-      chips.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
-      pick = b.dataset.v; draw();
+    // --- 2. SINGLE PAGE TAB SWITCHING LOGIC ---
+    function switchTab(viewId) {
+      // Hide all view sections
+      document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+      // Deactivate all nav buttons
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      // Activate selected view and button
+      const targetView = document.getElementById(`view-${viewId}`);
+      const targetBtn = document.getElementById(`btn-${viewId}`);
+
+      if (targetView) targetView.classList.add('active');
+      if (targetBtn) targetBtn.classList.add('active');
+
+      // Scroll smoothly to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- 3. DYNAMIC RENDERING FUNCTIONS ---
+    function renderEvents(category = 'all') {
+      const container = document.getElementById('events-grid');
+      if (!container || typeof EVENTS === 'undefined') return;
+
+      const filtered = category === 'all' 
+        ? EVENTS 
+        : EVENTS.filter(e => e.category === category);
+
+      container.innerHTML = filtered.map(item => `
+        <div class="card">
+          <div>
+            <div class="card-meta">${item.category} &bull; ${item.date} (${item.time})</div>
+            <div class="card-title">${item.title}</div>
+            <div class="card-body">Location: ${item.place}</div>
+          </div>
+          <a href="${item.link}" target="_blank" class="card-link">Event Info & Registration &rarr;</a>
+        </div>
+      `).join('');
+    }
+
+    function renderPlaces(type = 'all') {
+      const container = document.getElementById('places-grid');
+      if (!container || typeof PLACES === 'undefined') return;
+
+      const filtered = type === 'all' 
+        ? PLACES 
+        : PLACES.filter(p => p.type === type);
+
+      container.innerHTML = filtered.map(item => `
+        <div class="card">
+          <div>
+            <div class="card-meta">${item.type.toUpperCase()} ${item.isNew ? '&bull; NEW IN 2026' : ''}</div>
+            <div class="card-title">${item.name}</div>
+            <div class="card-body">
+              <strong>Address:</strong> ${item.address}<br>
+              ${item.hours ? `<strong>Hours:</strong> ${item.hours}<br>` : ''}
+              ${item.liveMusic && item.liveMusic !== 'None' ? `<strong style="color:var(--brand-accent);">Music:</strong> ${item.liveMusic}<br>` : ''}
+              <p style="margin-top:0.5rem; color:var(--text-muted);">${item.description}</p>
+            </div>
+          </div>
+          <a href="${item.link}" target="_blank" class="card-link">Visit Website &rarr;</a>
+        </div>
+      `).join('');
+    }
+
+    function renderTrails() {
+      const container = document.getElementById('trails-grid');
+      if (!container) return;
+
+      container.innerHTML = COMPLETE_TRAILS.map(t => {
+        const isNoDogs = t.dogs.includes("NO DOGS");
+        return `
+          <div class="card">
+            <div>
+              <div class="card-title">${t.name}</div>
+              <div class="trail-specs">
+                <span class="badge">${t.length}</span>
+                <span class="badge">${t.difficulty}</span>
+                <span class="badge">${t.elevation}</span>
+                <span class="badge ${isNoDogs ? 'no-dogs' : ''}">${t.dogs}</span>
+              </div>
+              <div class="card-body">
+                <strong>Parking:</strong> ${t.parking}<br>
+                <strong>Highlights:</strong> ${t.highlights}
+              </div>
+            </div>
+            <a href="${t.link}" target="_blank" class="card-link">Trail Map & Trailhead &rarr;</a>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderTown() {
+      const container = document.getElementById('town-grid');
+      if (!container || typeof TOWN === 'undefined') return;
+
+      container.innerHTML = TOWN.map(item => `
+        <div class="card">
+          <div>
+            <div class="card-title" style="font-size:1.1rem;">${item.name}</div>
+            <div class="card-body">${item.description}</div>
+          </div>
+          <a href="${item.link}" target="_blank" class="card-link">Access Resource &rarr;</a>
+        </div>
+      `).join('');
+    }
+
+    function renderHomeFeatured() {
+      const container = document.getElementById('home-featured-grid');
+      if (!container || typeof PLACES === 'undefined') return;
+
+      const featured = PLACES.slice(0, 4);
+      container.innerHTML = featured.map(item => `
+        <div class="card">
+          <div>
+            <div class="card-meta">${item.type.toUpperCase()}</div>
+            <div class="card-title">${item.name}</div>
+            <div class="card-body">${item.description}</div>
+          </div>
+          <a href="#" class="card-link" onclick="switchTab('places')">View Full Directory Entry &rarr;</a>
+        </div>
+      `).join('');
+    }
+
+    // --- 4. FILTER BUTTON HANDLERS ---
+    function filterEvents(cat, btn) {
+      btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderEvents(cat);
+    }
+
+    function filterPlaces(type, btn) {
+      btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderPlaces(type);
+    }
+
+    // --- 5. PROPERTY TAX CALCULATOR ---
+    function calculateTax() {
+      const marketVal = parseFloat(document.getElementById('market-value').value);
+      const millRate = parseFloat(document.getElementById('mill-rate').value);
+
+      if (!marketVal || marketVal <= 0) {
+        alert('Please enter a valid property market value.');
+        return;
+      }
+
+      const assessedVal = marketVal * 0.70;
+      const annualTax = (assessedVal / 1000) * millRate;
+
+      document.getElementById('assessed-val').textContent = `$${assessedVal.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+      document.getElementById('annual-tax').textContent = `$${annualTax.toLocaleString('en-US', {maximumFractionDigits: 2})}`;
+      document.getElementById('tax-result').style.display = 'block';
+    }
+
+    // --- 6. AI CHATBOT INTERACTION ---
+    function toggleChat() {
+      const modal = document.getElementById('chat-modal');
+      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter') sendMsg();
+    }
+
+    async function sendMsg() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const msgBox = document.getElementById('chat-messages');
+
+      // User Message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'msg user';
+      userDiv.textContent = text;
+      msgBox.appendChild(userDiv);
+      input.value = '';
+      msgBox.scrollTop = msgBox.scrollHeight;
+
+      // Loading Indicator
+      const botDiv = document.createElement('div');
+      botDiv.className = 'msg bot';
+      botDiv.textContent = 'Searching Simsbury database...';
+      msgBox.appendChild(botDiv);
+      msgBox.scrollTop = msgBox.scrollHeight;
+
+      try {
+        const res = await fetch('https://simsbury-ai.rya123.workers.dev', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+        const data = await res.json();
+        botDiv.textContent = data.response || 'Sorry, I could not retrieve that info.';
+      } catch (err) {
+        botDiv.textContent = 'Unable to connect to AI assistant. Please try again later.';
+      }
+      msgBox.scrollTop = msgBox.scrollHeight;
+    }
+
+    // --- INITIALIZATION ---
+    window.addEventListener('DOMContentLoaded', () => {
+      renderEvents();
+      renderPlaces();
+      renderTrails();
+      renderTown();
+      renderHomeFeatured();
     });
-    $(cfg.search).addEventListener("input", (e) => { q = e.target.value.trim().toLowerCase(); draw(); });
-    function draw() {
-      const list = cfg.items.filter((it) => (pick === "all" ? it[cfg.key] !== cfg.hideInAll : it[cfg.key] === pick) && (!q || cfg.text(it).toLowerCase().includes(q)));
-      $(cfg.list).innerHTML = list.length ? list.map(cfg.card).join("") : `<p class="empty">Nothing found. Try a different search or filter.</p>`;
-    }
-    draw();
-  }
-
-  const today = new Date().toISOString().slice(0, 10);
-  const upcoming = EVENTS.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
-
-  const featured = upcoming.filter((e) => e.category !== "meetings");
-  if (featured[0]) {
-    const n = featured[0];
-    $("next").hidden = false;
-    $("next").innerHTML = `<b>Next up</b>${esc(n.title)}<br>${esc(fmtDay(n.date))} at ${esc(n.time)}, ${esc(n.place)}`;
-  }
-
-  setup({ items: upcoming, key: "category", values: [...new Set(upcoming.map((e) => e.category))], hideInAll: "meetings",
-    chips: "event-chips", search: "event-q", list: "event-list",
-    text: (e) => e.title + " " + e.place,
-    card: (e) => `<a class="card" href="${esc(e.link)}"><span class="tag ${esc(e.category)}">${esc(cap(e.category))}</span><h3>${esc(e.title)}</h3><div class="when">${esc(fmtDay(e.date))} at ${esc(e.time)}</div><p>${esc(e.place)}</p></a>` });
-
-  setup({ items: PLACES, key: "type", values: [...new Set(PLACES.map((p) => p.type))],
-    chips: "place-chips", search: "place-q", list: "place-list",
-    text: (p) => p.name + " " + p.description,
-    card: (p) => `<a class="card" href="${esc(p.link)}"><span class="tag">${esc(cap(p.type))}</span>${p.isNew ? '<span class="tag new">New</span>' : ""}<h3>${esc(p.name)}</h3><p>${esc(p.description)}</p><p>${esc(p.address)}</p></a>` });
-
-  $("town-list").innerHTML = TOWN.map((t) => `<a class="card" href="${esc(t.link)}"><h3>${esc(t.name)}</h3><p>${esc(t.description)}</p></a>`).join("");
-
-  // Tax estimator
-  const money = (n) => n.toLocaleString(undefined, { style:"currency", currency:"USD", maximumFractionDigits:0 });
-  function calc() {
-    const mv = parseFloat($("mv").value), mill = parseFloat($("mill").value);
-    const ok = mv > 0 && mill > 0;
-    $("result").hidden = !ok;
-    if (!ok) return;
-    const av = mv * 0.7, tax = av * mill / 1000;
-    $("av").textContent = money(av); $("tax").textContent = money(tax); $("half").textContent = money(tax / 2);
-  }
-  $("mv").addEventListener("input", calc); $("mill").addEventListener("input", calc);
-
-  // Tip form mailto handler
-  $("tip-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const type = $("tip-type").value;
-    const details = $("tip-details").value;
-    const email = "cadoffryan@gmail.com";
-    const subject = encodeURIComponent(`[Simsbury Hub Tip] ${type}`);
-    const body = encodeURIComponent(`Tip Type: ${type}\n\nDetails:\n${details}`);
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-  });
-
-  // Cloudflare AI Assistant
-  const WORKER_URL = "https://simsbury-ai.cadoffryan.workers.dev";
-
-  const bubble = document.getElementById("ai-bubble");
-  const win = document.getElementById("ai-window");
-  const closeBtn = document.getElementById("ai-close");
-  const form = document.getElementById("ai-input-form");
-  const input = document.getElementById("ai-input");
-  const messages = document.getElementById("ai-messages");
-
-  bubble.addEventListener("click", () => win.hidden = !win.hidden);
-  closeBtn.addEventListener("click", () => win.hidden = true);
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const text = input.value.trim();
-    if (!text) return;
-
-    const userDiv = document.createElement("div");
-    userDiv.className = "ai-msg user";
-    userDiv.textContent = text;
-    messages.appendChild(userDiv);
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
-
-    const botDiv = document.createElement("div");
-    botDiv.className = "ai-msg bot";
-    botDiv.textContent = "Thinking...";
-    messages.appendChild(botDiv);
-    messages.scrollTop = messages.scrollHeight;
-
-    try {
-      const res = await fetch(WORKER_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text })
-      });
-      const data = await res.json();
-      botDiv.textContent = data.response || (data.error ? "AI Error: " + data.error : "Sorry, I couldn't get an answer right now.");
-    } catch (err) {
-      botDiv.textContent = "Error connecting to AI server.";
-    }
-    messages.scrollTop = messages.scrollHeight;
-  });
-</script>
+  </script>
 </body>
 </html>
