@@ -281,6 +281,7 @@
       border-color: var(--brand-primary);
     }
 
+    /* Search Input Bar */
     .search-bar-wrap {
       margin-bottom: 1.5rem;
     }
@@ -527,7 +528,7 @@
           <div>
             <div class="card-meta">Full Commercial Index</div>
             <div class="card-title">Shops, Dining & Places</div>
-            <div class="card-body">Operating hours, addresses, and details for every restaurant, tea room, boutique, and landmark in town.</div>
+            <div class="card-body">Operating hours, addresses, and details for every restaurant, boutique, bakery, and landmark in town.</div>
           </div>
           <a href="#" class="card-link" onclick="switchTab('places')">Browse Full Directory &rarr;</a>
         </div>
@@ -571,7 +572,7 @@
       <div class="page-header">
         <div>
           <h2>Simsbury Directory</h2>
-          <p>Complete, exhaustive directory of every restaurant, tea room, cafe, shop, boutique, and landmark in Simsbury.</p>
+          <p>Complete, exhaustive directory of every restaurant, cafe, shop, boutique, and landmark in Simsbury.</p>
         </div>
         <span class="item-count" id="places-count">0 Listed</span>
       </div>
@@ -675,8 +676,9 @@
   <!-- SCRIPT: DATA LOADING & VIEW SWITCHING LOGIC -->
   <script src="data.js"></script>
   <script>
-    // --- EXHAUSTIVE SIMSBURY TRAILS DATASET ---
+    // --- 1. EXHAUSTIVE SIMSBURY TRAILS DATASET (EVERY SINGLE PUBLIC TRAIL) ---
     const COMPLETE_TRAILS = [
+      // STATE PARKS & FORESTS
       {
         name: "Talcott Mountain State Park (Heublein Tower Trail)",
         length: "2.5 miles round-trip",
@@ -727,6 +729,8 @@
         highlights: "Two non-contiguous forest parcels featuring pine plantations and wetlands.",
         link: "https://www.ct.gov/deep"
       },
+
+      // MCLEAN GAME REFUGE
       {
         name: "McLean Game Refuge (Firetown & Trout Pond Trails)",
         length: "20+ miles interconnected trails",
@@ -737,6 +741,8 @@
         highlights: "4,400-acre wilderness preserve, glacial kettle ponds, trout streams, pine groves.",
         link: "https://mcleangamerefuge.org/"
       },
+
+      // SIMSBURY LAND TRUST PRESERVES
       {
         name: "West Mountain Trails & 60 Westledge",
         length: "5.0 miles trail network",
@@ -857,6 +863,8 @@
         highlights: "Woodland connector trail bordering private agricultural land.",
         link: "https://simsburylandtrust.org/slt/"
       },
+
+      // TOWN OF SIMSBURY PARKS & OPEN SPACE
       {
         name: "Onion Mountain Park Trails",
         length: "1.5 miles",
@@ -907,6 +915,8 @@
         highlights: "Paved and gravel path encircling the town golf course and apple orchards.",
         link: "https://www.simsburyrec.com/"
       },
+
+      // RIVERWALKS & REGIONAL MULTI-USE TRAILS
       {
         name: "Farmington Canal Heritage Trail (Simsbury Section)",
         length: "8.4 miles in Simsbury",
@@ -947,6 +957,8 @@
         highlights: "Open river floodplain, fields, and ponds along the Farmington River.",
         link: "https://www.ct.gov/deep"
       },
+
+      // LONG-DISTANCE INTERSTATE TRAIL
       {
         name: "Metacomet Trail (Simsbury Section)",
         length: "11.2 miles through Simsbury",
@@ -959,9 +971,11 @@
       }
     ];
 
+    // --- STATE VARIABLES ---
     let currentEventsFilter = 'all';
     let currentPlacesFilter = 'all';
 
+    // --- TAB SWITCHING (SINGLE PAGE APPLICATION) ---
     function switchTab(viewId) {
       document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
@@ -975,6 +989,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // --- EVENTS RENDER & FILTER ---
     function setEventsFilter(cat, btn) {
       currentEventsFilter = cat;
       document.querySelectorAll('#view-events .filter-btn').forEach(b => b.classList.remove('active'));
@@ -1020,6 +1035,7 @@
       `).join('');
     }
 
+    // --- PLACES RENDER & FILTER ---
     function setPlacesFilter(type, btn) {
       currentPlacesFilter = type;
       document.querySelectorAll('#view-places .filter-btn').forEach(b => b.classList.remove('active'));
@@ -1071,6 +1087,7 @@
       `).join('');
     }
 
+    // --- TRAILS RENDER & FILTER ---
     function filterTrails() {
       const container = document.getElementById('trails-grid');
       const countEl = document.getElementById('trails-count');
@@ -1118,6 +1135,7 @@
       }).join('');
     }
 
+    // --- TOWN SERVICES RENDER ---
     function renderTown() {
       const container = document.getElementById('town-grid');
       const countEl = document.getElementById('town-count');
@@ -1136,6 +1154,7 @@
       `).join('');
     }
 
+    // --- HOME FEATURED RENDER ---
     function renderHomeFeatured() {
       const container = document.getElementById('home-featured-grid');
       if (!container || typeof PLACES === 'undefined') return;
@@ -1153,6 +1172,7 @@
       `).join('');
     }
 
+    // --- TAX CALCULATOR ---
     function calculateTax() {
       const marketVal = parseFloat(document.getElementById('market-value').value);
       const millRate = parseFloat(document.getElementById('mill-rate').value);
@@ -1170,6 +1190,7 @@
       document.getElementById('tax-result').style.display = 'block';
     }
 
+    // --- AI CHATBOT INTERACTION ---
     function toggleChat() {
       const modal = document.getElementById('chat-modal');
       modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
@@ -1186,6 +1207,7 @@
 
       const msgBox = document.getElementById('chat-messages');
 
+      // User Message
       const userDiv = document.createElement('div');
       userDiv.className = 'msg user';
       userDiv.textContent = text;
@@ -1193,6 +1215,7 @@
       input.value = '';
       msgBox.scrollTop = msgBox.scrollHeight;
 
+      // Loading Indicator
       const botDiv = document.createElement('div');
       botDiv.className = 'msg bot';
       botDiv.textContent = 'Searching Simsbury database...';
@@ -1213,6 +1236,7 @@
       msgBox.scrollTop = msgBox.scrollHeight;
     }
 
+    // --- INITIALIZATION ---
     window.addEventListener('DOMContentLoaded', () => {
       filterEvents();
       filterPlaces();
