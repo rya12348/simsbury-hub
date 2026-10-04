@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simsbury Hub</title>
+<style>
+  :root { --bg:#f5faff; --card:#fff; --ink:#12304a; --muted:#55708a; --pool:#1e88e5; --teal:#0f9d9a; --violet:#6d4fd6; --line:#d5e6f5; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Segoe UI",system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.5; }
+  .wrap { max-width:1000px; margin:0 auto; padding:0 20px; }
+  header { background:linear-gradient(120deg,var(--pool),var(--teal)); color:#fff; padding:40px 0 26px; }
+  header h1 { margin:0 0 6px; font-size:clamp(2rem,6vw,3.2rem); letter-spacing:-.02em; }
+  header p { margin:0; font-size:1.05rem; opacity:.92; }
+  #next { margin-top:18px; background:rgba(255,255,255,.18); border-radius:10px; padding:12px 16px; max-width:520px; }
+  #next b { display:block; font-size:.85rem; opacity:.9; }
+  nav { position:sticky; top:0; z-index:5; background:#fff; border-bottom:1px solid var(--line); }
+  nav .wrap { display:flex; gap:6px; overflow-x:auto; padding-top:8px; padding-bottom:8px; }
+  nav a { white-space:nowrap; text-decoration:none; color:var(--ink); padding:8px 14px; border-radius:999px; font-weight:600; font-size:.95rem; }
+  nav a:hover, nav a:focus-visible { background:var(--bg); color:var(--violet); outline:2px solid var(--violet); }
+  section { padding:36px 0 8px; scroll-margin-top:56px; }
+  h2 { margin:0 0 14px; font-size:1.6rem; }
+  .tools { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; align-items:center; }
+  input[type=search], input[type=number] { font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); }
+  input:focus-visible, button:focus-visible { outline:2px solid var(--pool); outline-offset:2px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chips button { border:1px solid var(--line); background:#fff; color:var(--ink); padding:7px 14px; border-radius:999px; font:inherit; cursor:pointer; }
+  .chips button[aria-pressed="true"] { background:var(--violet); border-color:var(--violet); color:#fff; }
+  .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); }
+  .card { display:block; text-decoration:none; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; }
+  a.card:hover, a.card:focus-visible { border-color:var(--teal); outline:none; box-shadow:0 0 0 2px var(--teal); }
+  .card h3 { margin:6px 0 4px; font-size:1.05rem; }
+  .card p { margin:0; color:var(--muted); font-size:.93rem; }
+  .tag { display:inline-block; font-size:.8rem; font-weight:600; padding:2px 9px; border-radius:999px; background:#e6f6f5; color:#0b7a78; }
+  .tag.music { background:#efeafc; color:var(--violet); }
+  .tag.family { background:#e4f1fd; color:#1769b3; }
+  .tag.new { background:var(--violet); color:#fff; margin-left:6px; }
+  .when { font-weight:700; color:var(--pool); font-size:.92rem; }
+  .empty { color:var(--muted); padding:12px 0; }
+  .calc { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px; max-width:520px; }
+  .calc label { display:block; font-weight:600; margin:10px 0 4px; }
+  .calc input { width:100%; }
+  .result { margin-top:16px; padding-top:12px; border-top:1px solid var(--line); }
+  .result div { display:flex; justify-content:space-between; padding:3px 0; }
+  .result .big { font-size:1.2rem; font-weight:700; color:var(--violet); }
+  .small { color:var(--muted); font-size:.88rem; margin-top:10px; }
+  footer { margin-top:40px; padding:24px 0; text-align:center; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Simsbury Hub</h1>
+    <p id="today">Events, new places, and town info for Simsbury, CT.</p>
+    <div id="next" hidden></div>
+  </div>
+</header>
+
+<nav aria-label="Sections"><div class="wrap">
+  <a href="#events">Events</a><a href="#places">Restaurants and Stores</a><a href="#town">Town Info</a><a href="#taxes">Tax Estimator</a>
+</div></nav>
+
+<main class="wrap">
+  <section id="events">
+    <h2>Events</h2>
+    <div class="tools"><input type="search" id="event-q" placeholder="Search events" aria-label="Search events"><div class="chips" id="event-chips"></div></div>
+    <div class="grid" id="event-list"></div>
+  </section>
+
+  <section id="places">
+    <h2>Restaurants and Stores</h2>
+    <div class="tools"><input type="search" id="place-q" placeholder="Search places" aria-label="Search places"><div class="chips" id="place-chips"></div></div>
+    <div class="grid" id="place-list"></div>
+  </section>
+
+  <section id="town">
+    <h2>Town Info</h2>
+    <div class="grid" id="town-list"></div>
+  </section>
+
+  <section id="taxes">
+    <h2>Tax Estimator</h2>
+    <div class="calc">
+      <label for="mv">Home market value ($)</label>
+      <input type="number" id="mv" min="0" inputmode="decimal" placeholder="Enter market value">
+      <label for="mill">Mill rate</label>
+      <input type="number" id="mill" min="0" step="0.01" inputmode="decimal" placeholder="Enter mill rate">
+      <div class="result" id="result" hidden>
+        <div><span>Assessed value (70%)</span><span id="av"></span></div>
+        <div class="big"><span>Estimated yearly tax</span><span id="tax"></span></div>
+        <div><span>Each of two installments</span><span id="half"></span></div>
+      </div>
+      <p class="small">An estimate only. Connecticut assesses property at 70% of market value, and your real bill depends on the town's current mill rate and any exemptions. Get the mill rate from the town's website.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">Simsbury Hub is a community project and is not run by the Town of Simsbury.<br>Last updated: <span id="updated"></span></div></footer>
+
+<script src="data.js"></script>
+<script>
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  const $ = (id) => document.getElementById(id);
+  const fmtDay = (d) => new Date(d + "T00:00:00").toLocaleDateString(undefined, { weekday:"short", month:"short", day:"numeric" });
+
+  $("today").textContent = new Date().toLocaleDateString(undefined, { weekday:"long", month:"long", day:"numeric", year:"numeric" }) + " | Events, new places, and town info for Simsbury, CT.";
+  $("updated").textContent = fmtDay(LAST_UPDATED);
+
+  // Reusable section: search box + filter chips + list
+  function setup(cfg) {
+    let pick = "all", q = "";
+    const chips = $(cfg.chips);
+    chips.innerHTML = ["all", ...cfg.values].map((v, i) => `<button type="button" data-v="${esc(v)}" aria-pressed="${i === 0}">${esc(cap(v))}</button>`).join("");
+    chips.addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      chips.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+      pick = b.dataset.v; draw();
+    });
+    $(cfg.search).addEventListener("input", (e) => { q = e.target.value.trim().toLowerCase(); draw(); });
+    function draw() {
+      const list = cfg.items.filter((it) => (pick === "all" || it[cfg.key] === pick) && (!q || cfg.text(it).toLowerCase().includes(q)));
+      $(cfg.list).innerHTML = list.length ? list.map(cfg.card).join("") : `<p class="empty">Nothing found. Try a different search or filter.</p>`;
+    }
+    draw();
+  }
+
+  const today = new Date().toISOString().slice(0, 10);
+  const upcoming = EVENTS.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
+
+  if (upcoming[0]) {
+    const n = upcoming[0];
+    $("next").hidden = false;
+    $("next").innerHTML = `<b>Next up</b>${esc(n.title)}<br>${esc(fmtDay(n.date))} at ${esc(n.time)}, ${esc(n.place)}`;
+  }
+
+  setup({ items: upcoming, key: "category", values: [...new Set(upcoming.map((e) => e.category))],
+    chips: "event-chips", search: "event-q", list: "event-list",
+    text: (e) => e.title + " " + e.place,
+    card: (e) => `<a class="card" href="${esc(e.link)}"><span class="tag ${esc(e.category)}">${esc(cap(e.category))}</span><h3>${esc(e.title)}</h3><div class="when">${esc(fmtDay(e.date))} at ${esc(e.time)}</div><p>${esc(e.place)}</p></a>` });
+
+  setup({ items: PLACES, key: "type", values: [...new Set(PLACES.map((p) => p.type))],
+    chips: "place-chips", search: "place-q", list: "place-list",
+    text: (p) => p.name + " " + p.description,
+    card: (p) => `<a class="card" href="${esc(p.link)}"><span class="tag">${esc(cap(p.type))}</span>${p.isNew ? '<span class="tag new">New</span>' : ""}<h3>${esc(p.name)}</h3><p>${esc(p.description)}</p><p>${esc(p.address)}</p></a>` });
+
+  $("town-list").innerHTML = TOWN.map((t) => `<a class="card" href="${esc(t.link)}"><h3>${esc(t.name)}</h3><p>${esc(t.description)}</p></a>`).join("");
+
+  // Tax estimator
+  const money = (n) => n.toLocaleString(undefined, { style:"currency", currency:"USD", maximumFractionDigits:0 });
+  function calc() {
+    const mv = parseFloat($("mv").value), mill = parseFloat($("mill").value);
+    const ok = mv > 0 && mill > 0;
+    $("result").hidden = !ok;
+    if (!ok) return;
+    const av = mv * 0.7, tax = av * mill / 1000;
+    $("av").textContent = money(av); $("tax").textContent = money(tax); $("half").textContent = money(tax / 2);
+  }
+  $("mv").addEventListener("input", calc); $("mill").addEventListener("input", calc);
+</script>
+</body>
+</html>

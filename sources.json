@@ -1,0 +1,42 @@
+[
+  {
+    "id": "town",
+    "name": "Town of Simsbury",
+    "type": "ical",
+    "url": "https://www.simsbury-ct.gov/common/modules/iCalendar/iCalendar.aspx?catID=14&feed=calendar",
+    "pageUrl": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "category": "community",
+    "enabled": false,
+    "note": "UNVERIFIED GUESS at the town's iCal address. Open the town calendar page, find the 'Subscribe' or 'iCalendar' link, and paste the real address here. Then set enabled to true."
+  },
+  {
+    "id": "chamber",
+    "name": "Granby-Simsbury Chamber of Commerce",
+    "type": "ical",
+    "url": "",
+    "pageUrl": "https://www.simsburycoc.com/events",
+    "category": "community",
+    "enabled": false,
+    "note": "No iCal address found yet. Look for 'Subscribe' or 'Add to calendar' on the events page."
+  },
+  {
+    "id": "historical-society",
+    "name": "Simsbury Historical Society",
+    "type": "ical",
+    "url": "",
+    "pageUrl": "https://simsburyhistory.org/events-programs/",
+    "category": "community",
+    "enabled": false,
+    "note": "No iCal address found yet."
+  },
+  {
+    "id": "library",
+    "name": "Simsbury Public Library",
+    "type": "ical",
+    "url": "",
+    "pageUrl": "https://simsbury.librarycalendar.com/events/month",
+    "category": "family",
+    "enabled": false,
+    "note": "That site's robots.txt asked automated tools to stay out when I tried, so only enable this if the library publishes an official feed and the script's robots check passes."
+  }
+]

@@ -1,0 +1,42 @@
+name: Update Simsbury Hub data
+
+on:
+  schedule:
+    - cron: "17 10 * * *"   # every day at 10:17 UTC = about 6:17 AM in Simsbury
+  workflow_dispatch:         # lets you press a "Run workflow" button to test it
+
+permissions:
+  contents: write            # lets the job save the updated data.js
+  pages: write               # lets the job ask GitHub Pages to rebuild the site
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Update events
+        run: node update-events.js
+
+      - name: Save changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.js
+          if git diff --cached --quiet; then
+            echo "No changes today."
+          else
+            git commit -m "Daily data update"
+            git push
+            gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Could not trigger a Pages rebuild (the push should still publish)."
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
