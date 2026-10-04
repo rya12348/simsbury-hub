@@ -33,7 +33,548 @@ const MANUAL_EVENTS = [
 
 // Events filled in by update-events.js every morning. Do not edit between the two marker lines.
 // AUTO-EVENTS-START
-const AUTO_EVENTS = [];
+const AUTO_EVENTS = [
+  {
+    "title": "Board of Selectmen",
+    "date": "2026-11-09",
+    "time": "6:00 PM",
+    "place": "<p data-pasted=\"true\">Simsbury Town Hall</p><p>Main Meeting Room</p><p>933 Hopme",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Juvenile Review Board",
+    "date": "2026-11-09",
+    "time": "9:30 AM",
+    "place": "<p>Eno Memorial Hall</p><p>754 Hopmeadow Street</p> - Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Police Commission",
+    "date": "2026-11-09",
+    "time": "5:00 PM",
+    "place": "<p>Board of Education Conference Room</p><p>Town Hall</p><p>933 Hopmeadow Street",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Education",
+    "date": "2026-11-10",
+    "time": "6:30 PM",
+    "place": "<p>Board of Education Conference Room</p><p>Town Hall</p><p>933 Hopmeadow Street",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Planning Commission",
+    "date": "2026-11-10",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Street</p> - Simsbury C",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Personnel Subcommittee",
+    "date": "2026-11-12",
+    "time": "9:00 AM",
+    "place": "<p data-pasted=\"true\">Simsbury Town Hall</p><p>Main Meeting Room</p><p>933 Hopme",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Water Pollution Control Authority",
+    "date": "2026-11-12",
+    "time": "7:00 PM",
+    "place": "<p>Water Pollution Control Facility Conference Room</p><p>36 Drake Hill Road</p>",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Simsbury Housing Authority",
+    "date": "2026-11-13",
+    "time": "8:00 AM",
+    "place": "<p>Virginia Connolly Residence</p><p>1600 Hopmeadow Street</p> - Simsbury CT 060",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Design Review Board",
+    "date": "2026-11-16",
+    "time": "5:30 PM",
+    "place": "<p data-pasted=\"true\">Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Stre",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Simsbury Public Library Board of Trustees",
+    "date": "2026-11-16",
+    "time": "7:00 PM",
+    "place": "<p>Weatogue Room</p><p>Simsbury Public Library</p><p>725 Hopmeadow Street</p> - ",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Zoning Commission",
+    "date": "2026-11-16",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Street</p> - Simsbury C",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Aging and Disability Commission",
+    "date": "2026-11-17",
+    "time": "6:00 PM",
+    "place": "<p>Youth Room</p><p>Eno Memorial Hall</p><p>754 Hopmeadow Street</p> - Simsbury ",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Finance",
+    "date": "2026-11-17",
+    "time": "5:45 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall&nbsp;</p><p>933 Hopmeadow Street</p> - Sims",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
+    "date": "2026-11-17",
+    "time": "7:00 PM",
+    "place": "<p>Board of Education Conference Room</p><p>Town Hall</p><p>933 Hopmeadow Street",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Economic Development Commission",
+    "date": "2026-11-18",
+    "time": "5:30 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "LBT Strategic Planning Subcommittee",
+    "date": "2026-11-18",
+    "time": "2:00 PM",
+    "place": "- 725 Hopmeadow St. Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Zoning Board of Appeals",
+    "date": "2026-11-18",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Street</p> - Simsbury C",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Education",
+    "date": "2026-11-24",
+    "time": "6:30 PM",
+    "place": "<p data-pasted=\"true\">Board of Education Conference Room</p><p>Town Hall</p><p>9",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Planning Commission",
+    "date": "2026-11-24",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>&nbsp;933 Hopmeadow Street</p> - Sims",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Simsbury Youth Service Advisory Board",
+    "date": "2026-11-30",
+    "time": "2:30 PM",
+    "place": "<p data-pasted=\"true\">Simsbury High School</p><p>34 Farms Village Road</p> - Sim",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Age-Friendly Community Subcommittee Meeting",
+    "date": "2026-12-01",
+    "time": "2:30 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
+    "date": "2026-12-01",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Simsbury Town Hall</p><p>933 Hopmeadow Street</p> - S",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Retirement Plan Subcommittee",
+    "date": "2026-12-01",
+    "time": "8:00 AM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Open Space Committee",
+    "date": "2026-12-02",
+    "time": "5:00 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Culture, Parks and Recreation Commission",
+    "date": "2026-12-03",
+    "time": "6:00 PM",
+    "place": "<p>Board of Education Conference Room</p><p>Town Hall</p><p>933 Hopmeadow Street",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Historic District Commission",
+    "date": "2026-12-03",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Street</p> - Simsbury C",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Sustainability Committee",
+    "date": "2026-12-03",
+    "time": "6:30 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Design Review Board",
+    "date": "2026-12-07",
+    "time": "5:30 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Street</p> - Simsbury C",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Diversity, Equity & Inclusion Council",
+    "date": "2026-12-07",
+    "time": "6:00 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Police Commission",
+    "date": "2026-12-07",
+    "time": "5:00 PM",
+    "place": "<p>Board of Education Conference Room</p><p>Town Hall</p><p>933 Hopmeadow Street",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Public Building Committee",
+    "date": "2026-12-07",
+    "time": "7:00 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Zoning Commission",
+    "date": "2026-12-07",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Street</p> - Simsbury C",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Education",
+    "date": "2026-12-08",
+    "time": "6:30 PM",
+    "place": "<p>Board of Education Conference Room</p><p>Town Hall</p><p>933 Hopmeadow Street",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Ethics",
+    "date": "2026-12-08",
+    "time": "5:30 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Planning Commission",
+    "date": "2026-12-08",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Street</p> - Simsbury C",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Personnel Subcommittee",
+    "date": "2026-12-10",
+    "time": "9:00 AM",
+    "place": "<p data-pasted=\"true\">Simsbury Town Hall</p><p>Main Meeting Room</p><p>933 Hopme",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Water Pollution Control Authority",
+    "date": "2026-12-10",
+    "time": "7:00 PM",
+    "place": "<p>Water Pollution Control Facility Conference Room</p><p>36 Drake Hill Road</p>",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Simsbury Housing Authority",
+    "date": "2026-12-11",
+    "time": "11:00 AM",
+    "place": "<p>Virginia Connolly Residence</p><p>1600 Hopmeadow Street</p> - Simsbury CT 060",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Selectmen",
+    "date": "2026-12-14",
+    "time": "6:00 PM",
+    "place": "<p data-pasted=\"true\">Simsbury Town Hall</p><p>Main Meeting Room</p><p>933 Hopme",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Juvenile Review Board",
+    "date": "2026-12-14",
+    "time": "9:30 AM",
+    "place": "<p>Eno Memorial Hall</p><p>754 Hopmeadow Street</p> - Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Simsbury Public Library Board of Trustees",
+    "date": "2026-12-14",
+    "time": "7:00 PM",
+    "place": "<p>Weatogue Room</p><p>Simsbury Public Library</p><p>725 Hopmeadow Street</p> - ",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Finance",
+    "date": "2026-12-15",
+    "time": "5:45 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall&nbsp;</p><p>933 Hopmeadow Street</p> - Sims",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
+    "date": "2026-12-15",
+    "time": "7:00 PM",
+    "place": "<p>Board of Education Conference Room</p><p>Town Hall</p><p>933 Hopmeadow Street",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Economic Development Commission",
+    "date": "2026-12-16",
+    "time": "5:30 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "LBT Strategic Planning Subcommittee",
+    "date": "2026-12-16",
+    "time": "2:00 PM",
+    "place": "- 725 Hopmeadow St. Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Zoning Board of Appeals",
+    "date": "2026-12-16",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Street</p> - Simsbury C",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Public Safety Subcommittee",
+    "date": "2026-12-17",
+    "time": "8:00 AM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Design Review Board",
+    "date": "2026-12-21",
+    "time": "5:30 PM",
+    "place": "<p data-pasted=\"true\">Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Stre",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Zoning Commission",
+    "date": "2026-12-21",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>933 Hopmeadow Street</p> - Simsbury C",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Planning Commission",
+    "date": "2026-12-22",
+    "time": "7:00 PM",
+    "place": "<p>Main Meeting Room</p><p>Town Hall</p><p>&nbsp;933 Hopmeadow Street</p> - Sims",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Design Review Board",
+    "date": "2027-01-04",
+    "time": "5:30 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Public Building Committee",
+    "date": "2027-01-04",
+    "time": "7:00 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Simsbury Public Library Board of Trustees",
+    "date": "2027-01-04",
+    "time": "7:00 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
+    "date": "2027-01-05",
+    "time": "7:00 PM",
+    "place": "- Board of Education Conference Room Town Hall Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Sustainability Committee",
+    "date": "2027-01-07",
+    "time": "6:30 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Finance",
+    "date": "2027-01-12",
+    "time": "5:45 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Water Pollution Control Authority",
+    "date": "2027-01-14",
+    "time": "7:00 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Aging and Disability Commission",
+    "date": "2027-01-19",
+    "time": "6:00 PM",
+    "place": "<p>Youth Room</p><p>Eno Memorial Hall</p><p>754 Hopmeadow Street</p> - Simsbury ",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
+    "date": "2027-01-19",
+    "time": "7:00 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Design Review Board",
+    "date": "2027-01-20",
+    "time": "5:30 PM",
+    "place": "- Simsbury CT 06070",
+    "category": "community",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  }
+];
 // AUTO-EVENTS-END
 
 // The page reads this one: your hand-written events plus the automatic ones.
