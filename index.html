@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simsbury Hub | Local Community Directory & Guide</title>
+  <title>Simsbury Hub | Exhaustive Local Directory & Community Guide</title>
   
   <!-- Editorial Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
 
   <style>
     /* ==========================================================================
-       NEW ENGLAND CLASSIC PALETTE & RESET (NO AI GRADIENT SLOP)
+       NEW ENGLAND CLASSIC PALETTE & RESET
        ========================================================================== */
     :root {
       --bg-main: #FAF8F5;          /* Warm parchment background */
@@ -41,7 +41,7 @@
     }
 
     /* ==========================================================================
-       HEADER & NAVIGATION (TAB-BASED PAGE SWITCHING)
+       HEADER & NAVIGATION
        ========================================================================== */
     header {
       background: var(--brand-primary);
@@ -118,7 +118,7 @@
     }
 
     /* ==========================================================================
-       MAIN CONTAINER & DYNAMIC VIEW SWITCHING
+       MAIN CONTAINER & SPA VIEW SWITCHING
        ========================================================================== */
     main {
       max-width: 1200px;
@@ -127,7 +127,6 @@
       min-height: 70vh;
     }
 
-    /* Hides non-active sections completely so it feels like changing pages */
     .view-section {
       display: none;
       animation: fadeIn 0.2s ease-in-out;
@@ -146,6 +145,11 @@
       margin-bottom: 2rem;
       border-bottom: 2px solid var(--border-subtle);
       padding-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .page-header h2 {
@@ -158,6 +162,16 @@
     .page-header p {
       color: var(--text-muted);
       font-size: 1.05rem;
+    }
+
+    .item-count {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--brand-accent);
+      background: var(--brand-light);
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      border: 1px solid #D1E2D7;
     }
 
     /* ==========================================================================
@@ -218,18 +232,18 @@
       border-color: var(--brand-accent);
     }
 
-    /* Trail Spec Badges */
+    /* Badges */
     .trail-specs {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.4rem;
       margin: 0.75rem 0;
     }
 
     .badge {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      padding: 0.25rem 0.6rem;
+      padding: 0.25rem 0.55rem;
       border-radius: 4px;
       background: var(--brand-light);
       color: var(--brand-primary);
@@ -265,6 +279,21 @@
       background: var(--brand-primary);
       color: #FFFFFF;
       border-color: var(--brand-primary);
+    }
+
+    /* Search Input Bar */
+    .search-bar-wrap {
+      margin-bottom: 1.5rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: var(--font-body);
+      background: var(--bg-card);
     }
 
     /* ==========================================================================
@@ -439,7 +468,7 @@
       background: #121A16;
       color: #92A398;
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1rem;
       font-size: 0.85rem;
       border-top: 1px solid var(--border-subtle);
       margin-top: 4rem;
@@ -470,59 +499,70 @@
     <!-- VIEW: HOME / OVERVIEW -->
     <section id="view-home" class="view-section active">
       <div class="page-header">
-        <h2>Welcome to Simsbury, Connecticut</h2>
-        <p>Your curated local index for community events, local dining, shops, municipal services, and outdoor trails.</p>
+        <div>
+          <h2>Welcome to Simsbury, Connecticut</h2>
+          <p>Exhaustive local index covering every business, preserve, trail system, and town department.</p>
+        </div>
       </div>
 
       <div class="grid-3" style="margin-bottom: 2.5rem;">
         <div class="card">
           <div>
-            <div class="card-meta">Community Events</div>
-            <div class="card-title">What's Happening</div>
-            <div class="card-body">Browse upcoming town meetings, library talks, seasonal festivals, and live music.</div>
+            <div class="card-meta">Community Calendar</div>
+            <div class="card-title">Town Events & Meetings</div>
+            <div class="card-body">Upcoming town board meetings, historical society lectures, library programs, and live music.</div>
           </div>
           <a href="#" class="card-link" onclick="switchTab('events')">View Event Calendar &rarr;</a>
         </div>
 
         <div class="card">
           <div>
-            <div class="card-meta">Outdoors & Nature</div>
-            <div class="card-title">Complete Trails Guide</div>
-            <div class="card-body">Explore all 15 local trail systems, from Talcott Mountain to quiet state forest kettle ponds.</div>
+            <div class="card-meta">28 Public Trails</div>
+            <div class="card-title">Complete Hiking Guide</div>
+            <div class="card-body">Exhaustive guide to all state parks, Land Trust preserves, town open spaces, and riverwalks.</div>
           </div>
-          <a href="#" class="card-link" onclick="switchTab('trails')">Explore Trail Network &rarr;</a>
+          <a href="#" class="card-link" onclick="switchTab('trails')">Explore All Trails &rarr;</a>
         </div>
 
         <div class="card">
           <div>
-            <div class="card-meta">Local Directory</div>
-            <div class="card-title">Shops & Dining</div>
-            <div class="card-body">Find business hours, addresses, and details for every restaurant, bakery, and retail shop in town.</div>
+            <div class="card-meta">Full Commercial Index</div>
+            <div class="card-title">Shops, Dining & Places</div>
+            <div class="card-body">Operating hours, addresses, and details for every restaurant, boutique, bakery, and landmark in town.</div>
           </div>
-          <a href="#" class="card-link" onclick="switchTab('places')">Browse Directory &rarr;</a>
+          <a href="#" class="card-link" onclick="switchTab('places')">Browse Full Directory &rarr;</a>
         </div>
       </div>
 
       <div class="page-header">
-        <h2>Featured Local Highlights</h2>
+        <div>
+          <h2>Featured Local Directory Entries</h2>
+          <p>A cross-section of Simsbury's historic establishments and new 2026 openings.</p>
+        </div>
       </div>
-      <div class="grid-2" id="home-featured-grid">
-        <!-- Dynamically populated from data.js -->
-      </div>
+      <div class="grid-2" id="home-featured-grid"></div>
     </section>
 
     <!-- VIEW: EVENTS -->
     <section id="view-events" class="view-section">
       <div class="page-header">
-        <h2>Community Calendar</h2>
-        <p>Upcoming town meetings, historical society talks, library programs, and music festivals.</p>
+        <div>
+          <h2>Community Calendar</h2>
+          <p>Complete schedule of upcoming town meetings, library programs, and community events.</p>
+        </div>
+        <span class="item-count" id="events-count">0 Listed</span>
       </div>
+
+      <div class="search-bar-wrap">
+        <input type="text" id="events-search" class="search-input" placeholder="Search events by keyword, location, or title..." oninput="filterEvents()">
+      </div>
+
       <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterEvents('all', this)">All Events</button>
-        <button class="filter-btn" onclick="filterEvents('community', this)">Community</button>
-        <button class="filter-btn" onclick="filterEvents('family', this)">Family</button>
-        <button class="filter-btn" onclick="filterEvents('music', this)">Music</button>
-        <button class="filter-btn" onclick="filterEvents('meetings', this)">Town Meetings</button>
+        <button class="filter-btn active" data-cat="all" onclick="setEventsFilter('all', this)">All Events</button>
+        <button class="filter-btn" data-cat="community" onclick="setEventsFilter('community', this)">Community</button>
+        <button class="filter-btn" data-cat="family" onclick="setEventsFilter('family', this)">Family</button>
+        <button class="filter-btn" data-cat="music" onclick="setEventsFilter('music', this)">Music</button>
+        <button class="filter-btn" data-cat="meetings" onclick="setEventsFilter('meetings', this)">Town Meetings</button>
       </div>
       <div class="grid-2" id="events-grid"></div>
     </section>
@@ -530,32 +570,51 @@
     <!-- VIEW: PLACES & DIRECTORY -->
     <section id="view-places" class="view-section">
       <div class="page-header">
-        <h2>Simsbury Directory</h2>
-        <p>Complete guide to local dining, specialty coffee, retail boutiques, and services.</p>
+        <div>
+          <h2>Simsbury Directory</h2>
+          <p>Complete, exhaustive directory of every restaurant, cafe, shop, boutique, and landmark in Simsbury.</p>
+        </div>
+        <span class="item-count" id="places-count">0 Listed</span>
       </div>
+
+      <div class="search-bar-wrap">
+        <input type="text" id="places-search" class="search-input" placeholder="Search by name, cuisine, street address, or keyword..." oninput="filterPlaces()">
+      </div>
+
       <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterPlaces('all', this)">Show All</button>
-        <button class="filter-btn" onclick="filterPlaces('restaurant', this)">Restaurants & Cafes</button>
-        <button class="filter-btn" onclick="filterPlaces('store', this)">Shops & Boutiques</button>
-        <button class="filter-btn" onclick="filterPlaces('attraction', this)">Attractions</button>
+        <button class="filter-btn active" data-type="all" onclick="setPlacesFilter('all', this)">Show All</button>
+        <button class="filter-btn" data-type="restaurant" onclick="setPlacesFilter('restaurant', this)">Restaurants & Cafes</button>
+        <button class="filter-btn" data-type="store" onclick="setPlacesFilter('store', this)">Shops & Boutiques</button>
+        <button class="filter-btn" data-type="attraction" onclick="setPlacesFilter('attraction', this)">Attractions & Landmarks</button>
       </div>
       <div class="grid-3" id="places-grid"></div>
     </section>
 
-    <!-- VIEW: TRAILS & HIKING (COMPLETE DIRECTORY) -->
+    <!-- VIEW: TRAILS & HIKING (EXHAUSTIVE DIRECTORY) -->
     <section id="view-trails" class="view-section">
       <div class="page-header">
-        <h2>Simsbury Hiking & Trails Guide</h2>
-        <p>Comprehensive directory of all state parks, nature preserves, town forests, and riverwalks in Simsbury, CT.</p>
+        <div>
+          <h2>Exhaustive Simsbury Hiking & Trails Guide</h2>
+          <p>Every single state park, Land Trust preserve, town open space, and riverwalk in Simsbury, CT.</p>
+        </div>
+        <span class="item-count" id="trails-count">28 Trail Systems</span>
       </div>
+
+      <div class="search-bar-wrap">
+        <input type="text" id="trails-search" class="search-input" placeholder="Search trails by name, difficulty, parking street, or features..." oninput="filterTrails()">
+      </div>
+
       <div class="grid-2" id="trails-grid"></div>
     </section>
 
     <!-- VIEW: TOWN SERVICES -->
     <section id="view-town" class="view-section">
       <div class="page-header">
-        <h2>Municipal & Public Resources</h2>
-        <p>Direct links to official town departments, school calendars, library catalogs, and public works.</p>
+        <div>
+          <h2>Municipal & Public Resources</h2>
+          <p>Direct portal to official town departments, public schools, library services, and public works.</p>
+        </div>
+        <span class="item-count" id="town-count">0 Resources</span>
       </div>
       <div class="grid-3" id="town-grid"></div>
     </section>
@@ -563,8 +622,10 @@
     <!-- VIEW: TAX CALCULATOR -->
     <section id="view-tax" class="view-section">
       <div class="page-header">
-        <h2>Simsbury Property Tax Estimator</h2>
-        <p>Calculate estimated local real estate taxes based on Connecticut's 70% assessed value formula.</p>
+        <div>
+          <h2>Simsbury Property Tax Estimator</h2>
+          <p>Calculate estimated local real estate taxes based on CT's 70% assessed value formula.</p>
+        </div>
       </div>
       <div class="tax-box">
         <div class="form-group">
@@ -600,7 +661,7 @@
       <button class="chat-close" onclick="toggleChat()">&times;</button>
     </div>
     <div class="chat-messages" id="chat-messages">
-      <div class="msg bot">Hello! Ask me anything about Simsbury business hours, upcoming events, or trail difficulty ratings.</div>
+      <div class="msg bot">Hello! Ask me anything about Simsbury operating hours, live music schedules, or trail details.</div>
     </div>
     <div class="chat-input-area">
       <input type="text" id="chat-input" placeholder="e.g. Where is pizza open late?" onkeypress="handleKey(event)">
@@ -615,8 +676,9 @@
   <!-- SCRIPT: DATA LOADING & VIEW SWITCHING LOGIC -->
   <script src="data.js"></script>
   <script>
-    // --- 1. ALL TRAILS DATASET (COMPLETE DIRECTORY) ---
+    // --- 1. EXHAUSTIVE SIMSBURY TRAILS DATASET (EVERY SINGLE PUBLIC TRAIL) ---
     const COMPLETE_TRAILS = [
+      // STATE PARKS & FORESTS
       {
         name: "Talcott Mountain State Park (Heublein Tower Trail)",
         length: "2.5 miles round-trip",
@@ -628,55 +690,181 @@
         link: "https://www.heubleintower.org/"
       },
       {
-        name: "Stratton Brook State Park Loop",
+        name: "Stratton Brook State Park Loop & Rail Trail",
         length: "1.8 miles loop",
-        difficulty: "Easy (Accessible)",
+        difficulty: "Easy (Wheelchair Accessible)",
         elevation: "50 ft gain",
         parking: "149 Farms Village Rd",
         dogs: "Allowed (On leash)",
-        highlights: "Covered wooden bridge, fishing pond, crushed stone wheelchair-accessible trail.",
+        highlights: "Covered wooden bridge, fishing pond, crushed stone accessible trail.",
         link: "https://www.ct.gov/deep"
       },
       {
-        name: "Farmington Canal Heritage Trail (Simsbury Section)",
-        length: "8.4 miles in Simsbury",
-        difficulty: "Easy",
-        elevation: "Flat paved trail",
-        parking: "Iron Horse Blvd / Drake Hill Rd / Tariffville Rd",
-        dogs: "Allowed (On leash)",
-        highlights: "Paved rail trail connecting directly to downtown shops, ice cream parlors, and parks.",
-        link: "https://fcht.org/"
-      },
-      {
-        name: "McLean Game Refuge (Firetown & Barndoor Hills)",
-        length: "20+ miles total network",
-        difficulty: "Easy to Moderate",
-        elevation: "100 - 400 ft gain",
-        parking: "Barnndoor Hills Rd / Salmon Brook St",
-        dogs: "STRICTLY NO DOGS ALLOWED",
-        highlights: "4,400-acre wilderness preserve, quiet forest groves, glacial kettle ponds, trout streams.",
-        link: "https://mcleangamerefuge.org/"
-      },
-      {
-        name: "Tariffville Gorge & Cowles Park",
-        length: "2.2 miles loop",
+        name: "Penwood State Park (Simsbury Ridge Trails)",
+        length: "3.5 miles main ridge path",
         difficulty: "Moderate",
-        elevation: "210 ft gain",
-        parking: "Main St Park Lot, Tariffville",
+        elevation: "300 ft gain",
+        parking: "Route 185 (Penwood Main Lot)",
         dogs: "Allowed (On leash)",
-        highlights: "Overlooks Whitewater Rapids on Farmington River; premier mountain bike singletrack.",
-        link: "https://www.simsburyrec.com/"
+        highlights: "Lake Louise overlook, paved access path, Metacomet ridge route.",
+        link: "https://www.ct.gov/deep"
       },
       {
         name: "Great Pond State Forest",
         length: "1.2 miles loop",
         difficulty: "Easy",
         elevation: "Flat",
-        parking: "Great Pond Rd gravel lot",
+        parking: "Great Pond Rd gravel pull-off",
         dogs: "Allowed (On leash)",
-        highlights: "Connecticut's smallest state forest surrounding a pristine glacial kettle pond.",
+        highlights: "CT's smallest state forest surrounding a pristine glacial kettle pond.",
         link: "https://www.ct.gov/deep"
       },
+      {
+        name: "Massacoe State Forest (Bushy Hill & West Mountain Sections)",
+        length: "2.0 miles combined network",
+        difficulty: "Moderate",
+        elevation: "180 ft gain",
+        parking: "Bushy Hill Rd / West Mountain Rd",
+        dogs: "Allowed (On leash)",
+        highlights: "Two non-contiguous forest parcels featuring pine plantations and wetlands.",
+        link: "https://www.ct.gov/deep"
+      },
+
+      // MCLEAN GAME REFUGE
+      {
+        name: "McLean Game Refuge (Firetown & Trout Pond Trails)",
+        length: "20+ miles interconnected trails",
+        difficulty: "Easy to Moderate",
+        elevation: "100 - 400 ft gain",
+        parking: "Firetown Rd / Barndoor Hills Rd / Canton Rd",
+        dogs: "STRICTLY NO DOGS ALLOWED",
+        highlights: "4,400-acre wilderness preserve, glacial kettle ponds, trout streams, pine groves.",
+        link: "https://mcleangamerefuge.org/"
+      },
+
+      // SIMSBURY LAND TRUST PRESERVES
+      {
+        name: "West Mountain Trails & 60 Westledge",
+        length: "5.0 miles trail network",
+        difficulty: "Challenging",
+        elevation: "400 ft gain",
+        parking: "Westledge Rd (Rte 309) across from Pasture Ln",
+        dogs: "Allowed (On leash)",
+        highlights: "Hop Brook gorge, historic stone mill dam remnants, steep traprock ridge climb.",
+        link: "https://simsburylandtrust.org/slt/west-mountain/"
+      },
+      {
+        name: "Cathles Preserve Trails",
+        length: "2.0 miles loop",
+        difficulty: "Moderate - Difficult",
+        elevation: "250 ft gain",
+        parking: "Cul-de-sac at end of North Saddle Ridge Rd",
+        dogs: "Allowed (On leash)",
+        highlights: "Striking natural waterfall, fault-line valley, historic charcoal hearth site.",
+        link: "https://simsburylandtrust.org/slt/cathles/"
+      },
+      {
+        name: "Tanager Hill Preserve",
+        length: "1.8 miles",
+        difficulty: "Moderate",
+        elevation: "220 ft gain",
+        parking: "East Weatogue St (Tanager Hill Lot)",
+        dogs: "Allowed (On leash)",
+        highlights: "High meadows, active bird nesting habitats, sweeping views of West Mountain.",
+        link: "https://simsburylandtrust.org/slt/tanager-hill/"
+      },
+      {
+        name: "Wagner Woods & Hall Farm Trails",
+        length: "2.5 miles network",
+        difficulty: "Easy - Moderate",
+        elevation: "100 ft gain",
+        parking: "Great Pond Rd (South lot) or Old Farms Rd (Hall Farm)",
+        dogs: "Allowed (On leash)",
+        highlights: "Open meadows, historic farmland, forest trails connecting to Great Pond.",
+        link: "https://simsburylandtrust.org/slt/wagner-woods/"
+      },
+      {
+        name: "Tulmeadow Farm & Woodlot Trails",
+        length: "1.9 miles",
+        difficulty: "Easy",
+        elevation: "90 ft gain",
+        parking: "255 Farms Village Rd (Tulmeadow Farm Lot)",
+        dogs: "Allowed (On leash)",
+        highlights: "Protected woodlot trails bordering active farm fields and ice cream stand.",
+        link: "https://simsburylandtrust.org/slt/"
+      },
+      {
+        name: "James Property Trails",
+        length: "1.5 miles",
+        difficulty: "Moderate",
+        elevation: "160 ft gain",
+        parking: "East Weatogue St trailhead",
+        dogs: "Allowed (On leash)",
+        highlights: "Eastern ridge climb connecting directly to the Metacomet Trail.",
+        link: "https://simsburylandtrust.org/slt/"
+      },
+      {
+        name: "Owen-Mortimer Trail",
+        length: "1.1 miles",
+        difficulty: "Easy - Moderate",
+        elevation: "80 ft gain",
+        parking: "East Weatogue St",
+        dogs: "Allowed (On leash)",
+        highlights: "Woodland path crossing mountain streams along the eastern ridge base.",
+        link: "https://simsburylandtrust.org/slt/"
+      },
+      {
+        name: "Bog Walk Boardwalk Trail",
+        length: "0.4 miles out & back",
+        difficulty: "Easy (Flat)",
+        elevation: "Flat",
+        parking: "West Mountain Rd (Bog Walk lot)",
+        dogs: "Allowed (On leash)",
+        highlights: "Wooden boardwalk leading through a unique kettle bog with rare bog flora.",
+        link: "https://simsburylandtrust.org/slt/"
+      },
+      {
+        name: "Ketchin Quarry Trail",
+        length: "0.6 miles",
+        difficulty: "Easy",
+        elevation: "60 ft gain",
+        parking: "Talcott Mountain State Park area",
+        dogs: "Allowed (On leash)",
+        highlights: "Historic brownstone and traprock quarry site surrounded by forest.",
+        link: "https://simsburylandtrust.org/slt/"
+      },
+      {
+        name: "Glover Property Trail",
+        length: "1.0 mile loop",
+        difficulty: "Easy",
+        elevation: "50 ft gain",
+        parking: "East Weatogue St",
+        dogs: "Allowed (On leash)",
+        highlights: "Quiet meadow paths and floodplain forest walking near the Farmington River.",
+        link: "https://simsburylandtrust.org/slt/"
+      },
+      {
+        name: "Case Property Trail",
+        length: "0.5 miles out & back",
+        difficulty: "Easy",
+        elevation: "Flat",
+        parking: "Hopmeadow St near town center",
+        dogs: "Allowed (On leash)",
+        highlights: "Short woodland walk behind historic town center properties.",
+        link: "https://simsburylandtrust.org/slt/"
+      },
+      {
+        name: "Knapp Property Trail",
+        length: "0.7 miles",
+        difficulty: "Easy",
+        elevation: "40 ft gain",
+        parking: "Firetown Rd trailhead",
+        dogs: "Allowed (On leash)",
+        highlights: "Woodland connector trail bordering private agricultural land.",
+        link: "https://simsburylandtrust.org/slt/"
+      },
+
+      // TOWN OF SIMSBURY PARKS & OPEN SPACE
       {
         name: "Onion Mountain Park Trails",
         length: "1.5 miles",
@@ -684,18 +872,8 @@
         elevation: "320 ft gain",
         parking: "West Mountain Rd pull-off",
         dogs: "Allowed (On leash)",
-        highlights: "Quiet, wooded climb to a high rocky ledge overlooking West Simsbury farmland.",
+        highlights: "Steep town conservation climb to a rocky ledge overlooking West Simsbury.",
         link: "https://www.simsbury-ct.gov/"
-      },
-      {
-        name: "Penwood State Park (Simsbury Ridge Section)",
-        length: "3.5 miles main ridge trail",
-        difficulty: "Moderate",
-        elevation: "300 ft gain",
-        parking: "Route 185 (Penwood Lot)",
-        dogs: "Allowed (On leash)",
-        highlights: "Paved access roads, Lake Louise overlook, dense canopy trail running.",
-        link: "https://www.ct.gov/deep"
       },
       {
         name: "Belden Forest Old-Growth Trail",
@@ -704,18 +882,18 @@
         elevation: "80 ft gain",
         parking: "Simsbury Public Library lower lot",
         dogs: "Allowed (On leash)",
-        highlights: "Historic 40-acre old-growth forest right in downtown Simsbury; giant white pines.",
+        highlights: "40-acre old-growth forest right in downtown Simsbury with massive white pines.",
         link: "https://www.simsbury-ct.gov/"
       },
       {
-        name: "Cathles Conservation Area Trails",
-        length: "2.8 miles network",
+        name: "Tariffville Gorge & Cowles Park",
+        length: "2.2 miles loop",
         difficulty: "Moderate",
-        elevation: "180 ft gain",
-        parking: "Boswell Rd turnout",
+        elevation: "210 ft gain",
+        parking: "Main St Park Lot, Tariffville",
         dogs: "Allowed (On leash)",
-        highlights: "Rock outcrops, vernal pools, historic stone walls, quiet hemlock ravines.",
-        link: "https://www.simsburylandtrust.org/"
+        highlights: "Whitewater rapids views along Farmington River; mountain biking singletrack.",
+        link: "https://www.simsburyrec.com/"
       },
       {
         name: "Ethel Walker School Woods / Town Forest",
@@ -724,32 +902,44 @@
         elevation: "120 ft gain",
         parking: "Town Forest Rd trailhead",
         dogs: "Allowed (On leash)",
-        highlights: "Extensive trail network through town pine plantation and equestrian woods.",
-        link: "https://www.simsburylandtrust.org/"
+        highlights: "Pine plantation trails, fire roads, and equestrian woods.",
+        link: "https://www.simsburyrec.com/"
       },
       {
-        name: "Pinchot Sycamore & River Walk",
+        name: "Simsbury Farms Rec Complex Trail Loop",
+        length: "2.0 miles loop",
+        difficulty: "Easy",
+        elevation: "110 ft gain",
+        parking: "100 Old Farms Rd main lot",
+        dogs: "Allowed (On leash)",
+        highlights: "Paved and gravel path encircling the town golf course and apple orchards.",
+        link: "https://www.simsburyrec.com/"
+      },
+
+      // RIVERWALKS & REGIONAL MULTI-USE TRAILS
+      {
+        name: "Farmington Canal Heritage Trail (Simsbury Section)",
+        length: "8.4 miles in Simsbury",
+        difficulty: "Easy (Paved)",
+        elevation: "Flat paved trail",
+        parking: "Iron Horse Blvd / Drake Hill Rd / Tariffville Rd",
+        dogs: "Allowed (On leash)",
+        highlights: "Paved rail-trail connecting directly to downtown cafes and shops.",
+        link: "https://fcht.org/"
+      },
+      {
+        name: "Pinchot Sycamore & Farmington River Walk",
         length: "0.5 miles path",
         difficulty: "Easy",
         elevation: "Flat",
         parking: "Route 185 bridge park lot",
         dogs: "Allowed (On leash)",
-        highlights: "CT's largest tree (Pinchot Sycamore), launching point for kayaks on the Farmington River.",
+        highlights: "CT's largest tree (Pinchot Sycamore) and canoe launch on the Farmington River.",
         link: "https://www.simsbury-ct.gov/"
       },
       {
-        name: "Tulmeadow Farm Woods Trails",
-        length: "1.9 miles",
-        difficulty: "Easy",
-        elevation: "90 ft gain",
-        parking: "Farms Village Rd (Tulmeadow Lot)",
-        dogs: "Allowed (On leash)",
-        highlights: "Woodland trails bordering active farm fields; ends near the farm ice cream shop.",
-        link: "https://www.simsburylandtrust.org/"
-      },
-      {
         name: "Old Drake Hill Flower Bridge & River Walk",
-        length: "0.6 miles",
+        length: "0.6 miles path",
         difficulty: "Easy",
         elevation: "Flat",
         parking: "1 Drake Hill Rd lot",
@@ -758,63 +948,127 @@
         link: "https://www.flowerbridge.org/"
       },
       {
-        name: "Simsbury Farms Rec Complex Loop",
-        length: "2.0 miles loop",
+        name: "Nod Brook Management Area Trails",
+        length: "2.5 miles network",
         difficulty: "Easy",
-        elevation: "110 ft gain",
-        parking: "100 Old Farms Rd main lot",
+        elevation: "Flat",
+        parking: "Route 10 / Tower Business Park dirt road",
+        dogs: "Allowed (On leash / hunting dog training site)",
+        highlights: "Open river floodplain, fields, and ponds along the Farmington River.",
+        link: "https://www.ct.gov/deep"
+      },
+
+      // LONG-DISTANCE INTERSTATE TRAIL
+      {
+        name: "Metacomet Trail (Simsbury Section)",
+        length: "11.2 miles through Simsbury",
+        difficulty: "Moderate - Strenuous",
+        elevation: "Varies along ridge",
+        parking: "Route 185 / Route 309 trailheads",
         dogs: "Allowed (On leash)",
-        highlights: "Paved and gravel path encircling the town golf course, apple orchards, and pools.",
-        link: "https://www.simsburyrec.com/"
+        highlights: "Blue-blazed national scenic trail following the traprock ridgeline across Simsbury.",
+        link: "https://www.ctwoodlands.org/"
       }
     ];
 
-    // --- 2. SINGLE PAGE TAB SWITCHING LOGIC ---
+    // --- STATE VARIABLES ---
+    let currentEventsFilter = 'all';
+    let currentPlacesFilter = 'all';
+
+    // --- TAB SWITCHING (SINGLE PAGE APPLICATION) ---
     function switchTab(viewId) {
-      // Hide all view sections
       document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-      // Deactivate all nav buttons
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
 
-      // Activate selected view and button
       const targetView = document.getElementById(`view-${viewId}`);
       const targetBtn = document.getElementById(`btn-${viewId}`);
 
       if (targetView) targetView.classList.add('active');
       if (targetBtn) targetBtn.classList.add('active');
 
-      // Scroll smoothly to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // --- 3. DYNAMIC RENDERING FUNCTIONS ---
-    function renderEvents(category = 'all') {
+    // --- EVENTS RENDER & FILTER ---
+    function setEventsFilter(cat, btn) {
+      currentEventsFilter = cat;
+      document.querySelectorAll('#view-events .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterEvents();
+    }
+
+    function filterEvents() {
       const container = document.getElementById('events-grid');
+      const countEl = document.getElementById('events-count');
+      const searchVal = (document.getElementById('events-search')?.value || '').toLowerCase();
       if (!container || typeof EVENTS === 'undefined') return;
 
-      const filtered = category === 'all' 
-        ? EVENTS 
-        : EVENTS.filter(e => e.category === category);
+      let filtered = EVENTS;
+
+      if (currentEventsFilter !== 'all') {
+        filtered = filtered.filter(e => e.category === currentEventsFilter);
+      }
+
+      if (searchVal) {
+        filtered = filtered.filter(e => 
+          e.title.toLowerCase().includes(searchVal) || 
+          e.place.toLowerCase().includes(searchVal)
+        );
+      }
+
+      countEl.textContent = `${filtered.length} Listed`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1/-1; padding: 2rem; text-align: center; color: var(--text-muted);">No matching events found.</div>`;
+        return;
+      }
 
       container.innerHTML = filtered.map(item => `
         <div class="card">
           <div>
             <div class="card-meta">${item.category} &bull; ${item.date} (${item.time})</div>
             <div class="card-title">${item.title}</div>
-            <div class="card-body">Location: ${item.place}</div>
+            <div class="card-body"><strong>Location:</strong> ${item.place}</div>
           </div>
           <a href="${item.link}" target="_blank" class="card-link">Event Info & Registration &rarr;</a>
         </div>
       `).join('');
     }
 
-    function renderPlaces(type = 'all') {
+    // --- PLACES RENDER & FILTER ---
+    function setPlacesFilter(type, btn) {
+      currentPlacesFilter = type;
+      document.querySelectorAll('#view-places .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterPlaces();
+    }
+
+    function filterPlaces() {
       const container = document.getElementById('places-grid');
+      const countEl = document.getElementById('places-count');
+      const searchVal = (document.getElementById('places-search')?.value || '').toLowerCase();
       if (!container || typeof PLACES === 'undefined') return;
 
-      const filtered = type === 'all' 
-        ? PLACES 
-        : PLACES.filter(p => p.type === type);
+      let filtered = PLACES;
+
+      if (currentPlacesFilter !== 'all') {
+        filtered = filtered.filter(p => p.type === currentPlacesFilter);
+      }
+
+      if (searchVal) {
+        filtered = filtered.filter(p => 
+          p.name.toLowerCase().includes(searchVal) || 
+          p.address.toLowerCase().includes(searchVal) ||
+          p.description.toLowerCase().includes(searchVal)
+        );
+      }
+
+      countEl.textContent = `${filtered.length} Listed`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1/-1; padding: 2rem; text-align: center; color: var(--text-muted);">No matching businesses or places found.</div>`;
+        return;
+      }
 
       container.innerHTML = filtered.map(item => `
         <div class="card">
@@ -833,11 +1087,32 @@
       `).join('');
     }
 
-    function renderTrails() {
+    // --- TRAILS RENDER & FILTER ---
+    function filterTrails() {
       const container = document.getElementById('trails-grid');
+      const countEl = document.getElementById('trails-count');
+      const searchVal = (document.getElementById('trails-search')?.value || '').toLowerCase();
       if (!container) return;
 
-      container.innerHTML = COMPLETE_TRAILS.map(t => {
+      let filtered = COMPLETE_TRAILS;
+
+      if (searchVal) {
+        filtered = filtered.filter(t => 
+          t.name.toLowerCase().includes(searchVal) || 
+          t.parking.toLowerCase().includes(searchVal) ||
+          t.highlights.toLowerCase().includes(searchVal) ||
+          t.difficulty.toLowerCase().includes(searchVal)
+        );
+      }
+
+      countEl.textContent = `${filtered.length} Trail Systems`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1/-1; padding: 2rem; text-align: center; color: var(--text-muted);">No matching trail systems found.</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(t => {
         const isNoDogs = t.dogs.includes("NO DOGS");
         return `
           <div class="card">
@@ -854,15 +1129,19 @@
                 <strong>Highlights:</strong> ${t.highlights}
               </div>
             </div>
-            <a href="${t.link}" target="_blank" class="card-link">Trail Map & Trailhead &rarr;</a>
+            <a href="${t.link}" target="_blank" class="card-link">Trail Map & Information &rarr;</a>
           </div>
         `;
       }).join('');
     }
 
+    // --- TOWN SERVICES RENDER ---
     function renderTown() {
       const container = document.getElementById('town-grid');
+      const countEl = document.getElementById('town-count');
       if (!container || typeof TOWN === 'undefined') return;
+
+      countEl.textContent = `${TOWN.length} Resources`;
 
       container.innerHTML = TOWN.map(item => `
         <div class="card">
@@ -875,6 +1154,7 @@
       `).join('');
     }
 
+    // --- HOME FEATURED RENDER ---
     function renderHomeFeatured() {
       const container = document.getElementById('home-featured-grid');
       if (!container || typeof PLACES === 'undefined') return;
@@ -892,20 +1172,7 @@
       `).join('');
     }
 
-    // --- 4. FILTER BUTTON HANDLERS ---
-    function filterEvents(cat, btn) {
-      btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderEvents(cat);
-    }
-
-    function filterPlaces(type, btn) {
-      btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderPlaces(type);
-    }
-
-    // --- 5. PROPERTY TAX CALCULATOR ---
+    // --- TAX CALCULATOR ---
     function calculateTax() {
       const marketVal = parseFloat(document.getElementById('market-value').value);
       const millRate = parseFloat(document.getElementById('mill-rate').value);
@@ -923,7 +1190,7 @@
       document.getElementById('tax-result').style.display = 'block';
     }
 
-    // --- 6. AI CHATBOT INTERACTION ---
+    // --- AI CHATBOT INTERACTION ---
     function toggleChat() {
       const modal = document.getElementById('chat-modal');
       modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
@@ -971,9 +1238,9 @@
 
     // --- INITIALIZATION ---
     window.addEventListener('DOMContentLoaded', () => {
-      renderEvents();
-      renderPlaces();
-      renderTrails();
+      filterEvents();
+      filterPlaces();
+      filterTrails();
       renderTown();
       renderHomeFeatured();
     });
