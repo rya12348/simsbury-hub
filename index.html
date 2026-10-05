@@ -3,271 +3,1121 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Simsbury Hub</title>
+<title>Simsbury Hub — Community Directory, Events & Trail Guide</title>
 <style>
-  :root { --bg:#f5faff; --card:#fff; --ink:#12304a; --muted:#55708a; --pool:#1e88e5; --teal:#0f9d9a; --violet:#6d4fd6; --line:#d5e6f5; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family:"Segoe UI",system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.5; }
-  .wrap { max-width:1000px; margin:0 auto; padding:0 20px; }
-  header { background:linear-gradient(120deg,var(--pool),var(--teal)); color:#fff; padding:40px 0 26px; }
-  header h1 { margin:0 0 6px; font-size:clamp(2rem,6vw,3.2rem); letter-spacing:-.02em; }
-  header p { margin:0; font-size:1.05rem; opacity:.92; }
-  #next { margin-top:18px; background:rgba(255,255,255,.18); border-radius:10px; padding:12px 16px; max-width:520px; }
-  #next b { display:block; font-size:.85rem; opacity:.9; }
-  nav { position:sticky; top:0; z-index:5; background:#fff; border-bottom:1px solid var(--line); }
-  nav .wrap { display:flex; gap:6px; overflow-x:auto; padding-top:8px; padding-bottom:8px; }
-  nav a { white-space:nowrap; text-decoration:none; color:var(--ink); padding:8px 14px; border-radius:999px; font-weight:600; font-size:.95rem; }
-  nav a:hover, nav a:focus-visible { background:var(--bg); color:var(--violet); outline:2px solid var(--violet); }
-  section { padding:36px 0 8px; scroll-margin-top:56px; }
-  h2 { margin:0 0 14px; font-size:1.6rem; }
-  .tools { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; align-items:center; }
-  input[type=search], input[type=number] { font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); }
-  input:focus-visible, button:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid var(--pool); outline-offset:2px; }
-  .chips { display:flex; flex-wrap:wrap; gap:8px; }
-  .chips button { border:1px solid var(--line); background:#fff; color:var(--ink); padding:7px 14px; border-radius:999px; font:inherit; cursor:pointer; }
-  .chips button[aria-pressed="true"] { background:var(--violet); border-color:var(--violet); color:#fff; }
-  .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); }
-  .card { display:block; text-decoration:none; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; }
-  a.card:hover, a.card:focus-visible { border-color:var(--teal); outline:none; box-shadow:0 0 0 2px var(--teal); }
-  .card h3 { margin:6px 0 4px; font-size:1.05rem; }
-  .card p { margin:0; color:var(--muted); font-size:.93rem; }
-  .tag { display:inline-block; font-size:.8rem; font-weight:600; padding:2px 9px; border-radius:999px; background:#e6f6f5; color:#0b7a78; }
-  .tag.music { background:#efeafc; color:var(--violet); }
-  .tag.family { background:#e4f1fd; color:#1769b3; }
-  .tag.new { background:var(--violet); color:#fff; margin-left:6px; }
-  .when { font-weight:700; color:var(--pool); font-size:.92rem; }
-  .empty { color:var(--muted); padding:12px 0; }
-  .calc, .tip-card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px; max-width:520px; }
-  .calc label, .tip-card label { display:block; font-weight:600; margin:10px 0 4px; }
-  .calc input, .tip-card input, .tip-card select, .tip-card textarea { width:100%; font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); }
-  .tip-card textarea { resize:vertical; }
-  .submit-btn { margin-top:14px; width:100%; background:var(--violet); color:#fff; border:none; padding:11px 16px; border-radius:8px; font-weight:700; font-size:1rem; cursor:pointer; }
-  .submit-btn:hover { background:#583cb8; }
-  .result { margin-top:16px; padding-top:12px; border-top:1px solid var(--line); }
-  .result div { display:flex; justify-content:space-between; padding:3px 0; }
-  .result .big { font-size:1.2rem; font-weight:700; color:var(--violet); }
-  .small { color:var(--muted); font-size:.88rem; margin-top:10px; }
-  footer { margin-top:40px; padding:24px 0; text-align:center; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); }
+  :root {
+    --bg-page: #f8fafc;
+    --bg-surface: #ffffff;
+    --text-primary: #0f172a;
+    --text-muted: #475569;
+    --text-light: #64748b;
+    --border-color: #e2e8f0;
+    --brand-primary: #1e3a8a;
+    --brand-accent: #0f766e;
+    --brand-highlight: #d97706;
+    --tag-event: #eff6ff;
+    --tag-event-txt: #1d4ed8;
+    --tag-trail: #f0fdf4;
+    --tag-trail-txt: #15803d;
+    --tag-place: #fef3c7;
+    --tag-place-txt: #b45309;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --shadow-subtle: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+  }
 
-  /* AI Assistant Floating Widget */
-  #ai-bubble { position: fixed; bottom: 20px; right: 20px; width: 52px; height: 52px; border-radius: 50%; background: var(--violet); color: #fff; border: none; font-size: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header */
+  header {
+    background-color: #0d1b2a;
+    color: #ffffff;
+    padding: 48px 0 32px;
+    border-bottom: 4px solid var(--brand-accent);
+  }
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .header-title-group h1 {
+    margin: 0;
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+  .header-title-group p {
+    margin: 6px 0 0;
+    font-size: 1.05rem;
+    color: #94a3b8;
+  }
+  .next-banner {
+    margin-top: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--brand-highlight);
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+  }
+  .next-banner strong {
+    display: block;
+    color: #f1f5f9;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+
+  /* Navigation Bar */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+  nav .container {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  nav a:hover, nav a:focus-visible {
+    background-color: #f1f5f9;
+    color: var(--brand-primary);
+  }
+
+  /* Main Layout */
+  section {
+    padding: 40px 0 12px;
+    scroll-margin-top: 60px;
+  }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 18px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 8px;
+  }
+  .section-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .section-count {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 600;
+  }
+
+  /* Controls & Search Toolbar */
+  .toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media (min-width: 640px) {
+    .toolbar {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .search-input {
+    font-family: inherit;
+    font-size: 0.93rem;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    color: var(--text-primary);
+    min-width: 260px;
+  }
+  .search-input:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+  }
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .filter-chips button {
+    border: 1px solid var(--border-color);
+    background: #ffffff;
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .filter-chips button[aria-pressed="true"] {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #ffffff;
+  }
+
+  /* Card Grid */
+  .card-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-subtle);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  a.card:hover, a.card:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    border-color: #cbd5e1;
+    outline: none;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .card-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text-primary);
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .badge-event { background: var(--tag-event); color: var(--tag-event-txt); }
+  .badge-trail { background: var(--tag-trail); color: var(--tag-trail-txt); }
+  .badge-place { background: var(--tag-place); color: var(--tag-place-txt); }
+  .badge-new { background: #fee2e2; color: #991b1b; }
+
+  .card-body {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .card-meta {
+    font-size: 0.83rem;
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 10px;
+    margin-top: auto;
+  }
+  .card-meta-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .when-text {
+    font-weight: 700;
+    color: var(--brand-accent);
+    font-size: 0.88rem;
+  }
+
+  /* Utility / Form Panels */
+  .panel {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-subtle);
+    max-width: 600px;
+  }
+  .panel label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin: 12px 0 4px;
+    color: var(--text-primary);
+  }
+  .panel input, .panel select, .panel textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.93rem;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    color: var(--text-primary);
+  }
+  .panel button[type="submit"] {
+    margin-top: 16px;
+    width: 100%;
+    background: var(--brand-primary);
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+  .panel button[type="submit"]:hover {
+    background: #1d4ed8;
+  }
+  .calc-results {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+  }
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 0.92rem;
+  }
+  .calc-row.total {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--brand-primary);
+    border-top: 1px solid var(--border-color);
+    padding-top: 8px;
+    margin-top: 6px;
+  }
+  .helper-text {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin-top: 10px;
+    line-height: 1.4;
+  }
+
+  footer {
+    margin-top: 60px;
+    padding: 32px 0;
+    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.88rem;
+  }
+
+  /* Floating AI Assistant Widget */
+  #ai-bubble {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    color: #ffffff;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   #ai-window[hidden] { display: none !important; }
-  #ai-window { position: fixed; bottom: 80px; right: 20px; width: 320px; height: 420px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: flex; flex-direction: column; z-index: 1000; overflow: hidden; }
-  #ai-header { background: var(--violet); color: #fff; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
-  #ai-header button { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; padding: 2px 6px; line-height: 1; }
-  #ai-messages { flex: 1; padding: 12px; overflow-y: auto; font-size: 0.9rem; display: flex; flex-direction: column; gap: 8px; }
-  .ai-msg { padding: 8px 12px; border-radius: 10px; max-width: 85%; word-wrap: break-word; }
-  .ai-msg.user { background: var(--pool); color: #fff; align-self: flex-end; }
-  .ai-msg.bot { background: var(--bg); color: var(--ink); border: 1px solid var(--line); align-self: flex-start; }
-  #ai-input-form { display: flex; border-top: 1px solid var(--line); }
-  #ai-input-form input { flex: 1; border: none; padding: 10px; font: inherit; outline: none; }
-  #ai-input-form button { background: var(--violet); color: #fff; border: none; padding: 0 14px; font-weight: 600; cursor: pointer; }
+  #ai-window {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    width: 350px;
+    height: 480px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+  }
+  #ai-header {
+    background: var(--brand-primary);
+    color: #ffffff;
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #ai-header button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  #ai-messages {
+    flex: 1;
+    padding: 14px;
+    overflow-y: auto;
+    font-size: 0.88rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f8fafc;
+  }
+  .ai-msg {
+    padding: 10px 14px;
+    border-radius: 8px;
+    max-width: 88%;
+    line-height: 1.4;
+  }
+  .ai-msg.user {
+    background: var(--brand-primary);
+    color: #ffffff;
+    align-self: flex-end;
+  }
+  .ai-msg.bot {
+    background: #ffffff;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    align-self: flex-start;
+  }
+  #ai-input-form {
+    display: flex;
+    border-top: 1px solid var(--border-color);
+    background: #ffffff;
+  }
+  #ai-input-form input {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+  }
+  #ai-input-form button {
+    background: var(--brand-accent);
+    color: #ffffff;
+    border: none;
+    padding: 0 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
 </style>
 </head>
 <body>
+
 <header>
-  <div class="wrap">
-    <h1>Simsbury Hub</h1>
-    <p id="today">Events, new places, and town info for Simsbury, CT.</p>
-    <div id="next" hidden></div>
+  <div class="container header-content">
+    <div class="header-title-group">
+      <h1>Simsbury Hub</h1>
+      <p id="today-date">Local Directory, Live Events & Trail Guide for Simsbury, CT</p>
+    </div>
+    <div id="next-event" class="next-banner" hidden></div>
   </div>
 </header>
 
-<nav aria-label="Sections"><div class="wrap">
-  <a href="#events">Events</a><a href="#places">Restaurants and Stores</a><a href="#town">Town Info</a><a href="#taxes">Tax Estimator</a><a href="#tip">Submit a Tip</a>
-</div></nav>
+<nav aria-label="Main Sections">
+  <div class="container">
+    <a href="#events">Events</a>
+    <a href="#places">Stores & Dining</a>
+    <a href="#trails">Hiking & Outdoor Trails</a>
+    <a href="#town">Town Information</a>
+    <a href="#taxes">Tax Estimator</a>
+    <a href="#tip">Submit a Tip</a>
+  </div>
+</nav>
 
-<main class="wrap">
+<main class="container">
+  <!-- EVENTS SECTION -->
   <section id="events">
-    <h2>Events</h2>
-    <div class="tools"><input type="search" id="event-q" placeholder="Search events" aria-label="Search events"><div class="chips" id="event-chips"></div></div>
-    <div class="grid" id="event-list"></div>
+    <div class="section-header">
+      <h2>Community Events</h2>
+      <span class="section-count" id="event-count"></span>
+    </div>
+    <div class="toolbar">
+      <input type="search" id="event-q" class="search-input" placeholder="Search events by title or venue..." aria-label="Search events">
+      <div class="filter-chips" id="event-chips"></div>
+    </div>
+    <div class="card-grid" id="event-list"></div>
   </section>
 
+  <!-- STORES & RESTAURANTS SECTION -->
   <section id="places">
-    <h2>Restaurants and Stores</h2>
-    <div class="tools"><input type="search" id="place-q" placeholder="Search places" aria-label="Search places"><div class="chips" id="place-chips"></div></div>
-    <div class="grid" id="place-list"></div>
+    <div class="section-header">
+      <h2>Stores, Restaurants & Local Businesses</h2>
+      <span class="section-count" id="place-count"></span>
+    </div>
+    <div class="toolbar">
+      <input type="search" id="place-q" class="search-input" placeholder="Search businesses, dining, cafes..." aria-label="Search businesses">
+      <div class="filter-chips" id="place-chips"></div>
+    </div>
+    <div class="card-grid" id="place-list"></div>
   </section>
 
+  <!-- HIKING & TRAILS SECTION -->
+  <section id="trails">
+    <div class="section-header">
+      <h2>Hiking, Parks & Outdoor Trails</h2>
+      <span class="section-count" id="trail-count"></span>
+    </div>
+    <div class="toolbar">
+      <input type="search" id="trail-q" class="search-input" placeholder="Search trails, parks, ridge walks..." aria-label="Search trails">
+      <div class="filter-chips" id="trail-chips"></div>
+    </div>
+    <div class="card-grid" id="trail-list"></div>
+  </section>
+
+  <!-- TOWN INFO SECTION -->
   <section id="town">
-    <h2>Town Info</h2>
-    <div class="grid" id="town-list"></div>
+    <div class="section-header">
+      <h2>Town Resources & Services</h2>
+    </div>
+    <div class="card-grid" id="town-list"></div>
   </section>
 
+  <!-- TAX ESTIMATOR SECTION -->
   <section id="taxes">
-    <h2>Tax Estimator</h2>
-    <div class="calc">
-      <label for="mv">Home market value ($)</label>
-      <input type="number" id="mv" min="0" inputmode="decimal" placeholder="Enter market value">
-      <label for="mill">Mill rate</label>
-      <input type="number" id="mill" min="0" step="0.01" inputmode="decimal" placeholder="Enter mill rate">
-      <div class="result" id="result" hidden>
-        <div><span>Assessed value (70%)</span><span id="av"></span></div>
-        <div class="big"><span>Estimated yearly tax</span><span id="tax"></span></div>
-        <div><span>Each of two installments</span><span id="half"></span></div>
+    <div class="section-header">
+      <h2>Property Tax Estimator</h2>
+    </div>
+    <div class="panel">
+      <label for="mv">Home Market Value ($)</label>
+      <input type="number" id="mv" min="0" inputmode="decimal" placeholder="e.g. 450000">
+      
+      <label for="mill">Simsbury Mill Rate</label>
+      <input type="number" id="mill" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 37.5">
+
+      <div class="calc-results" id="tax-result" hidden>
+        <div class="calc-row">
+          <span>Assessed Valuation (70%)</span>
+          <span id="av"></span>
+        </div>
+        <div class="calc-row total">
+          <span>Estimated Annual Tax</span>
+          <span id="tax"></span>
+        </div>
+        <div class="calc-row">
+          <span>Semi-Annual Installment</span>
+          <span id="half"></span>
+        </div>
       </div>
-      <p class="small">An estimate only. Connecticut assesses property at 70% of market value, and your real bill depends on the town's current mill rate and any exemptions. Get the mill rate from the town's website.</p>
+      <p class="helper-text">
+        Estimation tool only. Connecticut assesses real estate at 70% of market valuation. Actual bills depend on verified assessment values, current mill rates, and eligible exemptions.
+      </p>
     </div>
   </section>
 
+  <!-- SUBMIT A TIP SECTION -->
   <section id="tip">
-    <h2>Submit a Tip</h2>
-    <div class="tip-card">
+    <div class="section-header">
+      <h2>Submit a Tip or Directory Update</h2>
+    </div>
+    <div class="panel">
       <form id="tip-form">
-        <label for="tip-type">Tip Type</label>
+        <label for="tip-type">Tip Category</label>
         <select id="tip-type">
           <option value="Upcoming Event">Upcoming Event</option>
           <option value="New Store or Restaurant">New Store or Restaurant</option>
-          <option value="Correction">Correction or Update</option>
+          <option value="Trail Update">Trail or Park Update</option>
+          <option value="Directory Correction">Directory Correction</option>
           <option value="General Tip">General Tip</option>
         </select>
 
         <label for="tip-details">Details</label>
-        <textarea id="tip-details" rows="4" placeholder="Tell us the venue, date, address, or details..." required></textarea>
+        <textarea id="tip-details" rows="4" placeholder="Provide venue name, address, dates, or relevant submission details..." required></textarea>
 
-        <button type="submit" class="submit-btn">Send Tip via Email</button>
+        <button type="submit">Submit Tip via Email</button>
       </form>
-      <p class="small">Clicking send opens your default email program with your tip pre-formatted.</p>
+      <p class="helper-text">Submitting opens your standard desktop or mobile mail client with pre-formatted details.</p>
     </div>
   </section>
 </main>
 
-<footer><div class="wrap">Simsbury Hub is a community project and is not run by the Town of Simsbury.<br>Last updated: <span id="updated"></span></div></footer>
+<footer>
+  <div class="container">
+    Simsbury Hub is an independent community directory for Simsbury, Connecticut.<br>
+    Last Database Sync: <span id="updated-date"></span>
+  </div>
+</footer>
 
-<!-- AI Assistant Floating Widget -->
-<button id="ai-bubble" title="Ask Simsbury AI">💬</button>
+<!-- AI Concierge Floating Widget -->
+<button id="ai-bubble" title="Ask Simsbury AI Concierge">💬</button>
 
 <div id="ai-window" hidden>
   <div id="ai-header">
-    <span>Simsbury AI Assistant</span>
-    <button id="ai-close">&times;</button>
+    <span>Simsbury Local AI Assistant</span>
+    <button id="ai-close" aria-label="Close Assistant">&times;</button>
   </div>
   <div id="ai-messages">
-    <div class="ai-msg bot">Hi! Ask me anything about events, businesses, or town info in Simsbury.</div>
+    <div class="ai-msg bot">Hello! Ask me anything about local events, shops, dining, or trails across Simsbury.</div>
   </div>
   <form id="ai-input-form">
-    <input type="text" id="ai-input" placeholder="Type a message..." required autocomplete="off">
+    <input type="text" id="ai-input" placeholder="Ask a question..." required autocomplete="off">
     <button type="submit">Send</button>
   </form>
 </div>
 
 <script src="data.js"></script>
 <script>
-  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
-  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  // Complete Trail Database Integration
+  const COMPLETE_TRAILS = [
+    {
+      name: "Talcott Mountain State Park (Heublein Tower Trail)",
+      length: "2.5 miles round-trip",
+      difficulty: "Moderate - Strenuous",
+      elevation: "450 ft gain",
+      parking: "Route 185, Simsbury, CT",
+      dogs: "Allowed (On leash)",
+      highlights: "165-ft historic tower, 360-degree foliage views, rocky ridge walk.",
+      link: "https://www.heubleintower.org/"
+    },
+    {
+      name: "Stratton Brook State Park Loop & Rail Trail",
+      length: "1.8 miles loop",
+      difficulty: "Easy (Wheelchair Accessible)",
+      elevation: "50 ft gain",
+      parking: "149 Farms Village Rd",
+      dogs: "Allowed (On leash)",
+      highlights: "Covered wooden bridge, fishing pond, crushed stone accessible trail.",
+      link: "https://www.ct.gov/deep"
+    },
+    {
+      name: "Penwood State Park (Simsbury Ridge Trails)",
+      length: "3.5 miles main ridge path",
+      difficulty: "Moderate",
+      elevation: "300 ft gain",
+      parking: "Route 185 (Penwood Main Lot)",
+      dogs: "Allowed (On leash)",
+      highlights: "Lake Louise overlook, paved access path, Metacomet ridge route.",
+      link: "https://www.ct.gov/deep"
+    },
+    {
+      name: "Great Pond State Forest",
+      length: "1.2 miles loop",
+      difficulty: "Easy",
+      elevation: "Flat",
+      parking: "Great Pond Rd gravel pull-off",
+      dogs: "Allowed (On leash)",
+      highlights: "CT's smallest state forest surrounding a pristine glacial kettle pond.",
+      link: "https://www.ct.gov/deep"
+    },
+    {
+      name: "Massacoe State Forest (Bushy Hill & West Mountain Sections)",
+      length: "2.0 miles combined network",
+      difficulty: "Moderate",
+      elevation: "180 ft gain",
+      parking: "Bushy Hill Rd / West Mountain Rd",
+      dogs: "Allowed (On leash)",
+      highlights: "Two non-contiguous forest parcels featuring pine plantations and wetlands.",
+      link: "https://www.ct.gov/deep"
+    },
+    {
+      name: "McLean Game Refuge (Firetown & Trout Pond Trails)",
+      length: "20+ miles interconnected trails",
+      difficulty: "Easy to Moderate",
+      elevation: "100 - 400 ft gain",
+      parking: "Firetown Rd / Barndoor Hills Rd / Canton Rd",
+      dogs: "STRICTLY NO DOGS ALLOWED",
+      highlights: "4,400-acre wilderness preserve, glacial kettle ponds, trout streams, pine groves.",
+      link: "https://mcleangamerefuge.org/"
+    },
+    {
+      name: "West Mountain Trails & 60 Westledge",
+      length: "5.0 miles trail network",
+      difficulty: "Challenging",
+      elevation: "400 ft gain",
+      parking: "Westledge Rd (Rte 309) across from Pasture Ln",
+      dogs: "Allowed (On leash)",
+      highlights: "Hop Brook gorge, historic stone mill dam remnants, steep traprock ridge climb.",
+      link: "https://simsburylandtrust.org/slt/west-mountain/"
+    },
+    {
+      name: "Cathles Preserve Trails",
+      length: "2.0 miles loop",
+      difficulty: "Moderate - Difficult",
+      elevation: "250 ft gain",
+      parking: "Cul-de-sac at end of North Saddle Ridge Rd",
+      dogs: "Allowed (On leash)",
+      highlights: "Striking natural waterfall, fault-line valley, historic charcoal hearth site.",
+      link: "https://simsburylandtrust.org/slt/cathles/"
+    },
+    {
+      name: "Tanager Hill Preserve",
+      length: "1.8 miles",
+      difficulty: "Moderate",
+      elevation: "220 ft gain",
+      parking: "East Weatogue St (Tanager Hill Lot)",
+      dogs: "Allowed (On leash)",
+      highlights: "High meadows, active bird nesting habitats, sweeping views of West Mountain.",
+      link: "https://simsburylandtrust.org/slt/tanager-hill/"
+    },
+    {
+      name: "Wagner Woods & Hall Farm Trails",
+      length: "2.5 miles network",
+      difficulty: "Easy - Moderate",
+      elevation: "100 ft gain",
+      parking: "Great Pond Rd (South lot) or Old Farms Rd (Hall Farm)",
+      dogs: "Allowed (On leash)",
+      highlights: "Open meadows, historic farmland, forest trails connecting to Great Pond.",
+      link: "https://simsburylandtrust.org/slt/wagner-woods/"
+    },
+    {
+      name: "Tulmeadow Farm & Woodlot Trails",
+      length: "1.9 miles",
+      difficulty: "Easy",
+      elevation: "90 ft gain",
+      parking: "255 Farms Village Rd (Tulmeadow Farm Lot)",
+      dogs: "Allowed (On leash)",
+      highlights: "Protected woodlot trails bordering active farm fields and ice cream stand.",
+      link: "https://simsburylandtrust.org/slt/"
+    },
+    {
+      name: "James Property Trails",
+      length: "1.5 miles",
+      difficulty: "Moderate",
+      elevation: "160 ft gain",
+      parking: "East Weatogue St trailhead",
+      dogs: "Allowed (On leash)",
+      highlights: "Eastern ridge climb connecting to the Metacomet Trail.",
+      link: "https://simsburylandtrust.org/slt/"
+    },
+    {
+      name: "Owen-Mortimer Trail",
+      length: "1.1 miles",
+      difficulty: "Easy - Moderate",
+      elevation: "80 ft gain",
+      parking: "East Weatogue St",
+      dogs: "Allowed (On leash)",
+      highlights: "Woodland path crossing mountain streams along the eastern ridge base.",
+      link: "https://simsburylandtrust.org/slt/"
+    },
+    {
+      name: "Bog Walk Boardwalk Trail",
+      length: "0.4 miles out & back",
+      difficulty: "Easy (Flat)",
+      elevation: "Flat",
+      parking: "West Mountain Rd (Bog Walk lot)",
+      dogs: "Allowed (On leash)",
+      highlights: "Wooden boardwalk leading through a unique kettle bog with rare bog flora.",
+      link: "https://simsburylandtrust.org/slt/"
+    },
+    {
+      name: "Ketchin Quarry Trail",
+      length: "0.6 miles",
+      difficulty: "Easy",
+      elevation: "60 ft gain",
+      parking: "Talcott Mountain State Park area",
+      dogs: "Allowed (On leash)",
+      highlights: "Historic brownstone and traprock quarry site surrounded by forest.",
+      link: "https://simsburylandtrust.org/slt/"
+    },
+    {
+      name: "Glover Property Trail",
+      length: "1.0 mile loop",
+      difficulty: "Easy",
+      elevation: "50 ft gain",
+      parking: "East Weatogue St",
+      dogs: "Allowed (On leash)",
+      highlights: "Quiet meadow paths and floodplain forest walking near the Farmington River.",
+      link: "https://simsburylandtrust.org/slt/"
+    },
+    {
+      name: "Case Property Trail",
+      length: "0.5 miles out & back",
+      difficulty: "Easy",
+      elevation: "Flat",
+      parking: "Hopmeadow St near town center",
+      dogs: "Allowed (On leash)",
+      highlights: "Short woodland walk behind historic town properties.",
+      link: "https://simsburylandtrust.org/slt/"
+    },
+    {
+      name: "Knapp Property Trail",
+      length: "0.7 miles",
+      difficulty: "Easy",
+      elevation: "40 ft gain",
+      parking: "Firetown Rd trailhead",
+      dogs: "Allowed (On leash)",
+      highlights: "Woodland connector trail bordering private agricultural land.",
+      link: "https://simsburylandtrust.org/slt/"
+    },
+    {
+      name: "Onion Mountain Park Trails",
+      length: "1.5 miles",
+      difficulty: "Moderate - Steep",
+      elevation: "320 ft gain",
+      parking: "West Mountain Rd pull-off",
+      dogs: "Allowed (On leash)",
+      highlights: "Steep town conservation climb to a rocky ledge overlooking West Simsbury.",
+      link: "https://www.simsbury-ct.gov/"
+    },
+    {
+      name: "Belden Forest Old-Growth Trail",
+      length: "0.8 miles loop",
+      difficulty: "Easy",
+      elevation: "80 ft gain",
+      parking: "Simsbury Public Library lower lot",
+      dogs: "Allowed (On leash)",
+      highlights: "40-acre old-growth forest right in downtown Simsbury with massive white pines.",
+      link: "https://www.simsbury-ct.gov/"
+    },
+    {
+      name: "Tariffville Gorge & Cowles Park",
+      length: "2.2 miles loop",
+      difficulty: "Moderate",
+      elevation: "210 ft gain",
+      parking: "Main St Park Lot, Tariffville",
+      dogs: "Allowed (On leash)",
+      highlights: "Whitewater rapids views along Farmington River; mountain biking singletrack.",
+      link: "https://www.simsburyrec.com/"
+    },
+    {
+      name: "Ethel Walker School Woods / Town Forest",
+      length: "4.1 miles network",
+      difficulty: "Easy - Moderate",
+      elevation: "120 ft gain",
+      parking: "Town Forest Rd trailhead",
+      dogs: "Allowed (On leash)",
+      highlights: "Pine plantation trails, fire roads, and equestrian woods.",
+      link: "https://www.simsburyrec.com/"
+    },
+    {
+      name: "Simsbury Farms Rec Complex Trail Loop",
+      length: "2.0 miles loop",
+      difficulty: "Easy",
+      elevation: "110 ft gain",
+      parking: "100 Old Farms Rd main lot",
+      dogs: "Allowed (On leash)",
+      highlights: "Paved and gravel path encircling the town golf course and apple orchards.",
+      link: "https://www.simsburyrec.com/"
+    },
+    {
+      name: "Farmington Canal Heritage Trail (Simsbury Section)",
+      length: "8.4 miles in Simsbury",
+      difficulty: "Easy (Paved)",
+      elevation: "Flat paved trail",
+      parking: "Iron Horse Blvd / Drake Hill Rd / Tariffville Rd",
+      dogs: "Allowed (On leash)",
+      highlights: "Paved rail-trail connecting directly to downtown cafes and shops.",
+      link: "https://fcht.org/"
+    },
+    {
+      name: "Pinchot Sycamore & Farmington River Walk",
+      length: "0.5 miles path",
+      difficulty: "Easy",
+      elevation: "Flat",
+      parking: "Route 185 bridge park lot",
+      dogs: "Allowed (On leash)",
+      highlights: "CT's largest tree (Pinchot Sycamore) and canoe launch on the Farmington River.",
+      link: "https://www.simsbury-ct.gov/"
+    },
+    {
+      name: "Old Drake Hill Flower Bridge & River Walk",
+      length: "0.6 miles path",
+      difficulty: "Easy",
+      elevation: "Flat",
+      parking: "1 Drake Hill Rd lot",
+      dogs: "Allowed (On leash)",
+      highlights: "Historic 1892 iron bridge lined with flower boxes crossing the Farmington River.",
+      link: "https://www.flowerbridge.org/"
+    },
+    {
+      name: "Nod Brook Management Area Trails",
+      length: "2.5 miles network",
+      difficulty: "Easy",
+      elevation: "Flat",
+      parking: "Route 10 / Tower Business Park dirt road",
+      dogs: "Allowed (On leash / hunting dog training site)",
+      highlights: "Open river floodplain, fields, and ponds along the Farmington River.",
+      link: "https://www.ct.gov/deep"
+    },
+    {
+      name: "Metacomet Trail (Simsbury Section)",
+      length: "11.2 miles through Simsbury",
+      difficulty: "Moderate - Strenuous",
+      elevation: "Varies along ridge",
+      parking: "Route 185 / Route 309 trailheads",
+      dogs: "Allowed (On leash)",
+      highlights: "Blue-blazed national scenic trail following the traprock ridgeline across Simsbury.",
+      link: "https://www.ctwoodlands.org/"
+    }
+  ];
+
+  // Utility Functions
+  const esc = (s) => String(s || "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  const cap = (s) => s ? s.charAt(0).toUpperCase() + s.slice(1) : "";
   const $ = (id) => document.getElementById(id);
   const fmtDay = (d) => new Date(d + "T00:00:00").toLocaleDateString(undefined, { weekday:"short", month:"short", day:"numeric" });
 
-  $("today").textContent = new Date().toLocaleDateString(undefined, { weekday:"long", month:"long", day:"numeric", year:"numeric" }) + " | Events, new places, and town info for Simsbury, CT.";
-  $("updated").textContent = fmtDay(LAST_UPDATED);
+  $("today-date").textContent = new Date().toLocaleDateString(undefined, { weekday:"long", month:"long", day:"numeric", year:"numeric" }) + " | Local Directory, Live Events & Trail Guide";
+  $("updated-date").textContent = fmtDay(typeof LAST_UPDATED !== 'undefined' ? LAST_UPDATED : new Date().toISOString().slice(0, 10));
 
-  // Reusable section: search box + filter chips + list
-  function setup(cfg) {
-    let pick = "all", q = "";
-    const chips = $(cfg.chips);
-    chips.innerHTML = ["all", ...cfg.values].map((v, i) => `<button type="button" data-v="${esc(v)}" aria-pressed="${i === 0}">${esc(cap(v))}</button>`).join("");
-    chips.addEventListener("click", (e) => {
-      const b = e.target.closest("button"); if (!b) return;
-      chips.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
-      pick = b.dataset.v; draw();
+  // Generic Filter/Search Component
+  function setupSearchList(cfg) {
+    let pick = "all", query = "";
+    const chipsContainer = $(cfg.chips);
+    
+    chipsContainer.innerHTML = ["all", ...cfg.values].map((v, i) => 
+      `<button type="button" data-v="${esc(v)}" aria-pressed="${i === 0}">${esc(cap(v))}</button>`
+    ).join("");
+
+    chipsContainer.addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      chipsContainer.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+      pick = btn.dataset.v;
+      render();
     });
-    $(cfg.search).addEventListener("input", (e) => { q = e.target.value.trim().toLowerCase(); draw(); });
-    function draw() {
-      const list = cfg.items.filter((it) => (pick === "all" ? it[cfg.key] !== cfg.hideInAll : it[cfg.key] === pick) && (!q || cfg.text(it).toLowerCase().includes(q)));
-      $(cfg.list).innerHTML = list.length ? list.map(cfg.card).join("") : `<p class="empty">Nothing found. Try a different search or filter.</p>`;
+
+    $(cfg.search).addEventListener("input", (e) => {
+      query = e.target.value.trim().toLowerCase();
+      render();
+    });
+
+    function render() {
+      const filtered = cfg.items.filter((item) => {
+        const matchesPick = (pick === "all") ? (cfg.hideInAll ? item[cfg.key] !== cfg.hideInAll : true) : item[cfg.key] === pick;
+        const matchesQuery = !query || cfg.text(item).toLowerCase().includes(query);
+        return matchesPick && matchesQuery;
+      });
+
+      if ($(cfg.countTarget)) {$(cfg.countTarget).textContent = `Showing ${filtered.length} entry${filtered.length === 1 ? '' : 's'}`;
+      }
+
+      $(cfg.list).innerHTML = filtered.length 
+        ? filtered.map(cfg.card).join("") 
+        : `<p style="color:var(--text-light); grid-column: 1/-1; padding: 12px 0;">No matching entries found. Try adjusting your search query or filter.</p>`;
     }
-    draw();
+    render();
   }
 
-  const today = new Date().toISOString().slice(0, 10);
-  const upcoming = EVENTS.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
-
-  const featured = upcoming.filter((e) => e.category !== "meetings");
-  if (featured[0]) {
-    const n = featured[0];
-    $("next").hidden = false;
-    $("next").innerHTML = `<b>Next up</b>${esc(n.title)}<br>${esc(fmtDay(n.date))} at ${esc(n.time)}, ${esc(n.place)}`;
+  // Next Featured Event Banner
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const upcomingEvents = (typeof EVENTS !== 'undefined' ? EVENTS : []).filter((e) => e.date >= todayStr).sort((a, b) => a.date.localeCompare(b.date));
+  const featuredEvent = upcomingEvents.find((e) => e.category !== "meetings");
+  
+  if (featuredEvent) {
+    $("next-event").hidden = false;
+    $("next-event").innerHTML = `<strong>Next Community Event</strong> ${esc(featuredEvent.title)} &mdash; ${esc(fmtDay(featuredEvent.date))} at ${esc(featuredEvent.time)} (${esc(featuredEvent.place)})`;
   }
 
-  setup({ items: upcoming, key: "category", values: [...new Set(upcoming.map((e) => e.category))], hideInAll: "meetings",
-    chips: "event-chips", search: "event-q", list: "event-list",
+  // 1. Events Rendering
+  setupSearchList({
+    items: upcomingEvents,
+    key: "category",
+    values: [...new Set(upcomingEvents.map((e) => e.category))],
+    hideInAll: "meetings",
+    chips: "event-chips",
+    search: "event-q",
+    list: "event-list",
+    countTarget: "event-count",
     text: (e) => e.title + " " + e.place,
-    card: (e) => `<a class="card" href="${esc(e.link)}"><span class="tag ${esc(e.category)}">${esc(cap(e.category))}</span><h3>${esc(e.title)}</h3><div class="when">${esc(fmtDay(e.date))} at ${esc(e.time)}</div><p>${esc(e.place)}</p></a>` });
+    card: (e) => `
+      <a class="card" href="${esc(e.link)}" target="_blank" rel="noopener">
+        <div>
+          <div class="card-header">
+            <h3 class="card-title">${esc(e.title)}</h3>
+            <span class="badge badge-event">${esc(cap(e.category))}</span>
+          </div>
+          <div class="card-body">${esc(e.place)}</div>
+        </div>
+        <div class="card-meta">
+          <span class="when-text">${esc(fmtDay(e.date))} &bull; ${esc(e.time)}</span>
+        </div>
+      </a>`
+  });
 
-  setup({ items: PLACES, key: "type", values: [...new Set(PLACES.map((p) => p.type))],
-    chips: "place-chips", search: "place-q", list: "place-list",
-    text: (p) => p.name + " " + p.description,
-    card: (p) => `<a class="card" href="${esc(p.link)}"><span class="tag">${esc(cap(p.type))}</span>${p.isNew ? '<span class="tag new">New</span>' : ""}<h3>${esc(p.name)}</h3><p>${esc(p.description)}</p><p>${esc(p.address)}</p></a>` });
+  // 2. Places & Stores Rendering
+  const allPlaces = typeof PLACES !== 'undefined' ? PLACES : [];
+  setupSearchList({
+    items: allPlaces,
+    key: "type",
+    values: [...new Set(allPlaces.map((p) => p.type))],
+    chips: "place-chips",
+    search: "place-q",
+    list: "place-list",
+    countTarget: "place-count",
+    text: (p) => p.name + " " + p.description + " " + p.address,
+    card: (p) => `
+      <a class="card" href="${esc(p.link)}" target="_blank" rel="noopener">
+        <div>
+          <div class="card-header">
+            <h3 class="card-title">${esc(p.name)}</h3>
+            <div>
+              <span class="badge badge-place">${esc(cap(p.type))}</span>
+              ${p.isNew ? '<span class="badge badge-new">New</span>' : ''}
+            </div>
+          </div>
+          <div class="card-body">${esc(p.description)}</div>
+        </div>
+        <div class="card-meta">
+          <span>${esc(p.address)}</span>
+        </div>
+      </a>`
+  });
 
-  $("town-list").innerHTML = TOWN.map((t) => `<a class="card" href="${esc(t.link)}"><h3>${esc(t.name)}</h3><p>${esc(t.description)}</p></a>`).join("");
+  // 3. Complete Hiking & Trails Rendering
+  setupSearchList({
+    items: COMPLETE_TRAILS,
+    key: "difficulty",
+    values: [...new Set(COMPLETE_TRAILS.map((t) => t.difficulty))],
+    chips: "trail-chips",
+    search: "trail-q",
+    list: "trail-list",
+    countTarget: "trail-count",
+    text: (t) => t.name + " " + t.highlights + " " + t.parking,
+    card: (t) => `
+      <a class="card" href="${esc(t.link)}" target="_blank" rel="noopener">
+        <div>
+          <div class="card-header">
+            <h3 class="card-title">${esc(t.name)}</h3>
+            <span class="badge badge-trail">${esc(t.difficulty.split(' ')[0])}</span>
+          </div>
+          <div class="card-body">${esc(t.highlights)}</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-meta-row">
+            <span><strong>Length:</strong> ${esc(t.length)}</span>
+            <span><strong>Elev:</strong> ${esc(t.elevation)}</span>
+          </div>
+          <div style="margin-top:2px;"><strong>Dogs:</strong> ${esc(t.dogs)}</div>
+          <div style="margin-top:2px;"><strong>Parking:</strong> ${esc(t.parking)}</div>
+        </div>
+      </a>`
+  });
 
-  // Tax estimator
-  const money = (n) => n.toLocaleString(undefined, { style:"currency", currency:"USD", maximumFractionDigits:0 });
-  function calc() {
-    const mv = parseFloat($("mv").value), mill = parseFloat($("mill").value);
-    const ok = mv > 0 && mill > 0;
-    $("result").hidden = !ok;
-    if (!ok) return;
-    const av = mv * 0.7, tax = av * mill / 1000;
-    $("av").textContent = money(av); $("tax").textContent = money(tax); $("half").textContent = money(tax / 2);
+  // 4. Town Resources Rendering
+  const townItems = typeof TOWN !== 'undefined' ? TOWN : [];
+  $("town-list").innerHTML = townItems.map((t) => `
+    <a class="card" href="${esc(t.link)}" target="_blank" rel="noopener">
+      <div>
+        <h3 class="card-title" style="margin-bottom:8px;">${esc(t.name)}</h3>
+        <div class="card-body">${esc(t.description)}</div>
+      </div>
+    </a>
+  `).join("");
+
+  // Tax Calculator Logic
+  const formatUSD = (n) => n.toLocaleString('en-US', { style:"currency", currency:"USD", maximumFractionDigits:0 });
+  function calculateTaxes() {
+    const mv = parseFloat($("mv").value);
+    const mill = parseFloat($("mill").value);
+    const isValid = mv > 0 && mill > 0;
+    
+    $("tax-result").hidden = !isValid;
+    if (!isValid) return;
+
+    const assessedVal = mv * 0.70;
+    const totalTax = (assessedVal * mill) / 1000;
+
+    $("av").textContent = formatUSD(assessedVal);
+    $("tax").textContent = formatUSD(totalTax);
+    $("half").textContent = formatUSD(totalTax / 2);
   }
-  $("mv").addEventListener("input", calc); $("mill").addEventListener("input", calc);
+  $("mv").addEventListener("input", calculateTaxes);
+  $("mill").addEventListener("input", calculateTaxes);
 
-  // Tip form mailto handler
+  // Tip Form Handler
   $("tip-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const type = $("tip-type").value;
     const details = $("tip-details").value;
-    const email = "cadoffryan@gmail.com";
+    const recipient = "cadoffryan@gmail.com";
     const subject = encodeURIComponent(`[Simsbury Hub Tip] ${type}`);
-    const body = encodeURIComponent(`Tip Type: ${type}\n\nDetails:\n${details}`);
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    const body = encodeURIComponent(`Tip Category: ${type}\n\nSubmission Details:\n${details}`);
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
   });
 
-  // Cloudflare AI Assistant
+  // Cloudflare Worker AI Concierge Integration
   const WORKER_URL = "https://simsbury-ai.cadoffryan.workers.dev";
 
-  const bubble = document.getElementById("ai-bubble");
-  const win = document.getElementById("ai-window");
-  const closeBtn = document.getElementById("ai-close");
-  const form = document.getElementById("ai-input-form");
-  const input = document.getElementById("ai-input");
-  const messages = document.getElementById("ai-messages");
+  const aiBubble = $("ai-bubble");
+  const aiWindow = $("ai-window");
+  const aiClose = $("ai-close");
+  const aiForm = $("ai-input-form");
+  const aiInput = $("ai-input");
+  const aiMessages = $("ai-messages");
 
-  bubble.addEventListener("click", () => win.hidden = !win.hidden);
-  closeBtn.addEventListener("click", () => win.hidden = true);
+  aiBubble.addEventListener("click", () => aiWindow.hidden = !aiWindow.hidden);
+  aiClose.addEventListener("click", () => aiWindow.hidden = true);
 
-  form.addEventListener("submit", async (e) => {
+  aiForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const text = input.value.trim();
-    if (!text) return;
+    const messageText = aiInput.value.trim();
+    if (!messageText) return;
 
-    const userDiv = document.createElement("div");
-    userDiv.className = "ai-msg user";
-    userDiv.textContent = text;
-    messages.appendChild(userDiv);
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
+    const userMsgNode = document.createElement("div");
+    userMsgNode.className = "ai-msg user";
+    userMsgNode.textContent = messageText;
+    aiMessages.appendChild(userMsgNode);
+    aiInput.value = "";
+    aiMessages.scrollTop = aiMessages.scrollHeight;
 
-    const botDiv = document.createElement("div");
-    botDiv.className = "ai-msg bot";
-    botDiv.textContent = "Thinking...";
-    messages.appendChild(botDiv);
-    messages.scrollTop = messages.scrollHeight;
+    const botMsgNode = document.createElement("div");
+    botMsgNode.className = "ai-msg bot";
+    botMsgNode.textContent = "Checking Simsbury database...";
+    aiMessages.appendChild(botMsgNode);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
 
     try {
       const res = await fetch(WORKER_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text })
+        body: JSON.stringify({ message: messageText })
       });
       const data = await res.json();
-      botDiv.textContent = data.response || (data.error ? "AI Error: " + data.error : "Sorry, I couldn't get an answer right now.");
+      botMsgNode.textContent = data.response || (data.error ? "AI Error: " + data.error : "Unable to process query.");
     } catch (err) {
-      botDiv.textContent = "Error connecting to AI server.";
+      botMsgNode.textContent = "Connection issue contacting the AI assistant server.";
     }
-    messages.scrollTop = messages.scrollHeight;
+    aiMessages.scrollTop = aiMessages.scrollHeight;
   });
 </script>
 </body>
