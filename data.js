@@ -1,7 +1,7 @@
 // ALL SITE CONTENT LIVES IN THIS FILE.
 // Comprehensive Simsbury Directory, gathered October 2026.
 
-const LAST_UPDATED = "2026-10-05";
+const LAST_UPDATED = "2026-10-06";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -97,60 +97,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Design Review Board",
-    "date": "2026-10-05",
-    "time": "5:30 PM",
-    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Diversity, Equity & Inclusion Council",
-    "date": "2026-10-05",
-    "time": "6:00 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Public Building Committee",
-    "date": "2026-10-05",
-    "time": "7:00 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Simsbury Youth Service Advisory Board",
-    "date": "2026-10-05",
-    "time": "2:30 PM",
-    "place": "Simsbury High School, 34 Farms Village Road",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Zoning Commission",
-    "date": "2026-10-05",
-    "time": "7:00 PM",
-    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Zoning Commission Special Meeting",
-    "date": "2026-10-05",
-    "time": "6:00 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Age-Friendly Community Subcommittee Meeting",
     "date": "2026-10-06",
@@ -629,8 +575,62 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
+    "title": "Culture, Parks and Recreation Commission",
+    "date": "2026-12-03",
+    "time": "6:00 PM",
+    "place": "Board of Education Conference Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
     "title": "Historic District Commission",
     "date": "2026-12-03",
+    "time": "7:00 PM",
+    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Sustainability Committee",
+    "date": "2026-12-03",
+    "time": "6:30 PM",
+    "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Design Review Board",
+    "date": "2026-12-07",
+    "time": "5:30 PM",
+    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Diversity, Equity & Inclusion Council",
+    "date": "2026-12-07",
+    "time": "6:00 PM",
+    "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Public Building Committee",
+    "date": "2026-12-07",
+    "time": "7:00 PM",
+    "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Zoning Commission",
+    "date": "2026-12-07",
     "time": "7:00 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
     "category": "meetings",
