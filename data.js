@@ -1,7 +1,7 @@
 // ALL SITE CONTENT LIVES IN THIS FILE.
 // Comprehensive Simsbury Directory, gathered October 2026.
 
-const LAST_UPDATED = "2026-10-06";
+const LAST_UPDATED = "2026-10-07";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -98,24 +98,6 @@ const MANUAL_EVENTS = [
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
   {
-    "title": "Age-Friendly Community Subcommittee Meeting",
-    "date": "2026-10-06",
-    "time": "2:30 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
-    "date": "2026-10-06",
-    "time": "7:00 PM",
-    "place": "Main Meeting Room, Simsbury Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
     "title": "Open Space Committee",
     "date": "2026-10-07",
     "time": "5:00 PM",
@@ -125,7 +107,7 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
-    "title": "Personnel Subcommittee",
+    "title": "Personnel Subcommittee - Cancelled",
     "date": "2026-10-08",
     "time": "9:00 AM",
     "place": "Simsbury Town Hall, Main Meeting Room, 933 Hopmeadow Street",
@@ -620,6 +602,15 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
+    "title": "Police Commission",
+    "date": "2026-12-07",
+    "time": "5:00 PM",
+    "place": "Board of Education Conference Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
     "title": "Public Building Committee",
     "date": "2026-12-07",
     "time": "7:00 PM",
@@ -631,6 +622,15 @@ const AUTO_EVENTS = [
   {
     "title": "Zoning Commission",
     "date": "2026-12-07",
+    "time": "7:00 PM",
+    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Planning Commission",
+    "date": "2026-12-08",
     "time": "7:00 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
     "category": "meetings",
