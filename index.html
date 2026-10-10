@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#243b31">
+<meta name="description" content="A neighborly field guide to Simsbury, Connecticut: local events, independent businesses, trails and town services.">
 <title>Simsbury Hub: Shops, Eats, Trails and Town News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg-page: #f3f4ee;
@@ -551,10 +556,384 @@
     .tile strong { font-size: 1rem; }
     .section-count { font-size: 0.76rem; }
     #ai-window { right: 16px; bottom: 82px; height: min(480px, calc(100vh - 110px)); }
-    #ai-bubble { right: 16px; bottom: 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .sign, .next-banner, .card-grid.initial, .card-grid.initial .card, .js main > section.active, #ai-window, .ai-msg { animation: none !important; }
+  }
+
+  :root {
+    --bg-page: #f2efe7;
+    --bg-surface: #f8f6f0;
+    --text-primary: #222923;
+    --text-muted: #555d55;
+    --text-light: #71776f;
+    --border-color: #d8d4c9;
+    --brand-primary: #243b31;
+    --brand-accent: #b44f38;
+    --brand-highlight: #d8d4c9;
+    --serif: "DM Serif Display", Georgia, serif;
+    --sans: "DM Sans", "Avenir Next", sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg-page); color: var(--text-primary); font-family: var(--sans); line-height: 1.6; }
+  a { color: var(--brand-accent); transition: color 150ms ease; }
+  a:hover { color: #873b2c; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--brand-accent);
+    outline-offset: 3px;
+  }
+  .container { max-width: 1240px; padding-right: 36px; padding-left: 36px; }
+
+  header { padding: 32px 0 34px; background: var(--brand-primary); border: 0; color: #f4f0e5; }
+  .sign {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+    grid-template-areas: "meta meta" "title title" "dek tools";
+    column-gap: 52px;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    animation: none;
+  }
+  .sign::before { content: none; }
+  .masthead-meta {
+    grid-area: meta;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid rgba(244, 240, 229, 0.26);
+    color: #d3d7ce;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .sign h1 {
+    grid-area: title;
+    margin: 18px 0 0;
+    font-family: var(--serif);
+    font-size: clamp(5rem, 10.5vw, 8rem);
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+  }
+  .sign h1 span { color: #d8a28d; font-style: italic; }
+  .masthead-bottom {
+    grid-area: 3 / 1 / 4 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+    gap: 48px;
+    align-items: end;
+    margin-top: 23px;
+  }
+  .sign p {
+    max-width: 370px;
+    margin: 0;
+    color: #e2e4dc;
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    font-style: normal;
+    line-height: 1.55;
+  }
+  .sign:hover, .sign:hover p { border-color: transparent; color: #e2e4dc; }
+  .masthead-tools { min-width: 0; }
+  .global-search { margin: 0; }
+  .global-search input {
+    width: 100%;
+    max-width: none;
+    padding: 12px 14px;
+    border: 1px solid rgba(244, 240, 229, 0.32);
+    border-radius: 2px;
+    background: #f8f6f0;
+    color: var(--text-primary);
+    font: inherit;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .global-search input:focus { outline: none; box-shadow: 0 0 0 3px rgba(216, 162, 141, 0.35); }
+  .next-banner {
+    margin-top: 10px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #e2e4dc;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    animation: none;
+  }
+  .next-banner strong {
+    margin-right: 8px;
+    color: #d8a28d;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-color); background: var(--bg-surface); }
+  nav .container { gap: 20px; overflow-x: auto; scrollbar-width: none; }
+  nav .container::-webkit-scrollbar { display: none; }
+  nav a {
+    padding: 14px 0 12px;
+    border-bottom: 2px solid transparent;
+    color: #444b44;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: color 150ms ease, border-color 150ms ease;
+  }
+  nav a:hover, nav a[aria-current="page"] { transform: none; color: var(--brand-accent); }
+  nav a[aria-current="page"] { border-bottom-color: var(--brand-accent); }
+
+  main.container { min-height: 65vh; }
+  section { padding: 46px 0 12px; scroll-margin-top: 60px; }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 0 0 13px;
+    border-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: none;
+  }
+  .section-eyebrow {
+    flex: 0 0 100%;
+    margin-bottom: -7px;
+    color: var(--brand-accent);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+  .section-header { flex-wrap: wrap; }
+  .section-header h2 {
+    color: var(--text-primary);
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    transition: none;
+  }
+  .section-header:hover, .section-header:hover h2 { border-color: var(--border-color); color: var(--text-primary); transform: none; }
+  .section-count, .section-header:hover .section-count { color: var(--text-light); font-size: 0.76rem; transform: none; }
+  .toolbar { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+  .search-input {
+    width: 100%;
+    max-width: 420px;
+    padding: 10px 12px;
+    border: 1px solid #c9c5ba;
+    border-radius: 2px;
+    background: var(--bg-surface);
+    font: inherit;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .search-input:focus, .panel input:focus, .panel select:focus, .panel textarea:focus {
+    transform: none;
+    border-color: var(--brand-accent);
+    box-shadow: 0 0 0 3px rgba(180, 79, 56, 0.12);
+  }
+  .filter-chips { gap: 7px; }
+  .filter-chips button {
+    padding: 5px 10px;
+    border: 1px solid #d0ccc1;
+    border-radius: 2px;
+    background: transparent;
+    font: inherit;
+    font-size: 0.78rem;
+    transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+  }
+  .filter-chips button:hover, .filter-chips .toggle:hover { transform: none; border-style: solid; }
+  .filter-chips button[aria-pressed="true"] {
+    transform: none;
+    border-color: var(--brand-primary);
+    background: var(--brand-primary);
+    color: #f8f6f0;
+  }
+  .filter-chips .toggle { border-style: solid; }
+  .filter-chips .toggle[aria-pressed="true"] { animation: none; }
+
+  .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 38px; }
+  .card {
+    margin: 0;
+    padding: 19px 0 21px;
+    border: 0;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    transition: border-color 150ms ease;
+  }
+  .card:hover { transform: none; border-color: #aaa99e; background: transparent; box-shadow: none; }
+  .card.event { border-left: 0; border-top: 1px solid var(--brand-accent); }
+  .card.event:hover, .card.trail:hover { border-left: 0; }
+  .card.trail { border-left: 0; border-top: 1px solid var(--brand-primary); }
+  .card-title { margin: 0 0 5px; font-family: var(--serif); font-size: 1.32rem; font-weight: 400; line-height: 1.2; }
+  .card:hover .card-title { transform: none; }
+  .card-title a { color: var(--text-primary); text-decoration: none; }
+  .card-title a:hover { color: var(--brand-accent); text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; }
+  .kind { margin-bottom: 6px; color: var(--brand-accent); font-size: 0.68rem; font-style: normal; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .kind .new { padding: 1px 5px; border-radius: 2px; background: #e8e3d8; color: #343a33; animation: none; }
+  .card-body { margin: 7px 0 10px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.55; }
+  .facts { margin-top: 12px; color: var(--text-muted); font-size: 0.8rem; }
+  .facts div { grid-template-columns: 82px minmax(0, 1fr); gap: 10px; padding: 3px 0; }
+  .facts div:hover { transform: none; }
+  .facts dt { color: #424941; font-weight: 600; }
+  .when-text { color: var(--text-primary); font-size: 0.83rem; font-weight: 700; }
+  .actions { gap: 12px; margin-top: 13px; font-size: 0.76rem; }
+  .fav {
+    padding: 4px 9px;
+    border: 1px solid #b8b8aa;
+    border-radius: 2px;
+    background: transparent;
+    color: var(--text-primary);
+    font: inherit;
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+  .fav:hover, .fav[aria-pressed="true"] { transform: none; border-color: var(--brand-primary); background: var(--brand-primary); color: #f8f6f0; animation: none; }
+  .report { color: var(--text-light); transition: color 150ms ease; }
+  .report:hover { transform: none; color: var(--brand-accent); }
+  .open { padding: 1px 6px; border-radius: 2px; background: #e8e3d8; color: #343a33; font-size: 0.68rem; font-weight: 600; }
+  .open.yes, .open.no { background: #e8e3d8; color: #343a33; }
+  .open:hover { transform: none; }
+  .muted { color: var(--text-light); }
+
+  .home-layout { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(240px, 0.72fr); gap: clamp(32px, 7vw, 92px); padding-top: 8px; }
+  .home-intro { max-width: 740px; padding-bottom: 24px; }
+  .eyebrow { margin: 0 0 10px; color: var(--brand-accent); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .home-intro h2 { max-width: 700px; margin: 0; font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; letter-spacing: -0.045em; line-height: 0.99; }
+  .home-intro > p:last-child { max-width: 570px; margin: 16px 0 0; color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
+  .home-section { margin-top: 18px; }
+  .home-section-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+  .home-section-heading h3 { margin: 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .home-section-heading span { color: var(--text-light); font-size: 0.73rem; }
+  .home-section .card-grid { grid-template-columns: 1fr; }
+  .home-section .card { padding: 14px 0 16px; }
+  .home-rail { align-self: start; padding: 18px 0 0 24px; border-left: 1px solid var(--border-color); }
+  .home-rail > .eyebrow { margin-bottom: 12px; }
+  .guide-link {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) 18px;
+    gap: 8px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .guide-index { align-self: start; padding-top: 3px; color: var(--text-light); font-size: 0.65rem; font-variant-numeric: tabular-nums; }
+  .guide-copy strong { display: block; font-family: var(--serif); font-size: 1.08rem; font-weight: 400; line-height: 1.2; }
+  .guide-copy small { display: block; margin-top: 3px; color: var(--text-light); font-size: 0.72rem; }
+  .guide-arrow { width: 15px; color: var(--brand-accent); transition: transform 150ms ease; }
+  .guide-link:hover { color: var(--brand-accent); }
+  .guide-link:hover .guide-arrow { transform: translateX(3px); }
+  .home-rail-tools { display: flex; flex-wrap: wrap; gap: 8px 16px; padding-top: 16px; font-size: 0.78rem; }
+  .home-rail-tools a { color: var(--text-muted); }
+  .home-rail-tools a:hover { color: var(--brand-accent); }
+  .result-group h3 { margin: 28px 0 8px; color: var(--brand-accent); font-family: var(--sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .result-group h3:hover { transform: none; }
+
+  .panel { max-width: 620px; border: 0; border-top: 2px solid var(--brand-primary); border-radius: 0; background: transparent; padding: 20px 0; }
+  .panel:hover { transform: none; box-shadow: none; }
+  .panel label { margin: 14px 0 5px; font-size: 0.83rem; }
+  .panel input, .panel select, .panel textarea { border: 1px solid #c9c5ba; border-radius: 2px; background: var(--bg-surface); font: inherit; }
+  .panel button[type="submit"] { border-radius: 2px; background: var(--brand-primary); font: inherit; transition: background 150ms ease; }
+  .panel button[type="submit"]:hover, .panel button[type="submit"]:active { transform: none; box-shadow: none; background: #192c23; }
+  .calc-results { border-color: var(--border-color); animation: none; }
+  .calc-row.total { color: var(--brand-accent); animation: none; }
+  .helper-text { max-width: 600px; color: var(--text-light); font-size: 0.79rem; line-height: 1.6; }
+
+  footer { margin-top: 64px; padding: 28px 0; border-top: 3px solid var(--brand-accent); background: var(--brand-primary); color: #e2e4dc; font-size: 0.78rem; line-height: 1.8; }
+  footer a { color: #f1c4b3; }
+  footer a:hover { transform: none; color: #fff; }
+  .js main > section.active { min-height: 60vh; animation: none; }
+  .card-grid.initial, .card-grid.initial .card { animation: none; }
+
+  .masthead-tools { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 20px; }
+  .next-banner { grid-column: 1 / -1; }
+  #ai-bubble {
+    position: static;
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    min-height: 40px;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 0;
+    border: 0;
+    border-bottom: 1px solid rgba(241, 196, 179, 0.55);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #f1c4b3;
+    font: 600 0.76rem var(--sans);
+    white-space: nowrap;
+    transition: color 150ms ease, border-color 150ms ease;
+  }
+  #ai-bubble:hover { transform: none; border-color: #fff; background: transparent; box-shadow: none; color: #fff; }
+  #ai-bubble:active { transform: none; }
+  #ai-window {
+    right: 26px;
+    bottom: 78px;
+    width: min(370px, calc(100vw - 32px));
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    box-shadow: 0 10px 32px rgba(30, 38, 31, 0.18);
+    animation: none;
+  }
+  #ai-header { background: var(--brand-primary); font-size: 0.8rem; letter-spacing: 0.02em; }
+  #ai-header button { transition: opacity 150ms ease; }
+  #ai-header button:hover { transform: none; }
+  #ai-messages { background: var(--bg-page); }
+  .ai-msg { animation: none; }
+  .ai-msg.user { background: var(--brand-primary); }
+  .ai-msg.bot { border-color: var(--border-color); }
+  #ai-input-form button { background: var(--brand-accent); transition: background 150ms ease; }
+  #ai-input-form button:hover, #ai-input-form button:active { transform: none; background: #873b2c; }
+
+  @media (min-width: 700px) {
+    .toolbar { flex-direction: row; align-items: center; justify-content: space-between; }
+  }
+  @media (max-width: 760px) {
+    .container { padding-right: 22px; padding-left: 22px; }
+    .sign { grid-template-columns: 1fr; grid-template-areas: "meta" "title" "dek"; }
+    .sign h1 { font-size: clamp(4.6rem, 13vw, 6.5rem); }
+    .masthead-bottom { grid-template-columns: 1fr; gap: 18px; }
+    .masthead-tools { max-width: 540px; }
+    .home-layout { grid-template-columns: minmax(0, 1fr) minmax(210px, 0.7fr); gap: 30px; }
+    .home-rail { padding-left: 18px; }
+    nav .container { gap: 17px; }
+  }
+  @media (max-width: 560px) {
+    .container { padding-right: 18px; padding-left: 18px; }
+    header { padding: 22px 0 26px; }
+    .masthead-meta { font-size: 0.62rem; letter-spacing: 0.1em; }
+    .sign h1 { margin-top: 17px; font-size: clamp(4rem, 18vw, 5.6rem); }
+    .sign p { font-size: 0.92rem; }
+    .masthead-bottom { margin-top: 17px; }
+    .masthead-tools { grid-template-columns: 1fr; }
+    #ai-bubble { justify-self: start; min-height: 32px; margin-top: 5px; }
+    .next-banner { font-size: 0.75rem; }
+    nav .container { gap: 16px; }
+    nav a { padding: 12px 0 10px; font-size: 0.76rem; }
+    section { padding-top: 34px; }
+    .section-header h2 { font-size: 2.2rem; }
+    .home-layout { grid-template-columns: 1fr; gap: 30px; }
+    .home-intro h2 { font-size: clamp(3rem, 12vw, 4rem); }
+    .home-rail { grid-row: 1; padding: 0; border: 0; }
+    .home-rail > .eyebrow { margin-bottom: 6px; }
+    .guide-link { grid-template-columns: 25px minmax(0, 1fr) 18px; padding: 10px 0; }
+    .guide-copy strong { font-size: 1rem; }
+    .home-rail-tools { padding-top: 12px; }
+    .card-grid { grid-template-columns: 1fr; gap: 0; }
+    .card { padding: 17px 0 19px; }
+    .panel { padding-right: 0; padding-left: 0; }
+
+    #ai-window { right: 16px; bottom: 70px; height: min(480px, calc(100vh - 92px)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: 0.01ms !important; }
   }
 </style>
 <script>document.documentElement.classList.add("js");</script>
@@ -564,10 +943,25 @@
 <header>
   <div class="container">
     <div class="sign">
-      <h1>Simsbury Hub</h1>
-      <p id="today-date">Shops, supper, trails and town news for Simsbury, Connecticut</p>
-      <div id="next-event" class="next-banner" hidden></div>
-      <form id="global-search" class="global-search" role="search"><input type="search" id="gs-input" placeholder="Search events, shops, trails, and town services" aria-label="Search everything" autocomplete="off"></form>
+      <div class="masthead-meta">
+        <span>A field guide to Simsbury, Connecticut</span>
+        <time id="today-date" aria-label="Today's date">Simsbury, Connecticut</time>
+      </div>
+      <h1>Simsbury <span>Hub</span></h1>
+      <div class="masthead-bottom">
+        <p>Find a good walk, a new table, this week's gathering, or the number you meant to call.</p>
+        <div class="masthead-tools">
+          <form id="global-search" class="global-search" role="search"><input type="search" id="gs-input" placeholder="Search the guide" aria-label="Search events, businesses, trails, and town services" autocomplete="off"></form>
+          <button id="ai-bubble" type="button" title="Ask Simsbury" aria-label="Ask Simsbury">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.6-.85L4 20l1.85-4.9A7.5 7.5 0 1 1 20 11.5Z"></path>
+              <path d="M8.5 11.5h.01M12.5 11.5h.01M16.5 11.5h.01"></path>
+            </svg>
+            <span>Ask the guide</span>
+          </button>
+          <div id="next-event" class="next-banner" hidden></div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -587,22 +981,22 @@
 
 <main class="container">
   <section id="home">
-    <div class="section-header"><h2>Welcome to Simsbury</h2></div>
     <div id="home-body"></div>
   </section>
 
   <section id="search">
-    <div class="section-header"><h2>Search Results</h2><span class="section-count" id="search-count"></span></div>
+    <div class="section-header"><span class="section-eyebrow" aria-hidden="true">FIND SOMETHING</span><h2>Search Results</h2><span class="section-count" id="search-count"></span></div>
     <div id="search-list"></div>
   </section>
 
   <section id="favorites">
-    <div class="section-header"><h2>Your Saved Places</h2><span class="section-count">Saved on this device only</span></div>
+    <div class="section-header"><span class="section-eyebrow" aria-hidden="true">YOUR SHORTLIST</span><h2>Your Saved Places</h2><span class="section-count">Saved on this device only</span></div>
     <div class="card-grid" id="fav-list"></div>
   </section>
 
   <section id="events">
     <div class="section-header">
+      <span class="section-eyebrow" aria-hidden="true">THE CALENDAR</span>
       <h2>What's On Around Town</h2>
       <span class="section-count" id="event-count"></span>
     </div>
@@ -615,6 +1009,7 @@
 
   <section id="places">
     <div class="section-header">
+      <span class="section-eyebrow" aria-hidden="true">LOCAL INDEPENDENTS</span>
       <h2>Shops, Restaurants and Local Businesses</h2>
       <span class="section-count" id="place-count"></span>
     </div>
@@ -627,6 +1022,7 @@
 
   <section id="trails">
     <div class="section-header">
+      <span class="section-eyebrow" aria-hidden="true">OUTSIDE, NEARBY</span>
       <h2>Trails, Parks and Open Space</h2>
       <span class="section-count" id="trail-count"></span>
     </div>
@@ -639,6 +1035,7 @@
 
   <section id="town">
     <div class="section-header">
+      <span class="section-eyebrow" aria-hidden="true">CIVIC SIMSBURY</span>
       <h2>Town Hall and Services</h2>
     </div>
     <div class="card-grid" id="town-list"></div>
@@ -646,6 +1043,7 @@
 
   <section id="taxes">
     <div class="section-header">
+      <span class="section-eyebrow" aria-hidden="true">A PRACTICAL TOOL</span>
       <h2>Property Tax Estimator</h2>
     </div>
     <div class="panel">
@@ -668,6 +1066,7 @@
 
   <section id="tip">
     <div class="section-header">
+      <span class="section-eyebrow" aria-hidden="true">HELP KEEP IT CURRENT</span>
       <h2>Send a Tip or Correction</h2>
     </div>
     <div class="panel">
@@ -698,16 +1097,9 @@
   </div>
 </footer>
 
-<button id="ai-bubble" type="button" title="Ask Simsbury" aria-label="Ask Simsbury">
-  <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.6-.85L4 20l1.85-4.9A7.5 7.5 0 1 1 20 11.5Z"></path>
-    <path d="M8.5 11.5h.01M12.5 11.5h.01M16.5 11.5h.01"></path>
-  </svg>
-</button>
-
 <div id="ai-window" hidden>
   <div id="ai-header">
-    <span>Ask Simsbury</span>
+    <span>Ask the guide</span>
     <button id="ai-close" aria-label="Close Assistant">&times;</button>
   </div>
   <div id="ai-messages">
@@ -731,7 +1123,7 @@
 
   // Today in Connecticut time
   const todayStr = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
-  $("today-date").textContent = new Date().toLocaleDateString(undefined, { weekday:"long", month:"long", day:"numeric", year:"numeric" }) + ". Shops, supper, trails and town news.";
+  $("today-date").textContent = new Date().toLocaleDateString(undefined, { weekday:"long", month:"long", day:"numeric", year:"numeric" });
   $("updated-date").textContent = fmtDay(typeof LAST_UPDATED !== 'undefined' ? LAST_UPDATED : todayStr);
 
   // Data
@@ -926,14 +1318,39 @@
 
   // Home page
   function renderHome() {
-    const tiles = [["events", "What's on", nonMeet.length + " upcoming"], ["places", "Shops and eats", allPlaces.length + " listed"], ["trails", "Trails and parks", allTrails.length + " listed"], ["town", "Town Hall", "Services and links"], ["taxes", "Tax estimator", "Estimate your bill"], ["tip", "Send a tip", "Fix or add a listing"]];
-    const open = allPlaces.filter((p) => openNow(p.hours) === true).slice(0, 6);
+    const openPlaces = allPlaces.filter((p) => openNow(p.hours) === true);
+    const open = openPlaces.slice(0, 6);
     const withHours = allPlaces.filter((p) => parseHours(p.hours)).length;
-    $("home-body").innerHTML = `<div class="tiles">${tiles.map((t) => `<a class="tile" href="#${t[0]}"><strong>${esc(t[1])}</strong><span>${esc(t[2])}</span></a>`).join("")}</div>
-      <h3 class="home-h">Open right now</h3>
-      ${open.length ? `<div class="card-grid initial">${open.map(cards.place).join("")}</div>` : `<p class="muted">Nothing with confirmed hours is open right now. ${withHours} of ${allPlaces.length} places have hours listed so far.</p>`}
-      <h3 class="home-h">Coming up</h3>
-      ${nonMeet.length ? `<div class="card-grid initial">${nonMeet.slice(0, 3).map(cards.event).join("")}</div>` : `<p class="muted">No events listed yet.</p>`}`;
+    const guideLinks = [
+      ["events", "What's on", `${nonMeet.length} upcoming events`],
+      ["places", "Shops & tables", `${allPlaces.length} local listings`],
+      ["trails", "Paths & open space", `${allTrails.length} places to wander`],
+      ["town", "Town offices", "Useful numbers and official links"]
+    ];
+    const arrow = `<svg class="guide-arrow" aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    $("home-body").innerHTML = `
+      <div class="home-layout">
+        <div class="home-main">
+          <div class="home-intro">
+            <p class="eyebrow">Good things, close to home</p>
+            <h2>Make a day of Simsbury.</h2>
+            <p>A neighbor’s guide to the places, paths, and small-town happenings worth knowing about. Independently collected, and better with your help.</p>
+          </div>
+          <div class="home-section">
+            <div class="home-section-heading"><h3>Open right now</h3><span>${openPlaces.length} places open</span></div>
+            ${open.length ? `<div class="card-grid initial">${open.map(cards.place).join("")}</div>` : `<p class="muted">Nothing with confirmed hours is open right now. ${withHours} of ${allPlaces.length} places have hours listed so far.</p>`}
+          </div>
+          <div class="home-section">
+            <div class="home-section-heading"><h3>Coming up</h3><span>${nonMeet.length} on the calendar</span></div>
+            ${nonMeet.length ? `<div class="card-grid initial">${nonMeet.slice(0, 3).map(cards.event).join("")}</div>` : `<p class="muted">No events listed yet.</p>`}
+          </div>
+        </div>
+        <aside class="home-rail" aria-label="Browse the guide">
+          <p class="eyebrow">Browse the guide</p>
+          ${guideLinks.map((item, i) => `<a class="guide-link" href="#${item[0]}"><span class="guide-index">0${i + 1}</span><span class="guide-copy"><strong>${esc(item[1])}</strong><small>${esc(item[2])}</small></span>${arrow}</a>`).join("")}
+          <div class="home-rail-tools"><a href="#taxes">Estimate property tax</a><a href="#tip">Send a correction</a><a href="#favorites">Your saved places</a></div>
+        </aside>
+      </div>`;
   }
 
   // Search across everything
