@@ -1,7 +1,7 @@
 // ALL SITE CONTENT LIVES IN THIS FILE.
 // Comprehensive Simsbury Directory, gathered October 2026.
 
-const LAST_UPDATED = "2026-10-09";
+const LAST_UPDATED = "2026-10-10";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -97,15 +97,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Simsbury Housing Authority",
-    "date": "2026-10-09",
-    "time": "8:00 AM",
-    "place": "Virginia Connolly Residence, 1600 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Board of Education",
     "date": "2026-10-13",
@@ -633,6 +624,15 @@ const AUTO_EVENTS = [
     "date": "2026-12-08",
     "time": "7:00 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Water Pollution Control Authority",
+    "date": "2026-12-10",
+    "time": "7:00 PM",
+    "place": "Water Pollution Control Facility Conference Room, 36 Drake Hill Road",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "src": "town"
