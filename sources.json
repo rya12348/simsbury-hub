@@ -10,20 +10,7 @@
     "note": "Address copied from the town's own calendar subscribe link. If the Actions log says robots.txt does not allow it, set enabled back to false.",
     "categoryRules": [
       {
-        "words": [
-          "board",
-          "commission",
-          "committee",
-          "subcommittee",
-          "authority",
-          "council",
-          "trustees",
-          "agency",
-          "selectmen",
-          "hearing",
-          "task force",
-          "advisory"
-        ],
+        "words": ["board", "commission", "committee", "subcommittee", "authority", "council", "trustees", "agency", "selectmen", "hearing", "task force", "advisory"],
         "category": "meetings"
       }
     ]
@@ -36,7 +23,7 @@
     "pageUrl": "https://www.simsburycoc.com/events",
     "category": "community",
     "enabled": false,
-    "note": "No iCal address found yet. Look for 'Subscribe' or 'Add to calendar' on the events page."
+    "note": "The Chamber's site (GrowthZone) lists about 90 events but I could not find a public calendar feed. In your browser, open an event page and look for 'Add to calendar' or 'Subscribe'. If it gives a link ending in .ics, paste it into url and set enabled to true."
   },
   {
     "id": "historical-society",
@@ -46,7 +33,7 @@
     "pageUrl": "https://simsburyhistory.org/events-programs/",
     "category": "community",
     "enabled": false,
-    "note": "No iCal address found yet."
+    "note": "Checked: this is a hand-typed page, not a calendar, so there is no feed. Keep these events in MANUAL_EVENTS in data.js."
   },
   {
     "id": "library",
