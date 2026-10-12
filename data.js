@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-10-11";
+const LAST_UPDATED = "2026-10-12";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -216,6 +216,15 @@ const AUTO_EVENTS = [
     "time": "5:00 PM",
     "place": "Town of Simsbury",
     "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Public Information Meeting: Climax Road Bridge Replacement",
+    "date": "2026-11-04",
+    "time": "6:00 PM",
+    "place": "Friends of the Simsbury Public Library (FSPL) Program Room - Simsbury Public Lib",
+    "category": "community",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "src": "town"
   },
@@ -548,15 +557,6 @@ const AUTO_EVENTS = [
     "date": "2026-12-08",
     "time": "7:00 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Water Pollution Control Authority",
-    "date": "2026-12-10",
-    "time": "7:00 PM",
-    "place": "Water Pollution Control Facility Conference Room, 36 Drake Hill Road",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "src": "town"
