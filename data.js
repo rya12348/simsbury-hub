@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-10-19";
+const LAST_UPDATED = "2026-10-20";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,33 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Design Review Board - CANCELLED",
-    "date": "2026-10-19",
-    "time": "5:30 PM",
-    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Simsbury Public Library Board of Trustees",
-    "date": "2026-10-19",
-    "time": "7:00 PM",
-    "place": "Weatogue Room, Simsbury Public Library, 725 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Zoning Commission",
-    "date": "2026-10-19",
-    "time": "7:00 PM",
-    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Aging and Disability Commission",
     "date": "2026-10-20",
@@ -553,10 +526,37 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
+    "title": "Board of Selectmen",
+    "date": "2026-12-14",
+    "time": "6:00 PM",
+    "place": "Simsbury Town Hall, Main Meeting Room, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Juvenile Review Board",
+    "date": "2026-12-14",
+    "time": "9:30 AM",
+    "place": "Eno Memorial Hall, 754 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
     "title": "Simsbury Public Library Board of Trustees",
     "date": "2026-12-14",
     "time": "7:00 PM",
     "place": "Weatogue Room, Simsbury Public Library, 725 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
+    "date": "2026-12-15",
+    "time": "7:00 PM",
+    "place": "Board of Education Conference Room, Town Hall, 933 Hopmeadow Street",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "src": "town"
