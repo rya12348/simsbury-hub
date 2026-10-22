@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-10-21";
+const LAST_UPDATED = "2026-10-22";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,15 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Economic Development Commission",
-    "date": "2026-10-21",
-    "time": "5:30 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Culture, Parks and Recreation Commission",
     "date": "2026-10-22",
@@ -548,6 +539,15 @@ const AUTO_EVENTS = [
     "date": "2026-12-16",
     "time": "5:30 PM",
     "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "LBT Strategic Planning Subcommittee",
+    "date": "2026-12-16",
+    "time": "2:00 PM",
+    "place": "725 Hopmeadow St.",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "src": "town"
