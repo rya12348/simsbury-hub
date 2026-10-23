@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-10-22";
+const LAST_UPDATED = "2026-10-23";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -22,16 +22,7 @@ const MANUAL_EVENTS = [
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
   {
-    "title": "Culture, Parks and Recreation Commission",
-    "date": "2026-10-22",
-    "time": "6:00 PM",
-    "place": "Main Meeting Room , Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Board of Selectmen",
+    "title": "Board of Selectmen - Cancelled",
     "date": "2026-10-26",
     "time": "6:00 PM",
     "place": "Simsbury Town Hall, Main Meeting Room, 933 Hopmeadow Street",
@@ -557,6 +548,15 @@ const AUTO_EVENTS = [
     "date": "2026-12-16",
     "time": "7:00 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Public Safety Subcommittee",
+    "date": "2026-12-17",
+    "time": "8:00 AM",
+    "place": "Town of Simsbury",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "src": "town"
