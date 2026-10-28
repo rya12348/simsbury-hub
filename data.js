@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-10-27";
+const LAST_UPDATED = "2026-10-28";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,24 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Board of Education",
-    "date": "2026-10-27",
-    "time": "6:30 PM",
-    "place": "Board of Education Conference Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Planning Commission",
-    "date": "2026-10-27",
-    "time": "7:00 PM",
-    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "LBT Strategic Planning Subcommittee (Cancelled)",
     "date": "2026-10-28",
@@ -553,8 +535,26 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
+    "title": "Design Review Board",
+    "date": "2026-12-21",
+    "time": "5:30 PM",
+    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
     "title": "Zoning Commission",
     "date": "2026-12-21",
+    "time": "7:00 PM",
+    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Planning Commission",
+    "date": "2026-12-22",
     "time": "7:00 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
     "category": "meetings",
