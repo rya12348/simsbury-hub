@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-10-31";
+const LAST_UPDATED = "2026-11-01";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,15 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Rabies Vaccine Clinic",
-    "date": "2026-10-31",
-    "time": "10:00 AM",
-    "place": "Weatogue Fire Station - 251 Hopmeadow Street",
-    "category": "community",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Diversity, Equity & Inclusion Council",
     "date": "2026-11-02",
@@ -548,6 +539,15 @@ const AUTO_EVENTS = [
     "date": "2026-12-22",
     "time": "7:00 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Public Building Committee",
+    "date": "2027-01-04",
+    "time": "7:00 PM",
+    "place": "Town of Simsbury",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "src": "town"
