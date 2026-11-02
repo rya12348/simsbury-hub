@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-01";
+const LAST_UPDATED = "2026-11-02";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -40,7 +40,7 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
-    "title": "Age-Friendly Community Subcommittee Meeting",
+    "title": "Age-Friendly Community Subcommittee Meeting-CANCELLED",
     "date": "2026-11-03",
     "time": "2:30 PM",
     "place": "Town of Simsbury",
