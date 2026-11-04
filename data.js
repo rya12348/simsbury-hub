@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-02";
+const LAST_UPDATED = "2026-11-04";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,33 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Diversity, Equity & Inclusion Council",
-    "date": "2026-11-02",
-    "time": "6:00 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Public Building Committee - Canceled",
-    "date": "2026-11-02",
-    "time": "7:00 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Age-Friendly Community Subcommittee Meeting-CANCELLED",
-    "date": "2026-11-03",
-    "time": "2:30 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Open Space Committee",
     "date": "2026-11-04",
@@ -544,6 +517,15 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
+    "title": "Design Review Board",
+    "date": "2027-01-04",
+    "time": "5:30 PM",
+    "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
     "title": "Public Building Committee",
     "date": "2027-01-04",
     "time": "7:00 PM",
@@ -556,6 +538,24 @@ const AUTO_EVENTS = [
     "title": "Simsbury Public Library Board of Trustees",
     "date": "2027-01-04",
     "time": "7:00 PM",
+    "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
+    "date": "2027-01-05",
+    "time": "7:00 PM",
+    "place": "Board of Education Conference Room Town Hall",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Sustainability Committee",
+    "date": "2027-01-07",
+    "time": "6:30 PM",
     "place": "Town of Simsbury",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
