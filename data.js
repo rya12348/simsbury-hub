@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-04";
+const LAST_UPDATED = "2026-11-05";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -22,25 +22,7 @@ const MANUAL_EVENTS = [
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
   {
-    "title": "Open Space Committee",
-    "date": "2026-11-04",
-    "time": "5:00 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Public Information Meeting: Climax Road Bridge Replacement",
-    "date": "2026-11-04",
-    "time": "6:00 PM",
-    "place": "Friends of the Simsbury Public Library (FSPL) Program Room - Simsbury Public Lib",
-    "category": "community",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Fair Rent Commission Meeting",
+    "title": "Fair Rent Commission Meeting - Cancelled",
     "date": "2026-11-05",
     "time": "1:00 PM",
     "place": "Eno Memorial Hall 754 Hopmeadow Street",
@@ -103,7 +85,7 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
-    "title": "Planning Commission",
+    "title": "Planning Commission - CANCELLED",
     "date": "2026-11-10",
     "time": "7:00 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
@@ -556,6 +538,24 @@ const AUTO_EVENTS = [
     "title": "Sustainability Committee",
     "date": "2027-01-07",
     "time": "6:30 PM",
+    "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Finance",
+    "date": "2027-01-12",
+    "time": "5:45 PM",
+    "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Water Pollution Control Authority",
+    "date": "2027-01-14",
+    "time": "7:00 PM",
     "place": "Town of Simsbury",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
