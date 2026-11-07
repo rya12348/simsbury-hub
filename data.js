@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-05";
+const LAST_UPDATED = "2026-11-07";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,33 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Fair Rent Commission Meeting - Cancelled",
-    "date": "2026-11-05",
-    "time": "1:00 PM",
-    "place": "Eno Memorial Hall 754 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Historic District Commission - CANCELLED",
-    "date": "2026-11-05",
-    "time": "7:00 PM",
-    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Sustainability Committee",
-    "date": "2026-11-05",
-    "time": "6:30 PM",
-    "place": "Town of Simsbury",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Board of Selectmen",
     "date": "2026-11-09",
@@ -556,6 +529,33 @@ const AUTO_EVENTS = [
     "title": "Water Pollution Control Authority",
     "date": "2027-01-14",
     "time": "7:00 PM",
+    "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Aging and Disability Commission",
+    "date": "2027-01-19",
+    "time": "6:00 PM",
+    "place": "Youth Room, Eno Memorial Hall, 754 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
+    "date": "2027-01-19",
+    "time": "7:00 PM",
+    "place": "Town of Simsbury",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Design Review Board",
+    "date": "2027-01-20",
+    "time": "5:30 PM",
     "place": "Town of Simsbury",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
