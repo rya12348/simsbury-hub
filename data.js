@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-08";
+const LAST_UPDATED = "2026-11-10";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,33 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Board of Selectmen",
-    "date": "2026-11-09",
-    "time": "6:00 PM",
-    "place": "Simsbury Town Hall, Main Meeting Room, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Juvenile Review Board",
-    "date": "2026-11-09",
-    "time": "9:30 AM",
-    "place": "Eno Memorial Hall, 754 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Police Commission",
-    "date": "2026-11-09",
-    "time": "5:00 PM",
-    "place": "Board of Education Conference Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Board of Education",
     "date": "2026-11-10",
@@ -94,7 +67,7 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
-    "title": "Design Review Board",
+    "title": "Design Review Board - CANCELLED",
     "date": "2026-11-16",
     "time": "5:30 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
