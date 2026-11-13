@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-12";
+const LAST_UPDATED = "2026-11-13";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -22,28 +22,19 @@ const MANUAL_EVENTS = [
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
   {
-    "title": "Personnel Subcommittee",
-    "date": "2026-11-12",
-    "time": "9:00 AM",
-    "place": "Simsbury Town Hall, Main Meeting Room, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Water Pollution Control Authority",
-    "date": "2026-11-12",
-    "time": "7:00 PM",
-    "place": "Water Pollution Control Facility Conference Room, 36 Drake Hill Road",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
     "title": "Simsbury Housing Authority",
     "date": "2026-11-13",
     "time": "8:00 AM",
     "place": "Virginia Connolly Residence, 1600 Hopmeadow Street",
+    "category": "meetings",
+    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
+    "src": "town"
+  },
+  {
+    "title": "Board of Assessment Appeals Special Meeting",
+    "date": "2026-11-16",
+    "time": "5:30 PM",
+    "place": "Probate Conference Room, Town Hall, 933 Hopmeadow Street",
     "category": "meetings",
     "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
     "src": "town"
