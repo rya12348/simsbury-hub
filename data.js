@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-13";
+const LAST_UPDATED = "2026-11-15";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,15 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Simsbury Housing Authority",
-    "date": "2026-11-13",
-    "time": "8:00 AM",
-    "place": "Virginia Connolly Residence, 1600 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Board of Assessment Appeals Special Meeting",
     "date": "2026-11-16",
