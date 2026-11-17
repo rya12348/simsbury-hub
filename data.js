@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-16";
+const LAST_UPDATED = "2026-11-17";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,42 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Board of Assessment Appeals Special Meeting",
-    "date": "2026-11-16",
-    "time": "5:30 PM",
-    "place": "Probate Conference Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Design Review Board - CANCELLED",
-    "date": "2026-11-16",
-    "time": "5:30 PM",
-    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Simsbury Public Library Board of Trustees",
-    "date": "2026-11-16",
-    "time": "7:00 PM",
-    "place": "Weatogue Room, Simsbury Public Library, 725 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Zoning Commission",
-    "date": "2026-11-16",
-    "time": "7:00 PM",
-    "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Aging and Disability Commission",
     "date": "2026-11-17",
