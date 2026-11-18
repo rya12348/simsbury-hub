@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-17";
+const LAST_UPDATED = "2026-11-18";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
@@ -21,33 +21,6 @@ const MANUAL_EVENTS = [
 
 // AUTO-EVENTS-START
 const AUTO_EVENTS = [
-  {
-    "title": "Aging and Disability Commission",
-    "date": "2026-11-17",
-    "time": "6:00 PM",
-    "place": "Youth Room, Eno Memorial Hall, 754 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Board of Finance",
-    "date": "2026-11-17",
-    "time": "5:45 PM",
-    "place": "Main Meeting Room, Town Hall , 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
-  {
-    "title": "Conservation Commission/Inland Wetlands and Watercourses Agency",
-    "date": "2026-11-17",
-    "time": "7:00 PM",
-    "place": "Board of Education Conference Room, Town Hall, 933 Hopmeadow Street",
-    "category": "meetings",
-    "link": "https://www.simsbury-ct.gov/calendar.aspx?CID=14",
-    "src": "town"
-  },
   {
     "title": "Economic Development Commission",
     "date": "2026-11-18",
@@ -85,7 +58,7 @@ const AUTO_EVENTS = [
     "src": "town"
   },
   {
-    "title": "Planning Commission",
+    "title": "Planning Commission - CANCELLED",
     "date": "2026-11-24",
     "time": "7:00 PM",
     "place": "Main Meeting Room, Town Hall, 933 Hopmeadow Street",
