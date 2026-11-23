@@ -2,7 +2,7 @@
 // Event dates are fixed (YYYY-MM-DD). Past events hide themselves automatically.
 // Fields on PLACES entries are optional: hours, liveMusic, phone, details, link, isNew.
 
-const LAST_UPDATED = "2026-11-22";
+const LAST_UPDATED = "2026-11-23";
 
 // Hand-written events.
 const MANUAL_EVENTS = [
